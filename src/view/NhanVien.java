@@ -21,7 +21,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class QuanLyNhanVien extends JFrame {
+public class NhanVien extends JFrame {
 
 	private JPanel contentPane;
 	private DefaultTableModel model;
@@ -40,7 +40,7 @@ public class QuanLyNhanVien extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					QuanLyNhanVien frame = new QuanLyNhanVien();
+					NhanVien frame = new NhanVien();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class QuanLyNhanVien extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public QuanLyNhanVien() {
+	public NhanVien() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 966, 577);
 		contentPane = new JPanel();
@@ -66,7 +66,7 @@ public class QuanLyNhanVien extends JFrame {
 		contentPane.add(tabbedPane);
 		
 		JPanel panel = new JPanel();
-		tabbedPane.addTab("Nhân viên hành chánh", null, panel, null);
+		tabbedPane.addTab("Nhân viên hành chính", null, panel, null);
 		panel.setLayout(null);
 		
 		JPanel panel_2 = new JPanel();
@@ -89,7 +89,7 @@ public class QuanLyNhanVien extends JFrame {
 		panel_2.add(box_bottom);
 		
 		JPanel panel_3 = new JPanel();
-		panel_3.setBorder(new TitledBorder(null, "Th\u00F4ng tin nh\u00E2n vi\u00EAn", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel_3.setBorder(new TitledBorder(null, "Thông tin nhân viên", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel_3.setBounds(10, 4, 445, 241);
 		panel.add(panel_3);
 		panel_3.setLayout(null);
@@ -130,16 +130,16 @@ public class QuanLyNhanVien extends JFrame {
 		textField_3.setBounds(112, 138, 301, 19);
 		panel_3.add(textField_3);
 		
-		JLabel lblNewLabel_1_2_1 = new JLabel("Mã nhân viên\r\n");
+		JLabel lblNewLabel_1_2_1 = new JLabel("Phòng ban\r\n");
 		lblNewLabel_1_2_1.setBounds(10, 181, 92, 13);
 		panel_3.add(lblNewLabel_1_2_1);
-		String phongban[] = {"Phòng nhân sư", "Phòng kế toán", "Phòng tài chinh"};
+		String phongban[] = {"Phòng nhân sự", "Phòng kế toán", "Phòng tài chinh"};
 		JComboBox comboBox = new JComboBox(phongban);
 		
 		comboBox.setBounds(112, 174, 130, 21);
 		panel_3.add(comboBox);
 		
-		JLabel lblNewLabel_1_2_2 = new JLabel("Học vấn\r\n");
+		JLabel lblNewLabel_1_2_2 = new JLabel("Học vụ\r\n");
 		lblNewLabel_1_2_2.setBounds(10, 218, 92, 13);
 		panel_3.add(lblNewLabel_1_2_2);
 		
@@ -159,12 +159,12 @@ public class QuanLyNhanVien extends JFrame {
 		btnThm.setBounds(10, 53, 432, 25);
 		panel_4.add(btnThm);
 		
-		JButton btnNewButton_1_1 = new JButton("Xóa");
+		JButton btnNewButton_1_1 = new JButton("Xửa");
 		btnNewButton_1_1.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\del.png"));
 		btnNewButton_1_1.setBounds(10, 88, 432, 25);
 		panel_4.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_2 = new JButton("Sửa");
+		JButton btnNewButton_1_2 = new JButton("Xóa");
 		btnNewButton_1_2.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\sua2.png"));
 		btnNewButton_1_2.setBounds(10, 123, 432, 25);
 		panel_4.add(btnNewButton_1_2);
@@ -191,6 +191,6 @@ public class QuanLyNhanVien extends JFrame {
 		
 		JPanel panel_1 = new JPanel();
 		
-		tabbedPane.addTab("Nhân viên kỹ thuật", null, panel_1, null);
+		tabbedPane.addTab("NhÃ¢n viÃªn ká»¹ thuáº­t", null, panel_1, null);
 	}
 }
