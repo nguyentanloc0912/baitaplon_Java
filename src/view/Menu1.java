@@ -58,7 +58,7 @@ public class Menu1 extends JFrame {
 		panel.setLayout(null);
 	    
 		JButton btnNewButton = new JButton("Th\u00F4ng tin s\u1EA3n ph\u1EA9m");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\cp.png"));
+		btnNewButton.setIcon(new ImageIcon("src\\anh\\cp.png"));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,19 +72,19 @@ public class Menu1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnThngTinKhch.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\people.png"));
+		btnThngTinKhch.setIcon(new ImageIcon("src\\anh\\people.png"));
 		btnThngTinKhch.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThngTinKhch.setBounds(30, 80, 254, 39);
 		panel.add(btnThngTinKhch);
 		
 		JButton btnHpng = new JButton("H\u1EE3p \u0111\u1ED3ng");
-		btnHpng.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\ban.png"));
+		btnHpng.setIcon(new ImageIcon("src\\anh\\ban.png"));
 		btnHpng.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnHpng.setBounds(30, 129, 254, 39);
 		panel.add(btnHpng);
 		
 		JButton btnBoCo = new JButton("H\u00F3a \u0111\u01A1n");
-		btnBoCo.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\report1.png"));
+		btnBoCo.setIcon(new ImageIcon("src\\anh\\report1.png"));
 		btnBoCo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnBoCo.setBounds(30, 184, 254, 39);
 		panel.add(btnBoCo);
@@ -94,13 +94,13 @@ public class Menu1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnQunLTi.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\list.png"));
+		btnQunLTi.setIcon(new ImageIcon("src\\anh\\list.png"));
 		btnQunLTi.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnQunLTi.setBounds(30, 285, 254, 39);
 		panel.add(btnQunLTi);
 		
 		JButton btnQunLNhn = new JButton("Qu\u1EA3n l\u00FD nh\u00E2n vi\u00EAn\r\n");
-		btnQunLNhn.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\people3.png"));
+		btnQunLNhn.setIcon(new ImageIcon("src\\anh\\people3.png"));
 		btnQunLNhn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -152,7 +152,7 @@ public class Menu1 extends JFrame {
 		
 		JButton btnNewButton_1 = 
 				new JButton("\u0110\u0103ng nh\u1EADp\r\n\r\n");
-		btnNewButton_1.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\key.png"));
+		btnNewButton_1.setIcon(new ImageIcon("src\\anh\\key.png"));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnNewButton_1.setBounds(92, 10, 180, 63);
 		panel_3.add(btnNewButton_1);
