@@ -40,6 +40,7 @@ public class ThongTinSanPham extends JFrame {
 	private JTextField textField_7;
 	private JTextField textField_8;
 	private JTextField textField_9;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -48,7 +49,7 @@ public class ThongTinSanPham extends JFrame {
 			public void run() {
 				try {
 					ThongTinSanPham frame = new ThongTinSanPham();
-					frame.setVisible(true);
+					frame.setVisible(false);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -60,7 +61,7 @@ public class ThongTinSanPham extends JFrame {
 	 * Create the frame.
 	 */
 	public ThongTinSanPham() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 873, 595);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -105,7 +106,7 @@ public class ThongTinSanPham extends JFrame {
 	     contentPane.add(panel_1);
 	     panel_1.setLayout(null);
 		
-	     JLabel lblNewLabel = new JLabel("MÃ£ SP");
+	     JLabel lblNewLabel = new JLabel("Mã SP");
 		lblNewLabel.setBounds(10, 42, 60, 13);
 		panel_1.add(lblNewLabel);
 		
@@ -114,7 +115,7 @@ public class ThongTinSanPham extends JFrame {
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblTnSp = new JLabel("TÃªn SP\r\n");
+		JLabel lblTnSp = new JLabel("Tên SP\r\n");
 		lblTnSp.setBounds(10, 84, 60, 13);
 		panel_1.add(lblTnSp);
 		
