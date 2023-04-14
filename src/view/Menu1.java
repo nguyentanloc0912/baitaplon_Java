@@ -205,7 +205,6 @@ public class Menu1 extends JFrame implements ActionListener{
     	btnHoaDon.addActionListener(this);
     	btn_thoat_hoadon.addActionListener(this);
     }
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object a = e.getSource();
