@@ -74,7 +74,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		btnNewButton_sanpham.setIcon(new ImageIcon("src\\anh\\cp.png"));
 		btnNewButton_sanpham.setFont(new Font("Tahoma", Font.BOLD, 13));
 	
-		btnNewButton_sanpham.setBounds(30, 56, 254, 39);
+		btnNewButton_sanpham.setBounds(30, 57, 254, 39);
 		btnNewButton_sanpham.addActionListener(this);
 		panel.add(btnNewButton_sanpham);
 		
@@ -85,19 +85,17 @@ public class Menu1 extends JFrame implements ActionListener{
 		});
 		btnThngTinKhch.setIcon(new ImageIcon("src\\anh\\people.png"));
 		btnThngTinKhch.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnThngTinKhch.setBounds(30, 105, 254, 39);
+		btnThngTinKhch.setBounds(30, 106, 254, 39);
 		panel.add(btnThngTinKhch);
 		
-		JButton btnHpng = new JButton("Nh\u1EADp H\u00E0ng\r\n");
-		btnHpng.setIcon(new ImageIcon("src\\anh\\ban.png"));
-		btnHpng.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnHpng.setBounds(30, 203, 254, 39);
-		panel.add(btnHpng);
-		
 		JButton btnBoCo = new JButton("H\u1EE3p \u0111\u1ED3ng\r\n");
+		btnBoCo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBoCo.setIcon(new ImageIcon("src\\anh\\report1.png"));
 		btnBoCo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnBoCo.setBounds(30, 252, 254, 39);
+		btnBoCo.setBounds(30, 204, 254, 39);
 		panel.add(btnBoCo);
 		
 		btnHoaDon = new JButton("H\u00F3a \u0111\u01A1n\r\n");
@@ -107,7 +105,7 @@ public class Menu1 extends JFrame implements ActionListener{
 			}
 		});
 		btnHoaDon.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnHoaDon.setBounds(30, 301, 254, 39);
+		btnHoaDon.setBounds(30, 260, 254, 39);
 		panel.add(btnHoaDon);
 		
 		JButton btnBoHnh = new JButton("B\u1EA3o h\u00E0nh\r\n");
@@ -116,22 +114,17 @@ public class Menu1 extends JFrame implements ActionListener{
 			}
 		});
 		btnBoHnh.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnBoHnh.setBounds(30, 350, 254, 39);
+		btnBoHnh.setBounds(30, 309, 254, 39);
 		panel.add(btnBoHnh);
 		
 		JButton btnQunLTi = new JButton("Qu\u1EA3n l\u00FD t\u00E0i kho\u1EA3n\r\n");
 		btnQunLTi.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnQunLTi.setBounds(30, 399, 254, 39);
+		btnQunLTi.setBounds(30, 358, 254, 39);
 		panel.add(btnQunLTi);
-		
-		JButton btnHpng_1_1 = new JButton("Th\u00F4ng tin nh\u00E0 cung c\u1EA5p\r\n");
-		btnHpng_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnHpng_1_1.setBounds(30, 7, 254, 39);
-		panel.add(btnHpng_1_1);
 		
 		JButton btnThngTinNhn = new JButton("Th\u00F4ng tin nh\u00E2n vi\u00EAn\r\n");
 		btnThngTinNhn.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnThngTinNhn.setBounds(30, 154, 254, 39);
+		btnThngTinNhn.setBounds(30, 155, 254, 39);
 		panel.add(btnThngTinNhn);
 		
 		JPanel panel_1 = new JPanel();

@@ -25,24 +25,19 @@ import javax.swing.table.TableColumn;
 import model.ds_hopDong;
 
 import javax.swing.ImageIcon;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class HopDong extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
+	private DefaultTableModel model;
+	private ds_hopDong ds;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
 	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
-	private JTextField textField_8;
-	private JTextField textField_9;
-	private JTable table;
-	private DefaultTableModel model;
-	private JTextField textField_10;
-	private ds_hopDong ds;
 
 	/**
 	 * Launch the application.
@@ -76,229 +71,167 @@ public class HopDong extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Label label = new Label("Quáº£n lÃ½ há»£p Ä‘á»“ng");
+		Label label = new Label("Hợp đồng bán hàng");
+		label.setAlignment(Label.CENTER);
 		label.setBounds(317, 0, 268, 49);
 		label.setFont(new Font("Arial", Font.BOLD, 25));
 		contentPane.add(label);
 		
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Th\u00F4ng tin h\u1EE3p \u0111\u1ED3ng", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 55, 673, 218);
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "", TitledBorder.LEFT, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(303, 55, 673, 259);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Sá»‘ há»£p Ä‘á»“ng:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNewLabel.setBounds(10, 18, 92, 27);
-		panel.add(lblNewLabel);
-		
-		JLabel lblNgyHpng = new JLabel("NgÃ y há»£p Ä‘á»“ng:");
-		lblNgyHpng.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblNgyHpng.setBounds(10, 55, 107, 30);
-		panel.add(lblNgyHpng);
-		
-		JLabel lblThiGianBo = new JLabel("Thá»�i gian báº£o hÃ nh:");
-		lblThiGianBo.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblThiGianBo.setBounds(363, 59, 128, 23);
-		panel.add(lblThiGianBo);
-		
-		JLabel lblTinPhiThanh = new JLabel("Tiá»�n pháº£i thanh toÃ¡n:");
-		lblTinPhiThanh.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblTinPhiThanh.setBounds(10, 95, 145, 24);
-		panel.add(lblTinPhiThanh);
-		
-		JLabel lblSTin = new JLabel("Sá»‘ tiá»�n Ä‘Ã£ tráº£:");
-		lblSTin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSTin.setBounds(363, 102, 92, 13);
-		panel.add(lblSTin);
-		
-		JLabel lblMNhnVin = new JLabel("MÃ£ nhÃ¢n viÃªn láº­p há»£p Ä‘á»“ng:");
-		lblMNhnVin.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMNhnVin.setBounds(10, 129, 176, 25);
-		panel.add(lblMNhnVin);
-		
-		JLabel lblMuaTrGp = new JLabel("Mua tráº£ gÃ³p:");
-		lblMuaTrGp.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblMuaTrGp.setBounds(10, 164, 92, 24);
-		panel.add(lblMuaTrGp);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Tráº£ gÃ³p");
-		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		rdbtnNewRadioButton.setBounds(122, 160, 84, 30);
-		panel.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnKhngTrGp = new JRadioButton("KhÃ´ng tráº£ gÃ³p");
-		rdbtnKhngTrGp.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		rdbtnKhngTrGp.setBounds(222, 161, 114, 30);
-		panel.add(rdbtnKhngTrGp);
-		
-		ButtonGroup group = new ButtonGroup();
-		group.add(rdbtnKhngTrGp);
-		group.add(rdbtnNewRadioButton);
+		JLabel lbl_tensanpham = new JLabel("Tên sản phẩm : ");
+		lbl_tensanpham.setBounds(10, 10, 88, 13);
+		panel.add(lbl_tensanpham);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setEnabled(false);
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"NgÃ y tráº£ láº§n 1", "NgÃ y tráº£ láº§n 2", "NgÃ y tráº£ láº§n 3"}));
-		comboBox.setBounds(363, 167, 120, 21);
+		comboBox.setBounds(125, 6, 96, 21);
 		panel.add(comboBox);
 		
+		JLabel lbl_soluong = new JLabel("Số lượng : \r\n");
+		lbl_soluong.setBounds(10, 44, 88, 13);
+		panel.add(lbl_soluong);
+		
 		textField = new JTextField();
-		textField.setEnabled(false);
-		textField.setBounds(493, 169, 175, 19);
+		textField.setBounds(125, 41, 171, 19);
 		panel.add(textField);
 		textField.setColumns(10);
 		
+		JLabel lbl_makhachhang = new JLabel("Mã KH : \r\n");
+		lbl_makhachhang.setBounds(10, 84, 88, 13);
+		panel.add(lbl_makhachhang);
+		
 		textField_1 = new JTextField();
-		textField_1.setBounds(196, 134, 471, 19);
-		panel.add(textField_1);
 		textField_1.setColumns(10);
+		textField_1.setBounds(125, 81, 171, 19);
+		panel.add(textField_1);
+		
+		JLabel lblNewLabel_3 = new JLabel("Đơn giá\r\n :");
+		lblNewLabel_3.setBounds(337, 44, 60, 13);
+		panel.add(lblNewLabel_3);
+		
+		JLabel jradio_giam = new JLabel("Giảm giá");
+		jradio_giam.setBounds(10, 148, 88, 13);
+		panel.add(jradio_giam);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(150, 100, 203, 19);
-		panel.add(textField_2);
 		textField_2.setColumns(10);
+		textField_2.setBounds(125, 145, 171, 19);
+		panel.add(textField_2);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(492, 100, 175, 19);
-		panel.add(textField_3);
-		textField_3.setColumns(10);
+		JLabel lblNewLabel_2_1_1_1_1 = new JLabel("Thanh toán : ");
+		lblNewLabel_2_1_1_1_1.setBounds(10, 113, 88, 13);
+		panel.add(lblNewLabel_2_1_1_1_1);
 		
-		textField_4 = new JTextField();
-		textField_4.setBounds(492, 60, 175, 19);
-		panel.add(textField_4);
-		textField_4.setColumns(10);
+		JRadioButton jradio_trahet = new JRadioButton("Trả hết");
+		jradio_trahet.setBounds(125, 109, 103, 21);
+		panel.add(jradio_trahet);
 		
-		textField_5 = new JTextField();
-		textField_5.setBounds(112, 60, 241, 19);
-		panel.add(textField_5);
-		textField_5.setColumns(10);
-		
-		textField_6 = new JTextField();
-		textField_6.setBounds(112, 23, 241, 19);
-		panel.add(textField_6);
-		textField_6.setColumns(10);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Th\u00F4ng tin kh\u00E1ch h\u00E0ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_1.setBounds(10, 274, 673, 89);
-		contentPane.add(panel_1);
-		panel_1.setLayout(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("TÃªn khÃ¡ch hÃ ng:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1.setBounds(10, 21, 120, 24);
-		panel_1.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("Ä�á»‹a chá»‰:");
-		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1_1.setBounds(10, 55, 120, 24);
-		panel_1.add(lblNewLabel_1_1);
-		
-		JLabel lblNewLabel_1_2 = new JLabel("Sá»‘ Ä‘iá»‡n thoáº¡i:");
-		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblNewLabel_1_2.setBounds(386, 21, 99, 24);
-		panel_1.add(lblNewLabel_1_2);
-		
-		textField_7 = new JTextField();
-		textField_7.setBounds(128, 25, 226, 19);
-		panel_1.add(textField_7);
-		textField_7.setColumns(10);
-		
-		textField_8 = new JTextField();
-		textField_8.setBounds(128, 59, 539, 19);
-		panel_1.add(textField_8);
-		textField_8.setColumns(10);
-		
-		textField_9 = new JTextField();
-		textField_9.setBounds(495, 25, 172, 19);
-		panel_1.add(textField_9);
-		textField_9.setColumns(10);
+		JRadioButton jradio_tranhieulan = new JRadioButton("Trả nhiều lần\r\n");
+		jradio_tranhieulan.setBounds(230, 106, 103, 21);
+		panel.add(jradio_tranhieulan);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Ch\u1EE9c n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel_2.setBounds(693, 55, 283, 308);
-		contentPane.add(panel_2);
+		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_2.setBounds(337, 96, 252, 34);
+		panel.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JButton btnThmHpng = new JButton("ThÃªm há»£p Ä‘á»“ng");
-
-		btnThmHpng.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnThmHpng.setBounds(10, 89, 263, 33);
-		panel_2.add(btnThmHpng);
-		
-		JButton btnXaHpng = new JButton("XÃ³a há»£p Ä‘á»“ng");
-
-		btnXaHpng.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnXaHpng.setBounds(10, 132, 263, 33);
-		panel_2.add(btnXaHpng);
-		
-		JButton btnCpNht = new JButton("Cáº­p nháº­t ");
-	
-		btnCpNht.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnCpNht.setBounds(10, 222, 263, 33);
-		panel_2.add(btnCpNht);
-		
-		JButton btnXaTrng = new JButton("XÃ³a tráº¯ng");
-	
-		btnXaTrng.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnXaTrng.setBounds(10, 179, 263, 33);
-		panel_2.add(btnXaTrng);
-		
-		JButton btnThot = new JButton("ThoÃ¡t");
-
-		btnThot.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnThot.setBounds(146, 265, 127, 33);
-		panel_2.add(btnThot);
-		
-		JButton btnLu = new JButton("LÆ°u");
-	
-		btnLu.setFont(new Font("Tahoma", Font.BOLD, 12));
-		btnLu.setBounds(10, 265, 126, 33);
-		panel_2.add(btnLu);
-		
-		JLabel lblNewLabel_2 = new JLabel("Nháº­p sá»‘ há»£p Ä‘á»“ng cáº§n tÃ¬m:");
-		lblNewLabel_2.setBounds(10, 22, 186, 24);
+		JLabel lblNewLabel_2 = new JLabel("Số tiền trả :");
+		lblNewLabel_2.setBounds(10, 10, 68, 13);
 		panel_2.add(lblNewLabel_2);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		
-		textField_10 = new JTextField();
-		textField_10.setBounds(10, 52, 159, 27);
-		panel_2.add(textField_10);
-		textField_10.setColumns(10);
+		textField_3 = new JTextField();
+		textField_3.setBounds(72, 7, 170, 19);
+		panel_2.add(textField_3);
+		textField_3.setColumns(10);
 		
-		JButton btnNewButton = new JButton("TÃ¬m");
+		JLabel lblNewLabel_4 = new JLabel("Tổng tiền : ");
+		lblNewLabel_4.setBounds(10, 190, 88, 13);
+		panel.add(lblNewLabel_4);
 		
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnNewButton.setBounds(179, 48, 94, 33);
-		panel_2.add(btnNewButton);
+		JLabel lblNewLabel_4_1 = new JLabel("Tổng tiền hóa đơn : \r\n");
+		lblNewLabel_4_1.setBounds(10, 213, 124, 13);
+		panel.add(lblNewLabel_4_1);
+		
+		JLabel lblNewLabel_4_1_1 = new JLabel("Tiền còn thiếu :");
+		lblNewLabel_4_1_1.setBounds(10, 236, 124, 13);
+		panel.add(lblNewLabel_4_1_1);
+		
+		ButtonGroup group = new ButtonGroup();
 		
 		
 		model = new DefaultTableModel();
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		model.addColumn("Sá»‘ há»£p Ä‘á»“ng");
-		model.addColumn("NgÃ y há»£p Ä‘á»“ng");
-		model.addColumn("Thá»�i gian báº£o hÃ nh");
-		model.addColumn("Tiá»�n pháº£i thanh toÃ¡n");
-		model.addColumn("Sá»‘ tiá»�n Ä‘Ã£ tráº£");
-		model.addColumn("MÃ£ nhÃ¢n viÃªn");
-		model.addColumn("Mua tráº£ gÃ³p");
-		model.addColumn("NgÃ y tráº£ láº§n");
-		model.addColumn("MÃ£ khÃ¡ch hÃ ng");
-		model.addColumn("Sá»‘ Ä‘iá»‡n thoáº¡i");
-		model.addColumn("Ä�á»‹a chá»‰");
+		model.addColumn("Mã Hóa Đơn");
+		model.addColumn("Mã Sản phẩm");
+		model.addColumn("Tên sản phẩm");
+		model.addColumn("Số lượng");
+		model.addColumn("Thành tiền");
+		model.addColumn("Tiền còn thiếu");
 		
 		TableColumn tableColumn = new TableColumn();
-		table.getColumnModel().getColumn(1).setPreferredWidth(90);
-		table.getColumnModel().getColumn(2).setPreferredWidth(105);
-		table.getColumnModel().getColumn(3).setPreferredWidth(110);
-		table.getColumnModel().getColumn(8).setPreferredWidth(90);
-		table.getColumnModel().getColumn(10).setPreferredWidth(50);
+//		table.getColumnModel().getColumn(1).setPreferredWidth(90);
+//		table.getColumnModel().getColumn(2).setPreferredWidth(105);
+//		table.getColumnModel().getColumn(3).setPreferredWidth(110);
+//		table.getColumnModel().getColumn(8).setPreferredWidth(90);
+//		table.getColumnModel().getColumn(10).setPreferredWidth(50);
 		
 		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 		scrollPane.setToolTipText("");
 		scrollPane.setBounds(10, 373, 966, 189);
 		contentPane.add(scrollPane);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_1.setBounds(10, 55, 283, 73);
+		contentPane.add(panel_1);
+		panel_1.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("Mã Hóa Đơn : \r\n ");
+		lblNewLabel.setBounds(10, 32, 92, 13);
+		panel_1.add(lblNewLabel);
+		
+		JPanel panel_1_1 = new JPanel();
+		panel_1_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel_1_1.setBounds(10, 150, 283, 73);
+		contentPane.add(panel_1_1);
+		panel_1_1.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Tên nhân viên lập : ");
+		lblNewLabel_1.setBounds(10, 10, 121, 13);
+		panel_1_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Ngày lập : ");
+		lblNewLabel_1_1.setBounds(10, 50, 101, 13);
+		panel_1_1.add(lblNewLabel_1_1);
+		
+		JButton btnThoat = new JButton("Thoát\r\n");
+		btnThoat.setBounds(10, 246, 114, 31);
+		contentPane.add(btnThoat);
+		
+		JButton btntaomoi = new JButton("Hóa đơn mới");
+		btntaomoi.setBounds(303, 324, 114, 31);
+		contentPane.add(btntaomoi);
+		
+		JButton btnThem = new JButton("Thêm");
+		btnThem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnThem.setBounds(489, 324, 114, 31);
+		contentPane.add(btnThem);
+		
+		JButton btnThanhtoan = new JButton("Thanh toán");
+		btnThanhtoan.setBounds(669, 324, 114, 31);
+		contentPane.add(btnThanhtoan);
+		
+		JButton btnInhoadon = new JButton("In hóa đơn");
+		btnInhoadon.setBounds(862, 324, 114, 31);
+		contentPane.add(btnInhoadon);
 	}
 }
