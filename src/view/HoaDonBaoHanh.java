@@ -16,6 +16,10 @@ import javax.swing.JButton;
 
 public class HoaDonBaoHanh extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField textField_1;
@@ -52,28 +56,28 @@ public class HoaDonBaoHanh extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Hóa Đơn Phiếu Bảo Hành");
+		JLabel lblNewLabel = new JLabel("HÃ³a Ä�Æ¡n Phiáº¿u Báº£o HÃ nh");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblNewLabel.setBounds(135, 0, 324, 46);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Mã phiếu bảo hành:");
+		JLabel lblNewLabel_1 = new JLabel("MÃ£ phiáº¿u báº£o hÃ nh:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(55, 66, 135, 24);
 		contentPane.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Tên linh kiện:");
+		JLabel lblNewLabel_1_1 = new JLabel("TÃªn linh kiá»‡n:");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1.setBounds(100, 100, 90, 24);
 		contentPane.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Số lượng:");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Sá»‘ lÆ°á»£ng:");
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1_1.setBounds(122, 134, 62, 24);
 		contentPane.add(lblNewLabel_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Thành tiền:");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("ThÃ nh tiá»�n:");
 		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1_1_1.setBounds(111, 168, 75, 24);
 		contentPane.add(lblNewLabel_1_1_1_1);
@@ -114,12 +118,12 @@ public class HoaDonBaoHanh extends JFrame {
 		textField_3.setEditable(false);
 		textField_3.setForeground(Color.RED);
 		
-		JButton btnNewButton = new JButton("Xóa hóa đơn");
+		JButton btnNewButton = new JButton("XÃ³a hÃ³a Ä‘Æ¡n");
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.setBounds(374, 89, 157, 35);
 		contentPane.add(btnNewButton);
 		
-		JButton btnThot = new JButton("Thoát");
+		JButton btnThot = new JButton("ThoÃ¡t");
 		btnThot.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThot.setBounds(374, 137, 157, 35);
 		contentPane.add(btnThot);
@@ -127,10 +131,10 @@ public class HoaDonBaoHanh extends JFrame {
 		model = new DefaultTableModel();
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		model.addColumn("Mã phiếu BH");
-		model.addColumn("Tên linh kiện");
-		model.addColumn("Số lượng");
-		model.addColumn("Thành tiền");
+		model.addColumn("MÃ£ phiáº¿u BH");
+		model.addColumn("TÃªn linh kiá»‡n");
+		model.addColumn("Sá»‘ lÆ°á»£ng");
+		model.addColumn("ThÃ nh tiá»�n");
 		
 		JScrollPane scrollPane = 	new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 202, 611, 126);

@@ -88,7 +88,7 @@ public class KhachHang extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		Label label = new Label("ThÃ´ng tin khÃ¡ch hÃ ng");
+		Label label = new Label("Thông tin khách hàng");
 		label.setFont(new Font("Arial", Font.PLAIN, 25));
 		label.setForeground(new Color(255, 0, 0));
 		label.setBounds(335, 0, 304, 45);
@@ -113,7 +113,7 @@ public class KhachHang extends JFrame {
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		Label label_1 = new Label("Nháº­p thÃ´ng tin khÃ¡ch hÃ ng");
+		Label label_1 = new Label("Nhập thông tin khách hàng");
 		label_1.setForeground(new Color(0, 0, 255));
 		label_1.setFont(new Font("Dialog", Font.BOLD, 16));
 		label_1.setBounds(158, 10, 257, 32);
