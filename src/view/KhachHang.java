@@ -77,10 +77,10 @@ public class KhachHang extends JFrame {
 	 */
 	public KhachHang() {
 		ds = new ds_KhachHang();
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setTitle("KhÃ¡ch hÃ ng");
+		setTitle("Khách hàng");
 		setBounds(100, 100, 941, 609);
 		contentPane = new JPanel();
 		contentPane.setBorder(new LineBorder(new Color(0, 0, 0), 0));
@@ -119,22 +119,22 @@ public class KhachHang extends JFrame {
 		label_1.setBounds(158, 10, 257, 32);
 		panel_1.add(label_1);
 		
-		Label label_3 = new Label("MÃ£ khÃ¡ch hÃ ng:");
+		Label label_3 = new Label("Mã khách hàng:");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 13));
 		label_3.setBounds(10, 58, 136, 32);
 		panel_1.add(label_3);
 		
-		Label label_4 = new Label("TÃªn khÃ¡ch hÃ ng:");
+		Label label_4 = new Label("Tên khách hàng:");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 13));
 		label_4.setBounds(10, 102, 136, 32);
 		panel_1.add(label_4);
 		
-		Label label_5 = new Label("Sá»‘ Ä‘iá»‡n thoáº¡i:");
+		Label label_5 = new Label("Số điện thoại:");
 		label_5.setFont(new Font("Dialog", Font.BOLD, 13));
 		label_5.setBounds(10, 147, 136, 32);
 		panel_1.add(label_5);
 		
-		Label label_6 = new Label("NgÃ y sinh:");
+		Label label_6 = new Label("Ngày sinh:");
 		label_6.setFont(new Font("Dialog", Font.BOLD, 13));
 		label_6.setBounds(10, 190, 136, 34);
 		panel_1.add(label_6);
@@ -175,32 +175,32 @@ public class KhachHang extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("ThÃªm khÃ¡ch hÃ ng");
-		
+		JButton btnNewButton = new JButton("Thêm khách hàng");
+		btnNewButton.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/add1.png")));
 		btnNewButton.setBounds(10, 86, 331, 32);
 		panel.add(btnNewButton);
 		
-		JButton btnXaKhchHng = new JButton("XÃ³a khÃ¡ch hÃ ng");
-	
+		JButton btnXaKhchHng = new JButton("Xóa khách hàng");
+		btnXaKhchHng.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/del.png")));
 		btnXaKhchHng.setBounds(10, 126, 331, 32);
 		panel.add(btnXaKhchHng);
 		
-		JButton btnCpNhtKhch = new JButton("Cáº­p nháº­t khÃ¡ch hÃ ng");
-
+		JButton btnCpNhtKhch = new JButton("Cập nhật khách hàng");
+		btnCpNhtKhch.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/sua2.png")));
 		btnCpNhtKhch.setBounds(10, 210, 331, 32);
 		panel.add(btnCpNhtKhch);
 		
-		JButton btnLu = new JButton("LÆ°u");
-
+		JButton btnLu = new JButton("Lưu");
+		btnLu.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/save.png")));
 		btnLu.setBounds(10, 252, 159, 32);
 		panel.add(btnLu);
 		
-		JButton btnHy = new JButton("ThoÃ¡t");
-		
+		JButton btnHy = new JButton("Thoát");
+		btnHy.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/close2.png")));
 		btnHy.setBounds(179, 252, 162, 32);
 		panel.add(btnHy);
 		
-		JLabel lblNewLabel = new JLabel("Nháº­p mÃ£ khÃ¡ch hÃ ng cáº§n tÃ¬m:");
+		JLabel lblNewLabel = new JLabel("Nhập mã khách hàng cần tìm:");
 		lblNewLabel.setBounds(10, 16, 193, 24);
 		panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -210,15 +210,15 @@ public class KhachHang extends JFrame {
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JButton btnTm = new JButton("TÃ¬m khÃ¡ch hÃ ng");
-		
+		JButton btnTm = new JButton("Tìm khách hàng");
+		btnTm.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/search.png")));
 		btnTm.setBounds(10, 44, 331, 32);
 		panel.add(btnTm);
 		
-		JButton btnXaTrng = new JButton("XÃ³a tráº¯ng");
+		JButton btnXaTrng = new JButton("Xóa trắng");
 		btnXaTrng.setBounds(10, 168, 331, 32);
 		panel.add(btnXaTrng);
-
+		btnXaTrng.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/refresh.png")));
 		
 		setVisible(true);
 	}
