@@ -21,6 +21,8 @@ import java.awt.ComponentOrientation;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
+
 import java.awt.Panel;
 import java.awt.Button;
 import java.awt.Cursor;
@@ -31,14 +33,23 @@ public class Menu1 extends JFrame implements ActionListener{
 	private JButton btnNewButton_sanpham;
 	ThongTinSanPham thongtinsanpham;
 	private JButton btnHoaDon;
-	private JButton btn_hoadon_baohanh;
+
 	private JButton btn_thoat_hoadon;
 	private JPanel jpanel_hoadon;
+	private JButton btn_info_kh;
+	private JButton btn_info_sanpham;
+	private JButton btn_banhang;
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,33 +81,25 @@ public class Menu1 extends JFrame implements ActionListener{
 		contentPane.add(panel);
 		panel.setLayout(null);
 	    
-		btnNewButton_sanpham = new JButton("Thông tin sản phẩm");
-		btnNewButton_sanpham.setIcon(new ImageIcon("src\\anh\\cp.png"));
-		btnNewButton_sanpham.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn_info_sanpham = new JButton("Thông tin sản phẩm");
+		btn_info_sanpham.setIcon(new ImageIcon("src\\anh\\cp.png"));
+		btn_info_sanpham.setFont(new Font("Tahoma", Font.BOLD, 13));
 	
-		btnNewButton_sanpham.setBounds(30, 57, 254, 39);
-		btnNewButton_sanpham.addActionListener(this);
-		panel.add(btnNewButton_sanpham);
+		btn_info_sanpham.setBounds(30, 57, 254, 39);
+		btn_info_sanpham.addActionListener(this);
+		panel.add(btn_info_sanpham);
 		
-		JButton btnThngTinKhch = new JButton("Th\u00F4ng tin kh\u00E1ch h\u00E0ng");
-		btnThngTinKhch.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnThngTinKhch.setIcon(new ImageIcon("src\\anh\\people.png"));
-		btnThngTinKhch.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnThngTinKhch.setBounds(30, 106, 254, 39);
-		panel.add(btnThngTinKhch);
+		btn_info_kh= new JButton("Th\u00F4ng tin kh\u00E1ch h\u00E0ng");
+		btn_info_kh.setIcon(new ImageIcon("src\\anh\\people.png"));
+		btn_info_kh.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn_info_kh.setBounds(30, 106, 254, 39);
+		panel.add(btn_info_kh);
 		
-		JButton btnBoCo = new JButton("H\u1EE3p \u0111\u1ED3ng\r\n");
-		btnBoCo.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnBoCo.setIcon(new ImageIcon("src\\anh\\report1.png"));
-		btnBoCo.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnBoCo.setBounds(30, 204, 254, 39);
-		panel.add(btnBoCo);
+		btn_banhang  = new JButton("Bán hàng\r\n");
+		btn_banhang.setIcon(new ImageIcon("src\\anh\\report1.png"));
+		btn_banhang.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn_banhang.setBounds(30, 204, 254, 39);
+		panel.add(btn_banhang);
 		
 		btnHoaDon = new JButton("H\u00F3a \u0111\u01A1n\r\n");
 		btnHoaDon.setIcon(new ImageIcon("src\\anh\\people3.png"));
@@ -132,31 +135,9 @@ public class Menu1 extends JFrame implements ActionListener{
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		jpanel_hoadon = new JPanel();
-		jpanel_hoadon.setVisible(false);
-		jpanel_hoadon.setBorder(new LineBorder(new Color(0, 0, 0)));
-		jpanel_hoadon.setLayout(null);
-		jpanel_hoadon.setBounds(0, 0, 196, 229);
-		panel_1.add(jpanel_hoadon);
+	
 		
-		JPanel panel_3_1_1 = new JPanel();
-		panel_3_1_1.setLayout(null);
-		panel_3_1_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3_1_1.setBounds(10, 10, 176, 209);
-		jpanel_hoadon.add(panel_3_1_1);
-		
-		JButton btn_hoadon_banhang = new JButton("New button");
-		btn_hoadon_banhang.setText("Hóa đơn bán hàng\r\n");
-		btn_hoadon_banhang.setBounds(10, 10, 156, 34);
-		panel_3_1_1.add(btn_hoadon_banhang);
-		
-		btn_hoadon_baohanh = new JButton("Hóa đơn bảo hành");
-		btn_hoadon_baohanh.setBounds(10, 54, 156, 34);
-		panel_3_1_1.add(btn_hoadon_baohanh);
-		
-		btn_thoat_hoadon = new JButton("Thoát\r\n");
-		btn_thoat_hoadon.setBounds(10, 165, 156, 34);
-		panel_3_1_1.add(btn_thoat_hoadon);
+	
 		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\Untitled design.png"));
@@ -176,7 +157,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		panel_2.setLayout(null);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\bfsd (4) (1) (1) (1).png"));
+		lblNewLabel_2.setIcon(new ImageIcon("src\\anh\\bfsd (4) (1) (1) (1).png"));
 		lblNewLabel_2.setBounds(0, 0, 344, 73);
 		panel_2.add(lblNewLabel_2);
 		
@@ -195,8 +176,8 @@ public class Menu1 extends JFrame implements ActionListener{
 		
 	}
     public void addAcction() {
-    	btnHoaDon.addActionListener(this);
-    	btn_thoat_hoadon.addActionListener(this);
+    	
+    
     }
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -204,10 +185,6 @@ public class Menu1 extends JFrame implements ActionListener{
 		if(a.equals(btnNewButton_sanpham)) {
 			thongtinsanpham = new ThongTinSanPham();
 			thongtinsanpham.setVisible(true);
-		}else if(a.equals(btnHoaDon)) {
-			jpanel_hoadon.setVisible(true);
-		}else if(a.equals(btn_thoat_hoadon)) {
-			jpanel_hoadon.setVisible(false);
 		}
 		
 		
