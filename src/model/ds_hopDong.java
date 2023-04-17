@@ -25,7 +25,7 @@ public class ds_hopDong {
 	
 	public boolean themHD(hopDong_model hd) {
 		for (hopDong_model hopDong_model : dsHD) {
-			if(hopDong_model.getSoDH() != hd.getSoDH())
+			if(hopDong_model.getSoDH() == hd.getSoDH())
 				return false;
 		}
 		dsHD.add(hd);
@@ -57,11 +57,11 @@ public class ds_hopDong {
 			hDCu.setTienPhaiThanhToan(hDMoi.getTienPhaiThanhToan());
 			hDCu.setTienDaTra(hDMoi.getTienDaTra());
 			hDCu.setMaNV(hDMoi.getMaNV());
-			hDCu.setMaKH(hDMoi.getMaKH());
+			hDCu.setTragop(hDMoi.getTragop());
+			hDCu.setNgayTraTien(hDMoi.getNgayTraTien());
 			hDCu.setTenKH(hDMoi.getTenKH());
 			hDCu.setDiaChi(hDMoi.getDiaChi());
 			hDCu.setSdt(hDMoi.getSdt());
-			hDCu.setNgayTraTien(hDMoi.getNgayTraTien());
 			return true;
 		}
 		return false;

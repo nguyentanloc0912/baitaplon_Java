@@ -85,7 +85,7 @@ public class phieuBaoHanh {
 	}
 
 	public void setThanhtien(double thanhtien) {
-		this.thanhtien = thanhtien;
+		this.thanhtien = soluong * giatien;
 	}
 
 	@Override

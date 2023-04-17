@@ -4,25 +4,29 @@ import java.time.LocalDate;
 
 public class hopDong_model {
 	private int soDH;
-	private LocalDate ngayHD;
+	private String ngayHD;
 	private int tgbaohanh;
 	private double tienPhaiThanhToan;
 	private double tienDaTra;
-	private String maNV,maKH,tenKH,diaChi,sdt;
-	private LocalDate ngayTraTien;
-	public hopDong_model(int soDH, LocalDate ngayHD, int tgbaohanh, double tienPhaiThanhToan, double tienDaTra,
-			String maNV, String maKH, String tenKH, String diaChi, String sdt, LocalDate ngayTraTien) {
+	private String maNV;
+	private String tragop;
+	private int lanTra;
+	private String ngayTraTien;
+	private String tenKH,diaChi,sdt;
+	public hopDong_model(int soDH, String ngayHD, int tgbaohanh, double tienPhaiThanhToan, double tienDaTra,
+			String maNV,String tragop ,int lanTra, String ngayTraTien, String tenKH, String diaChi, String sdt) {
 		this.setSoDH(soDH);
 		this.setNgayHD(ngayHD);
 		this.setTgbaohanh(tgbaohanh);
 		this.setTienPhaiThanhToan(tienPhaiThanhToan);
 		this.setTienDaTra(tienDaTra);
 		this.setMaNV(maNV);
-		this.setMaKH(maKH);
+		this.setTragop(tragop);
 		this.setTenKH(tenKH);
 		this.setDiaChi(diaChi);
 		this.setSdt(sdt);
 		this.setNgayTraTien(ngayTraTien);
+		this.setLanTra(lanTra);
 	}
 	
 	public hopDong_model(int soDH) {
@@ -38,10 +42,10 @@ public class hopDong_model {
 		else 
 			this.soDH = 1;
 	}
-	public LocalDate getNgayHD() {
+	public String getNgayHD() {
 		return ngayHD;
 	}
-	public void setNgayHD(LocalDate ngayHD) {
+	public void setNgayHD(String ngayHD) {
 		this.ngayHD = ngayHD;
 	}
 	public int getTgbaohanh() {
@@ -80,15 +84,15 @@ public class hopDong_model {
 		else
 			this.maNV = "null";
 	}
-	public String getMaKH() {
-		return maKH;
+	
+	public String getTragop() {
+		return tragop;
 	}
-	public void setMaKH(String maKH) {
-		if(!maKH.equals(""))
-			this.maKH = maKH;
-		else
-			this.maKH = "null";
+
+	public void setTragop(String tragop) {
+		this.tragop = tragop;
 	}
+
 	public String getTenKH() {
 		return tenKH;
 	}
@@ -116,21 +120,28 @@ public class hopDong_model {
 		else
 			this.sdt = "null";
 	}
-	public LocalDate getNgayTraTien() {
+	public String getNgayTraTien() {
 		return ngayTraTien;
 	}
-	public void setNgayTraTien(LocalDate ngayTraTien) {
-		if(ngayTraTien.isAfter(ngayHD))
-			this.ngayTraTien = ngayTraTien;
-		else
-			this.ngayTraTien = LocalDate.now();
+	public void setNgayTraTien(String ngayTraTien) {
+		this.ngayTraTien = ngayTraTien;
 	}
+
+	public int getLanTra() {
+		return lanTra;
+	}
+
+	public void setLanTra(int lanTra) {
+		this.lanTra = lanTra;
+	}
+
 	@Override
 	public String toString() {
 		return "hopDong_model [soDH=" + soDH + ", ngayHD=" + ngayHD + ", tgbaohanh=" + tgbaohanh
-				+ ", tienPhaiThanhToan=" + tienPhaiThanhToan + ", tienDaTra=" + tienDaTra + ", maNV=" + maNV + ", maKH="
-				+ maKH + ", tenKH=" + tenKH + ", diaChi=" + diaChi + ", sdt=" + sdt + ", ngayTraTien=" + ngayTraTien
-				+ "]";
+				+ ", tienPhaiThanhToan=" + tienPhaiThanhToan + ", tienDaTra=" + tienDaTra + ", maNV=" + maNV
+				+ ", tragop=" + tragop + ", ngayTraTien=" + ngayTraTien + ", tenKH=" + tenKH + ", diaChi=" + diaChi
+				+ ", sdt=" + sdt + "]";
 	}
+	
 	
 }
