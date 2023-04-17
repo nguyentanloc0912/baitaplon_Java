@@ -10,6 +10,8 @@ import javax.swing.JTable;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
@@ -19,7 +21,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 
-public class PhieuBaoHanh extends JFrame {
+public class PhieuBaoHanh extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private DefaultTableModel model;
@@ -31,6 +33,8 @@ public class PhieuBaoHanh extends JFrame {
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JTextField textField_6;
+	private JButton btnNewButton;
+	private HoaDonBaoHanh hdBaoHanh;
 
 	/**
 	 * Launch the application.
@@ -155,7 +159,7 @@ public class PhieuBaoHanh extends JFrame {
 		scrollPane.setBounds(10, 307, 880, 170);
 		contentPane.add(scrollPane);
 		
-		JButton btnNewButton = new JButton("Hóa đơn bảo hành");
+		btnNewButton = new JButton("Hóa đơn bảo hành");
 		btnNewButton.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/chi.png")));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.setBounds(636, 145, 254, 40);
@@ -216,5 +220,18 @@ public class PhieuBaoHanh extends JFrame {
 		btnXaTrng.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnXaTrng.setBounds(636, 257, 129, 40);
 		contentPane.add(btnXaTrng);
+		
+		
+		btnNewButton.addActionListener(this);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		Object o = e.getSource();
+		if(o.equals(btnNewButton)) {
+			hdBaoHanh = new HoaDonBaoHanh();
+			hdBaoHanh.setVisible(true);
+		}
 	}
 }

@@ -49,7 +49,7 @@ public class ThongTinSanPham extends JFrame {
 			public void run() {
 				try {
 					ThongTinSanPham frame = new ThongTinSanPham();
-					frame.setVisible(false);
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +72,7 @@ public class ThongTinSanPham extends JFrame {
 		JPanel panel = new JPanel();
 		
 		panel.setLayout(new BorderLayout(0, 0));
-		String[] row_title = {"Mã SP", "Tên sản phẩm", "MÃ£ nhÃ³m", "GiÃ¡ bÃ¡n", "Sá»‘ lÆ°á»£ng", "NÆ°á»›c SX", "Loáº¡i xe", "Sá»‘ PK", "Sá»‘ Khung"};
+		String[] row_title = {"Mã SP", "Tên sản phẩm", "Mã nhóm", "Giá bán", "Số lượng", "Nhà SX", "Loại xe", "Số PK", "Số khung"};
 		model = new DefaultTableModel(row_title, 0);
 		table = new JTable(model);
 		
@@ -115,7 +115,7 @@ public class ThongTinSanPham extends JFrame {
 		panel_1.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblTnSp = new JLabel("Tên SP\r\n");
+		JLabel lblTnSp = new JLabel("Tên SP");
 		lblTnSp.setBounds(10, 84, 60, 13);
 		panel_1.add(lblTnSp);
 		
@@ -124,7 +124,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_1.setBounds(66, 81, 106, 19);
 		panel_1.add(textField_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("MÃ£ NhÃ³m\r\n");
+		JLabel lblNewLabel_1_1 = new JLabel("Mã nhóm");
 		lblNewLabel_1_1.setBounds(182, 82, 60, 13);
 		panel_1.add(lblNewLabel_1_1);
 		
@@ -133,7 +133,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_2.setBounds(242, 78, 101, 19);
 		panel_1.add(textField_2);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("GiÃ¡ BÃ¡n\r\n");
+		JLabel lblNewLabel_1_2 = new JLabel("Giá bán");
 		lblNewLabel_1_2.setBounds(10, 130, 60, 13);
 		panel_1.add(lblNewLabel_1_2);
 		
@@ -142,7 +142,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_3.setBounds(66, 127, 106, 19);
 		panel_1.add(textField_3);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Sá»‘ lÆ°á»£ng");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Số lượng");
 		lblNewLabel_1_1_1.setBounds(182, 130, 60, 13);
 		panel_1.add(lblNewLabel_1_1_1);
 		
@@ -151,7 +151,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_4.setBounds(242, 127, 101, 19);
 		panel_1.add(textField_4);
 		
-		JLabel lblNewLabel_1_2_1 = new JLabel("NÆ°á»›c SX\r\n\r\n");
+		JLabel lblNewLabel_1_2_1 = new JLabel("Nhà SX");
 		lblNewLabel_1_2_1.setBounds(10, 182, 60, 13);
 		panel_1.add(lblNewLabel_1_2_1);
 		
@@ -160,7 +160,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_5.setBounds(66, 179, 106, 19);
 		panel_1.add(textField_5);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Loáº¡i Xe\r\n");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("Loại xe");
 		lblNewLabel_1_1_1_1.setBounds(182, 182, 60, 13);
 		panel_1.add(lblNewLabel_1_1_1_1);
 		
@@ -169,7 +169,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_6.setBounds(242, 179, 101, 19);
 		panel_1.add(textField_6);
 		
-		JLabel lblNewLabel_1_2_2 = new JLabel("Sá»‘ PK\r\n");
+		JLabel lblNewLabel_1_2_2 = new JLabel("SỐ PK");
 		lblNewLabel_1_2_2.setBounds(10, 230, 60, 13);
 		panel_1.add(lblNewLabel_1_2_2);
 		
@@ -178,7 +178,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_7.setBounds(66, 227, 106, 19);
 		panel_1.add(textField_7);
 		
-		JLabel lblNewLabel_1_1_1_2 = new JLabel("Sá»‘ Khung\r\n");
+		JLabel lblNewLabel_1_1_1_2 = new JLabel("Số khung");
 		lblNewLabel_1_1_1_2.setBounds(182, 230, 60, 13);
 		panel_1.add(lblNewLabel_1_1_1_2);
 		
@@ -187,7 +187,7 @@ public class ThongTinSanPham extends JFrame {
 		textField_8.setBounds(242, 227, 101, 19);
 		panel_1.add(textField_8);
 		
-		JLabel lblNewLabel_2 = new JLabel("Nháº­p thÃ´ng tin\r\n");
+		JLabel lblNewLabel_2 = new JLabel("Nhập thông tin");
 		lblNewLabel_2.setBounds(141, 10, 100, 13);
 		panel_1.add(lblNewLabel_2);
 		
@@ -201,7 +201,7 @@ public class ThongTinSanPham extends JFrame {
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("áº¢nh\r\n");
+		JLabel lblNewLabel_1 = new JLabel("Ảnh");
 		lblNewLabel_1.setBounds(105, 10, 45, 13);
 		panel_2.add(lblNewLabel_1);
 		
@@ -215,12 +215,12 @@ public class ThongTinSanPham extends JFrame {
 		contentPane.add(panel_3);
 		panel_3.setLayout(null);
 		
-		JLabel lblNewLabel_4 = new JLabel("Chá»©c nÄƒng");
+		JLabel lblNewLabel_4 = new JLabel("Chức năng");
 		lblNewLabel_4.setBounds(88, 10, 65, 13);
 		panel_3.add(lblNewLabel_4);
 		
-		JButton btnNewButton = new JButton("ThÃªm");
-		btnNewButton.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\add1.png"));
+		JButton btnNewButton = new JButton("Thêm");
+//		btnNewButton.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\add1.png"));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -228,28 +228,28 @@ public class ThongTinSanPham extends JFrame {
 		btnNewButton.setBounds(10, 74, 201, 35);
 		panel_3.add(btnNewButton);
 		
-		JButton btnXa = new JButton("XÃ³a");
-		btnXa.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\del.png"));
+		JButton btnXa = new JButton("Xóa");
+//		btnXa.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\del.png"));
 		btnXa.setBounds(10, 113, 201, 35);
 		panel_3.add(btnXa);
 		
-		JButton btnNewButton_1_1 = new JButton("Sá»­a");
-		btnNewButton_1_1.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\sua2.png"));
+		JButton btnNewButton_1_1 = new JButton("Sửa");
+//		btnNewButton_1_1.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\sua2.png"));
 		btnNewButton_1_1.setBounds(10, 152, 201, 35);
 		panel_3.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_2 = new JButton("LÆ°u");
-		btnNewButton_1_2.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\save.png"));
+		JButton btnNewButton_1_2 = new JButton("Lưu");
+//		btnNewButton_1_2.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\save.png"));
 		btnNewButton_1_2.setBounds(10, 190, 201, 35);
 		panel_3.add(btnNewButton_1_2);
 		
-		JButton btnNewButton_1_3 = new JButton("Há»§y");
-		btnNewButton_1_3.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\close2.png"));
+		JButton btnNewButton_1_3 = new JButton("Hủy");
+//		btnNewButton_1_3.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\close2.png"));
 		btnNewButton_1_3.setBounds(10, 227, 201, 35);
 		panel_3.add(btnNewButton_1_3);
 		
-		JButton btnTm = new JButton("TÃ¬m\r\n");
-		btnTm.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\search.png"));
+		JButton btnTm = new JButton("Tìm");
+//		btnTm.setIcon(new ImageIcon("C:\\Users\\ADMIN\\Downloads\\BuiNgocDuy\\QuanLyXe\\src\\hinh\\search.png"));
 		btnTm.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -262,7 +262,7 @@ public class ThongTinSanPham extends JFrame {
 		panel_3.add(textField_9);
 		textField_9.setColumns(10);
 		
-		JLabel lblNewLabel_6 = new JLabel("ThÃ´ng Tin Sáº£n Pháº©m");
+		JLabel lblNewLabel_6 = new JLabel("Thông tin sản phẩm");
 		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_6.setForeground(new Color(204, 0, 0));
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 17));
