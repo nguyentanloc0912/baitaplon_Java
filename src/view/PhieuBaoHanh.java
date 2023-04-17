@@ -64,7 +64,7 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Phiếu Bảo Hành");
+		JLabel lblNewLabel = new JLabel("Phiáº¿u Báº£o HÃ nh");
 		lblNewLabel.setForeground(new Color(255, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblNewLabel.setBounds(362, 10, 209, 38);
@@ -76,27 +76,27 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel_1 = new JLabel("Tên các linh kiện cần bảo hành:");
+		JLabel lblNewLabel_1 = new JLabel("TÃªn cÃ¡c linh kiá»‡n cáº§n báº£o hÃ nh:");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1.setBounds(10, 58, 211, 22);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("Lí do bảo hành: ");
+		JLabel lblNewLabel_1_1 = new JLabel("LÃ­ do báº£o hÃ nh: ");
 		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1.setBounds(10, 90, 104, 22);
 		panel.add(lblNewLabel_1_1);
 		
-		JLabel lblNewLabel_1_1_1 = new JLabel("Lỗi thuộc về:");
+		JLabel lblNewLabel_1_1_1 = new JLabel("Lá»—i thuá»™c vá»�:");
 		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1_1.setBounds(287, 127, 104, 22);
 		panel.add(lblNewLabel_1_1_1);
 		
-		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("Mã khách hàng:");
+		JLabel lblNewLabel_1_1_1_1_1 = new JLabel("MÃ£ khÃ¡ch hÃ ng:");
 		lblNewLabel_1_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1_1_1_1.setBounds(10, 26, 109, 22);
 		panel.add(lblNewLabel_1_1_1_1_1);
 		
-		JLabel lblNewLabel_1_2 = new JLabel("Số lượng cần bảo hành:");
+		JLabel lblNewLabel_1_2 = new JLabel("Sá»‘ lÆ°á»£ng cáº§n báº£o hÃ nh:");
 		lblNewLabel_1_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_2.setBounds(10, 127, 158, 22);
 		panel.add(lblNewLabel_1_2);
@@ -121,20 +121,20 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("Khách hàng");
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("KhÃ¡ch hÃ ng");
 		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		rdbtnNewRadioButton.setBounds(379, 128, 96, 21);
 		panel.add(rdbtnNewRadioButton);
 		ButtonGroup group = new ButtonGroup();
 		group.add(rdbtnNewRadioButton);
 		
-		JRadioButton rdbtnCaHng = new JRadioButton("Cửa hàng");
+		JRadioButton rdbtnCaHng = new JRadioButton("Cá»­a hÃ ng");
 		rdbtnCaHng.setFont(new Font("Tahoma", Font.ITALIC, 13));
 		rdbtnCaHng.setBounds(480, 128, 96, 21);
 		panel.add(rdbtnCaHng);
 		group.add(rdbtnCaHng);
 		
-		JLabel lblNewLabel_1_1_1_2 = new JLabel("Giá tiền (nếu có):");
+		JLabel lblNewLabel_1_1_1_2 = new JLabel("GiÃ¡ tiá»�n (náº¿u cÃ³):");
 		lblNewLabel_1_1_1_2.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblNewLabel_1_1_1_2.setBounds(10, 159, 124, 22);
 		panel.add(lblNewLabel_1_1_1_2);
@@ -147,43 +147,48 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		model = new DefaultTableModel();
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		model.addColumn("Mã phiếu BH");
-		model.addColumn("Mã nhân viên");
-		model.addColumn("Mã khách hàng");
-		model.addColumn("Tên linh kiện");
-		model.addColumn("Số lượng");
-		model.addColumn("Lí do bảo hành");
-		model.addColumn("Lỗi thuộc về");
+		model.addColumn("MÃ£ phiáº¿u BH");
+		model.addColumn("MÃ£ nhÃ¢n viÃªn");
+		model.addColumn("MÃ£ khÃ¡ch hÃ ng");
+		model.addColumn("TÃªn linh kiá»‡n");
+		model.addColumn("Sá»‘ lÆ°á»£ng");
+		model.addColumn("LÃ­ do báº£o hÃ nh");
+		model.addColumn("Lá»—i thuá»™c vá»�");
 		
 		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 307, 880, 170);
 		contentPane.add(scrollPane);
 		
+<<<<<<< HEAD
+		JButton btnNewButton = new JButton("HÃ³a Ä‘Æ¡n báº£o hÃ nh");
+		btnNewButton.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/chi.png")));
+=======
 		btnNewButton = new JButton("Hóa đơn bảo hành");
 		btnNewButton.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/chi.png")));
+>>>>>>> de948942362d05c210d9820b380159ba5022d0d2
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNewButton.setBounds(636, 145, 254, 40);
 		contentPane.add(btnNewButton);
 		
-		JButton btnThmPhiuBo = new JButton("Thêm phiếu bảo hành");
-		btnThmPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/add.png")));
+		JButton btnThmPhiuBo = new JButton("ThÃªm phiáº¿u báº£o hÃ nh");
+		btnThmPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/add.png")));
 		btnThmPhiuBo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThmPhiuBo.setBounds(20, 257, 201, 40);
 		contentPane.add(btnThmPhiuBo);
 		
-		JButton btnXaPhiuBo = new JButton("Xóa phiếu bảo hành");
-		btnXaPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/del.png")));
+		JButton btnXaPhiuBo = new JButton("XÃ³a phiáº¿u báº£o hÃ nh");
+		btnXaPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/del.png")));
 		btnXaPhiuBo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnXaPhiuBo.setBounds(231, 257, 188, 40);
 		contentPane.add(btnXaPhiuBo);
 		
-		JButton btnSaPhiuBo = new JButton("Sửa phiếu bảo hành");
-		btnSaPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/sua2.png")));
+		JButton btnSaPhiuBo = new JButton("Sá»­a phiáº¿u báº£o hÃ nh");
+		btnSaPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/sua2.png")));
 		btnSaPhiuBo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnSaPhiuBo.setBounds(438, 257, 188, 40);
 		contentPane.add(btnSaPhiuBo);
 		
-		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("Mã phiếu bảo hành:");
+		JLabel lblNewLabel_1_1_1_1_1_1 = new JLabel("MÃ£ phiáº¿u báº£o hÃ nh:");
 		lblNewLabel_1_1_1_1_1_1.setBounds(636, 62, 135, 22);
 		contentPane.add(lblNewLabel_1_1_1_1_1_1);
 		lblNewLabel_1_1_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -193,7 +198,7 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JLabel lblNewLabel_1_1_1_1 = new JLabel("Mã nhân viên phụ trách:");
+		JLabel lblNewLabel_1_1_1_1 = new JLabel("MÃ£ nhÃ¢n viÃªn phá»¥ trÃ¡ch:");
 		lblNewLabel_1_1_1_1.setBounds(636, 101, 158, 22);
 		contentPane.add(lblNewLabel_1_1_1_1);
 		lblNewLabel_1_1_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -203,20 +208,20 @@ public class PhieuBaoHanh extends JFrame implements ActionListener{
 		contentPane.add(textField_1);
 		textField_1.setColumns(10);
 		
-		JButton btnLuPhiuBo = new JButton("Lưu phiếu bảo hành");
-		btnLuPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/save.png")));
+		JButton btnLuPhiuBo = new JButton("LÆ°u phiáº¿u báº£o hÃ nh");
+		btnLuPhiuBo.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/save.png")));
 		btnLuPhiuBo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnLuPhiuBo.setBounds(636, 195, 254, 40);
 		contentPane.add(btnLuPhiuBo);
 		
-		JButton btnThot = new JButton("Thoát");
-		btnThot.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/close2.png")));
+		JButton btnThot = new JButton("ThoÃ¡t");
+		btnThot.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/close2.png")));
 		btnThot.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThot.setBounds(775, 257, 115, 40);
 		contentPane.add(btnThot);
 		
-		JButton btnXaTrng = new JButton("Xóa trắng");
-		btnXaTrng.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/hinh_anh/hinh/refresh.png")));
+		JButton btnXaTrng = new JButton("XÃ³a tráº¯ng");
+		btnXaTrng.setIcon(new ImageIcon(PhieuBaoHanh.class.getResource("/anh/refresh.png")));
 		btnXaTrng.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnXaTrng.setBounds(636, 257, 129, 40);
 		contentPane.add(btnXaTrng);
