@@ -31,14 +31,12 @@ import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import javax.swing.SpringLayout;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
+
 
 import model.ds_KhachHang;
-import net.miginfocom.swing.MigLayout;
+
 import javax.swing.border.LineBorder;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
@@ -176,27 +174,27 @@ public class KhachHang extends JFrame {
 		panel.setLayout(null);
 		
 		JButton btnNewButton = new JButton("Thêm khách hàng");
-		btnNewButton.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/add1.png")));
+		btnNewButton.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/add1.png")));
 		btnNewButton.setBounds(10, 86, 331, 32);
 		panel.add(btnNewButton);
 		
 		JButton btnXaKhchHng = new JButton("Xóa khách hàng");
-		btnXaKhchHng.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/del.png")));
+		btnXaKhchHng.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/del.png")));
 		btnXaKhchHng.setBounds(10, 126, 331, 32);
 		panel.add(btnXaKhchHng);
 		
 		JButton btnCpNhtKhch = new JButton("Cập nhật khách hàng");
-		btnCpNhtKhch.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/sua2.png")));
+		btnCpNhtKhch.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/sua2.png")));
 		btnCpNhtKhch.setBounds(10, 210, 331, 32);
 		panel.add(btnCpNhtKhch);
 		
 		JButton btnLu = new JButton("Lưu");
-		btnLu.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/save.png")));
+		btnLu.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/save.png")));
 		btnLu.setBounds(10, 252, 159, 32);
 		panel.add(btnLu);
 		
 		JButton btnHy = new JButton("Thoát");
-		btnHy.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/close2.png")));
+		btnHy.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/close2.png")));
 		btnHy.setBounds(179, 252, 162, 32);
 		panel.add(btnHy);
 		
@@ -211,14 +209,14 @@ public class KhachHang extends JFrame {
 		textField_5.setColumns(10);
 		
 		JButton btnTm = new JButton("Tìm khách hàng");
-		btnTm.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/search.png")));
+		btnTm.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/search.png")));
 		btnTm.setBounds(10, 44, 331, 32);
 		panel.add(btnTm);
 		
 		JButton btnXaTrng = new JButton("Xóa trắng");
 		btnXaTrng.setBounds(10, 168, 331, 32);
 		panel.add(btnXaTrng);
-		btnXaTrng.setIcon(new ImageIcon(KhachHang.class.getResource("/hinh_anh/hinh/refresh.png")));
+		btnXaTrng.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/refresh.png")));
 		
 		setVisible(true);
 	}
