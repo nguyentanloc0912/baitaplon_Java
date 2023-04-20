@@ -66,7 +66,6 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	private JButton btn_tim;
 	private JButton btn_them;
 	private JButton btn_xoa;
-	private JButton btn_luu;
 	private JButton btn_huy;
 	private DefaultTableModel model;
 	private ArrayList<NhanVien> ds;
@@ -237,37 +236,32 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 		txt_tim = new JTextField();
 		txt_tim.setColumns(10);
-		txt_tim.setBounds(10, 27, 287, 19);
+		txt_tim.setBounds(10, 11, 287, 19);
 		panel_1.add(txt_tim);
 		
 		btn_tim = new JButton("Tìm");
 //		btn_tim.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/tim2.png")));
-		btn_tim.setBounds(307, 26, 100, 21);
+		btn_tim.setBounds(307, 10, 100, 21);
 		panel_1.add(btn_tim);
 		
 		btn_them = new JButton("Th\u00EAm");
 		btn_them.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/add1.png")));
-		btn_them.setBounds(10, 56, 397, 21);
+		btn_them.setBounds(10, 45, 397, 32);
 		panel_1.add(btn_them);
 		
 		btn_sua = new JButton("S\u1EEDa");
 		btn_sua.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/sua2.png")));
-		btn_sua.setBounds(10, 87, 397, 21);
+		btn_sua.setBounds(10, 89, 397, 32);
 		panel_1.add(btn_sua);
 		
 		btn_xoa = new JButton("X\u00F3a");
 		btn_xoa.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/del.png")));
-		btn_xoa.setBounds(10, 119, 397, 21);
+		btn_xoa.setBounds(10, 131, 397, 32);
 		panel_1.add(btn_xoa);
-		
-		btn_luu = new JButton("L\u01B0u");
-		btn_luu.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/save.png")));
-		btn_luu.setBounds(10, 153, 397, 21);
-		panel_1.add(btn_luu);
 		
 		btn_huy = new JButton("H\u1EE7y");
 		btn_huy.setIcon(new ImageIcon(Gui_NhanVien.class.getResource("/anh/close2.png")));
-		btn_huy.setBounds(10, 184, 397, 21);
+		btn_huy.setBounds(10, 173, 397, 32);
 		panel_1.add(btn_huy);
 		
 		JPanel panel_3 = new JPanel();
@@ -279,7 +273,9 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		table = new JTable();
 		String title[] = {"Tài khoản", "Mật khẩu", "Họ tên", "Email", "Ngày sinh", "Phone"};
 		model = new DefaultTableModel(title, 0);
-		table.setModel(model);	
+		table.setModel(model);
+	    table.setDefaultEditor(Object.class, null);
+	    table.setRowSelectionAllowed(true); 
 		scrollPane.setViewportView(table);
 		panel_3.add(scrollPane);
 		JPanel panel_2 = new JPanel();
@@ -417,7 +413,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	        }
 	    }else if(a.equals(btn_them)) {
 	    	themvaodatabase();
-	    	
+	    	xoarong();
 	    }else if(a.equals(btn_huy)) {
 	    	xoarong();
 	    }else if (a.equals(btn_sua)) {
@@ -477,7 +473,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
     }
     public void sua() {
     	int pos = table.getSelectedRow();
-    	
+    	if(pos>0) {
     	if(JOptionPane.showConfirmDialog(this, "Bạn có chắc muôn sửa thông tin không", "Thông báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
     	model.removeRow(pos);
     	NhanVien nv= ds.get(pos);
@@ -499,11 +495,14 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
     		JOptionPane.showMessageDialog(this, "Sửa thành công !");
     	}else {
     		JOptionPane.showMessageDialog(this, "Sửa không được !");
+    	}}
+    	}else {
+    		JOptionPane.showMessageDialog(this, "Hãy nhập dòng cần sửa !");
     	}
-    }
     }
     public void xoa() {
     	int pos = table.getSelectedRow();
+    	if(pos>0) {
     	NhanVien nv = ds.get(pos);
     	if(JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa dòng này không !", "Thông báo !", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
     		model.removeRow(pos);
@@ -513,6 +512,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
             }else {
             	JOptionPane.showMessageDialog(this, "Trùng mã");
             }
+    	}}else {
+    		JOptionPane.showMessageDialog(this, "Hãy nhập dòng cần xóa !");
     	}
     }
     public void xoaHetDuLieuTrenModel() {
