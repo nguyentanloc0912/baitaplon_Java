@@ -8,37 +8,61 @@ import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JLabel;
+
 import java.awt.Label;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Panel;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollBar;
+
 import java.awt.ScrollPane;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
+
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import javax.swing.SpringLayout;
 
 
-import model.ds_KhachHang;
+
+
+
+
+
+import dao.khachHang_DAO;
+import entity.NhanVien;
+import entity.PasswordRenderer;
+import entity.ds_KhachHang;
+import entity.khachHang_model;
 
 import javax.swing.border.LineBorder;
-
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
+
+import connectDB.ConnectDB;
 
 public class KhachHang extends JFrame {
 
@@ -52,7 +76,8 @@ public class KhachHang extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private ds_KhachHang ds;
+	private ArrayList<khachHang_model> ds;
+	private khachHang_DAO daoKH;
 
 	/**
 	 * Launch the application.
@@ -74,7 +99,13 @@ public class KhachHang extends JFrame {
 	 * Create the frame.
 	 */
 	public KhachHang() {
-		ds = new ds_KhachHang();
+//		ds = new ds_KhachHang();
+		try {
+			ConnectDB.getInstance().connect();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -219,5 +250,17 @@ public class KhachHang extends JFrame {
 		btnXaTrng.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/refresh.png")));
 		
 		setVisible(true);
+		daoKH = new khachHang_DAO();
+		ds = daoKH.getALLKhachHang();
+		for(khachHang_model kh: ds){
+			String maKH = kh.getMaKH().trim();
+			String tenKH = kh.getTenKH();
+			String sdt = kh.getSdt();
+			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+			String ngaySinh = df.format(kh.getNgaySinh());
+			String email = kh.getEmail();
+			String data[] = {maKH,tenKH,sdt,ngaySinh,email};
+			model.addRow(data);
+		}
 	}
 }
