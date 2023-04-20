@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import connectDB.connect_SanPham;
+import connectDB.connectDB;
 import entity.sanPham;
 
 public class thongTinSP_DAO {
 	public List<sanPham> getAllSanPham(){
 		List<sanPham> dsSanPham = new ArrayList<sanPham>();
-		Connection con = connect_SanPham.getConnection();
-		connect_SanPham.getInstance();
+		Connection con = connectDB.getConnection();
+		connectDB.getInstance();
 		try {
 			String sql = "SELECT * FROM thongTinSanPham";
 			Statement stm = con.createStatement();
@@ -40,12 +40,12 @@ public class thongTinSP_DAO {
 	
 	public static void delete(String maLoai) {
 		try {
-			Connection con = connect_SanPham.getConnection();
+			Connection con = connectDB.getConnection();
 			String sql = "DELETE FROM thongTinSanPham WHERE maLoaiXe = ?";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, maLoai);
 			pst.executeUpdate();
-			connect_SanPham.disconnect();
+			connectDB.disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -53,8 +53,8 @@ public class thongTinSP_DAO {
 	
 	
 	public static void update(sanPham sp) {
-		connect_SanPham.getInstance();
-		Connection con = connect_SanPham.getConnection();
+		connectDB.getInstance();
+		Connection con = connectDB.getConnection();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement("UPDATE SANPHAM set giaBan = ?, soLuong = ? WHERE maLoaiXe = ?");

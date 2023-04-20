@@ -1,4 +1,4 @@
-package model;
+package entity;
 
 import java.util.Date;
 import java.time.LocalDate;
@@ -50,7 +50,6 @@ public void setPhone(String phone) {
 	this.phone = phone;
 }
 public NhanVien(String usename, String password, String hoTen, Date ngaySinh, String email, String phone) {
-	super();
 	this.usename = usename;
 	this.password = password;
 	this.hoTen = hoTen;

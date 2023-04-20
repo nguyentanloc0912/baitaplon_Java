@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import connectDB.ConnectDB;
-import model.NhanVien;
+import entity.NhanVien;
 
 public class NhanVien_Dao {
 public ArrayList<NhanVien> getAllNhanVien(){
@@ -31,8 +31,9 @@ public ArrayList<NhanVien> getAllNhanVien(){
 	return dsnhanvien;
 }
 public boolean addNhanVien(NhanVien nv) {
-	ConnectDB.getInstance();
 	Connection con = ConnectDB.getConnecttion();
+	ConnectDB.getInstance();
+	
 	String sql = "insert into TaiKhoan(username, password, HoTen, NgaySinh, Email, Phone) values (?,?,?,?,?,?)";
 	try {
 		PreparedStatement ps= con.prepareStatement(sql);

@@ -21,9 +21,9 @@ import javax.swing.table.JTableHeader;
 
 import connectDB.ConnectDB;
 import dao.NhanVien_Dao;
-import model.NhanVien;
-import model.PasswordRenderer;
-import model.ds_NhanVien;
+import entity.NhanVien;
+import entity.PasswordRenderer;
+import entity.ds_NhanVien;
 
 import javax.swing.border.LineBorder;
 import java.awt.Color;
@@ -42,6 +42,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
+import java.awt.Font;
 
 public class Gui_NhanVien extends JFrame implements ActionListener, MouseListener{
 
@@ -72,6 +73,12 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	private NhanVien_Dao dao;
 	private JButton btn_sua;
 	private JTextField txt_tim;
+	private JLabel lbl_kiemtra_taikhoan;
+	private JLabel lbl_kiemtra_matkhau;
+	private JLabel lbl_kiemtra_hoten;
+	private JLabel lbl_kiemtra_Email;
+	private JLabel lbl_kiemtra_ngaysinh;
+	private JLabel lbl_kiemtra_phone;
 	
 	
 
@@ -185,6 +192,42 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		txt_phone.setBounds(104, 175, 243, 19);
 		panel.add(txt_phone);
 		
+		lbl_kiemtra_taikhoan = new JLabel();
+		lbl_kiemtra_taikhoan.setForeground(Color.RED);
+		lbl_kiemtra_taikhoan.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_taikhoan.setBounds(104, 47, 250, 13);
+		panel.add(lbl_kiemtra_taikhoan);
+		
+		lbl_kiemtra_matkhau = new JLabel();
+		lbl_kiemtra_matkhau.setForeground(Color.RED);
+		lbl_kiemtra_matkhau.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_matkhau.setBounds(104, 77, 250, 13);
+		panel.add(lbl_kiemtra_matkhau);
+		
+		lbl_kiemtra_hoten =  new JLabel();
+		lbl_kiemtra_hoten.setForeground(Color.RED);
+		lbl_kiemtra_hoten.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_hoten.setBounds(104, 106, 250, 13);
+		panel.add(lbl_kiemtra_hoten);
+		
+		lbl_kiemtra_Email = new JLabel();
+		lbl_kiemtra_Email.setForeground(Color.RED);
+		lbl_kiemtra_Email.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_Email.setBounds(104, 133, 250, 13);
+		panel.add(lbl_kiemtra_Email);
+		
+		lbl_kiemtra_ngaysinh = new JLabel();
+		lbl_kiemtra_ngaysinh.setForeground(Color.RED);
+		lbl_kiemtra_ngaysinh.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_ngaysinh.setBounds(104, 162, 250, 13);
+		panel.add(lbl_kiemtra_ngaysinh);
+		
+		lbl_kiemtra_phone = new JLabel();
+		lbl_kiemtra_phone.setForeground(Color.RED);
+		lbl_kiemtra_phone.setFont(new Font("Tahoma", Font.PLAIN, 8));
+		lbl_kiemtra_phone.setBounds(104, 193, 250, 13);
+		panel.add(lbl_kiemtra_phone);
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(211, 211, 211));
 		panel_1.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -260,6 +303,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		}
 		table.getColumnModel().getColumn(1).setCellRenderer(new PasswordRenderer());
 		addlistener();
+		
 	}
 	public void addlistener() {
 		btn_them.addActionListener(this);
@@ -268,6 +312,85 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		btn_sua.addActionListener(this);
 		btn_xoa.addActionListener(this);
 		btn_tim.addActionListener(this);
+	}
+	public boolean Kiemtradulieu() {
+		String taikhoan  = txt_taikhoan.getText();
+		String test_taikhoan = "[a-z0-9]{6,8}";
+		if(taikhoan.equals("")) {
+			lbl_kiemtra_taikhoan.setText("* Tài khoản không được rỗng !");
+			return false;
+		}else if(!taikhoan.matches(test_taikhoan)) {
+			lbl_kiemtra_taikhoan.setText("Lỗi tài khoản !");
+			return false;
+		}else if(taikhoan.matches(test_taikhoan)) {
+			lbl_kiemtra_taikhoan.setText("");
+			
+		}
+//		String matkhau = txt_matkhau.getText();
+//		Password must contain at least one digit [0-9].
+//		Password must contain at least one lowercase Latin character [a-z].
+//		Password must contain at least one uppercase Latin character [A-Z].
+//		Password must contain at least one special character like ! @ # & ( ).
+//		Password must contain a length of at least 8 characters and a maximum of 20 characters.
+//		String test_matkhau = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
+//		if(matkhau.equals("")) {
+//			lbl_kiemtra_matkhau.setText("* Mật khẩu không được rỗng !");
+//			return false;
+//		}else if(!taikhoan.matches(test_matkhau)) {
+//			lbl_kiemtra_matkhau.setText("Lỗi mật khẩu");
+//			return false;
+//		}else if(taikhoan.matches(test_matkhau)) {
+//			lbl_kiemtra_matkhau.setText("");
+//		}
+		String hoten = txt_hoten.getText();
+		String test_hoten = "\\p{L}+(\\s\\p{L}+){1,}";
+		if(hoten.equals("")) {
+			lbl_kiemtra_hoten.setText("* Tên không được rỗng !");
+			return false;
+		}else if(!hoten.matches(test_hoten)) {
+			lbl_kiemtra_hoten.setText("* Lỗi họ tên !");
+			return false;
+		}else if(hoten.matches(test_hoten)) {
+			lbl_kiemtra_hoten.setText("");
+		}
+		String email = txt_email.getText();
+		String test_email = "[0-9a-zA-Z]+(@gmail.com)";
+		if(email.equals("")) {
+			lbl_kiemtra_Email.setText("* Email không được rỗng !");
+			return false;
+		}else if(!email.matches(test_email)) {
+			lbl_kiemtra_Email.setText("* Lỗi Email !");
+			return false;
+		}else if(email.matches(test_email)) {
+			lbl_kiemtra_Email.setText("");
+			
+		}
+		String ngay = txt_ngaysinh.getText();
+		String test_ngaysinh = "([0-2][1-9]|30)-(0[1-9]||1[0-2])-(19[8|9][0-9]||200[0-9])";
+		if(ngay.equals("")) {
+			lbl_kiemtra_ngaysinh.setText("* Ngày không được rỗng !");
+			return false;
+		}else if(!ngay.matches(test_ngaysinh)) {
+			lbl_kiemtra_ngaysinh.setText("* Lỗi Ngày !");
+			return false;
+		}else if(ngay.matches(test_ngaysinh)) {
+			lbl_kiemtra_ngaysinh.setText("");
+			
+		}
+		String phone= txt_phone.getText();
+		String test_phone = "0[9|3|2][0-9]{8}";
+		if(phone.equals("")) {
+			lbl_kiemtra_phone.setText("* Phone không được rỗng !");
+			return false;
+		}else if(!phone.matches(test_phone)) {
+			lbl_kiemtra_phone.setText("* Lỗi Phone !");
+			return false;
+		}else if(phone.matches(test_phone)) {
+			lbl_kiemtra_phone.setText("");
+			
+		}
+		return true;
+		
 	}
 	 public NhanVien timtheoma(String ma) {
 	    	for(NhanVien nv : ds) {
@@ -294,38 +417,21 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	        }
 	    }else if(a.equals(btn_them)) {
 	    	themvaodatabase();
-	    	showResult();
+	    	
 	    }else if(a.equals(btn_huy)) {
 	    	xoarong();
 	    }else if (a.equals(btn_sua)) {
 	    	sua();
 	    }else if(a.equals(btn_xoa)) {
 	    	xoa();
+	    	xoarong();
 	    }else if(a.equals(btn_tim)) {
-	    	String tim = txt_tim.getText();
-	    	if(!tim.equals("")) {
-	    		if(btn_tim.getText().equalsIgnoreCase("Tìm")) {
-	    			NhanVien nv = timtheoma(tim);
-	    			if(nv == null) {
-	    				JOptionPane.showMessageDialog(this, "Không tìm thấy !");
-	    			}else {
-	    				xoaHetDuLieuTrenModel();
-	    				showNhanVien(nv);
-	    				btn_tim.setText("Thoát");
-	    			}
-	    		}else if(btn_tim.getText().equalsIgnoreCase("Thoát")){
-	    			txt_tim.setText(null);
-	    			xoarong();
-	    			xoaHetDuLieuTrenModel();
-	    			resetTable();
-	    			btn_tim.setText("Tìm");
-	    		}
-	    	}else {
-	    		JOptionPane.showMessageDialog(this, "Hãy nhập user cần tìm !");
-	    	}
+	        tim();
 	    }
 		}
+	
 	public void themvaodatabase() {
+		if(Kiemtradulieu()) {
 		NhanVien nv = new NhanVien();
     	nv.setUsename(txt_taikhoan.getText());
     	nv.setPassword(txt_matkhau.getText());
@@ -344,6 +450,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
         	JOptionPane.showMessageDialog(this, "Thêm thành công");
         }else {
         	JOptionPane.showMessageDialog(this, "Trùng mã");
+        }
+        showResult();
         }
 	}
 	public void showResult() {
@@ -424,7 +532,29 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
     	model.addRow(data);}
     }
    
-   
+    public void tim() {
+       	String tim = txt_tim.getText();
+    	if(!tim.equals("")) {
+    		if(btn_tim.getText().equalsIgnoreCase("Tìm")) {
+    			NhanVien nv = timtheoma(tim);
+    			if(nv == null) {
+    				JOptionPane.showMessageDialog(this, "Không tìm thấy !");
+    			}else {
+    				xoaHetDuLieuTrenModel();
+    				showNhanVien(nv);
+    				btn_tim.setText("Thoát");
+    			}
+    		}else if(btn_tim.getText().equalsIgnoreCase("Thoát")){
+    			txt_tim.setText(null);
+    			xoarong();
+    			xoaHetDuLieuTrenModel();
+    			resetTable();
+    			btn_tim.setText("Tìm");
+    		}
+    	}else {
+    		JOptionPane.showMessageDialog(this, "Hãy nhập user cần tìm !");
+    	}
+    }
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
