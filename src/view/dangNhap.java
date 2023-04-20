@@ -23,6 +23,8 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import connectDB.ConnectDB;
+
 
 public class dangNhap extends JFrame  implements ActionListener{
 	private JButton bttLogin;
@@ -49,6 +51,12 @@ public class dangNhap extends JFrame  implements ActionListener{
 
 	public dangNhap() {
 		// TODO Auto-generated constructor stub
+		try {
+			ConnectDB.getInstance().connect();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		setTitle("Logon program");
 		setSize(700, 350);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
