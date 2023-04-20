@@ -15,6 +15,11 @@ public class khachHang_model {
 		this.setEmail(email);
 	}
 	
+	public khachHang_model() {
+		super();
+		this.diaChi="null";
+	}
+
 	public khachHang_model(String maKH) {
 		this.setMaKH(maKH);
 	}
@@ -50,10 +55,7 @@ public class khachHang_model {
 		return ngaySinh;
 	}
 	public void setNgaySinh(Date ngaySinh) {
-		if(ngaySinh.before(Date.valueOf(LocalDate.now())))
-			this.ngaySinh = ngaySinh;
-		else 
-			this.ngaySinh = Date.valueOf(LocalDate.now());
+		this.ngaySinh = ngaySinh;
 	}
 	public String getEmail() {
 		return email;
