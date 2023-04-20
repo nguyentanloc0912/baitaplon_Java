@@ -14,7 +14,7 @@ public class ConnectDB {
 		
 			String url = "jdbc:sqlserver://localhost:1433;databasename=QuanLiXe";
 			String user = "sa";
-			String password = "sapassword1";
+			String password = "sapassword";
 			try {
 				con = DriverManager.getConnection(url, user, password);
 				System.out.println("Kết nối thành công");
