@@ -45,7 +45,7 @@ import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
 
 public class Gui_NhanVien extends JFrame implements ActionListener, MouseListener{
-
+	
 	private JPanel contentPane;
 	private JTextField txt_taikhoan;
 	private JLabel lbl_matkhau;
@@ -235,6 +235,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel_1.setLayout(null);
 		
 		txt_tim = new JTextField();
+	    
 		txt_tim.setColumns(10);
 		txt_tim.setBounds(10, 11, 287, 19);
 		panel_1.add(txt_tim);
