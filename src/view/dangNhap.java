@@ -9,9 +9,13 @@ import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.reflect.InvocationTargetException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Arrays;
 
-
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -57,6 +61,7 @@ public class dangNhap extends JFrame  implements ActionListener{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		
 		setTitle("Logon program");
 		setSize(700, 350);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -115,22 +120,24 @@ public class dangNhap extends JFrame  implements ActionListener{
 			System.exit(0);
 		}
 		if(e.getSource().equals(bttLogin)){
-			if(tfUser.getText().equals("") || tfPass.getPassword().equals("")){
-				JOptionPane.showMessageDialog(null,"chua nhap thong tin");
-				tfUser.requestFocus();
-			}
-			else {
-				char[] pass ={'1','2','3','4','5','6','7','8'};
-				if(tfUser.getText().equalsIgnoreCase("admin") && Arrays.equals(tfPass.getPassword(), pass)){
-					dispose();
-					new Menu1().setVisible(true);
+			ConnectDB cn = new ConnectDB();
+			Connection con = null;
+			try {
+				con = cn.getConnecttion();
+				String sql = "select *  from TaiKhoan where username='"+ tfUser.getText()+"' and password = '"+ tfPass.getText() + "'";
+				PreparedStatement ps = con.prepareCall(sql);
+				ResultSet rs = ps.executeQuery();
+				if(rs.next()) {
+				    new Menu1().setVisible(true);
+				    this.hide();
+				}else {
+					JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu !");
 				}
-				else {
-					JOptionPane.showMessageDialog(null,"thong tin user sai");
-					tfUser.requestFocus();
-				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
-			
+		
 		}
 	}
 }

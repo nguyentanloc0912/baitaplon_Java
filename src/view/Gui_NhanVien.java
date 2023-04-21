@@ -43,6 +43,8 @@ import javax.swing.JButton;
 import javax.swing.JScrollBar;
 import javax.swing.ScrollPaneConstants;
 import java.awt.Font;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class Gui_NhanVien extends JFrame implements ActionListener, MouseListener{
 	
@@ -115,7 +117,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		
 		setTitle("Thông tin nhân viên");
@@ -138,6 +140,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_taikhoan);
 		
 		txt_taikhoan = new JTextField();
+		txt_taikhoan.setForeground(Color.LIGHT_GRAY);
 		txt_taikhoan.setBounds(104, 30, 243, 19);
 		panel.add(txt_taikhoan);
 		txt_taikhoan.setColumns(10);
@@ -160,6 +163,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_hoten);
 		
 		txt_hoten = new JTextField();
+	
+		txt_hoten.setForeground(Color.LIGHT_GRAY);
 		txt_hoten.setColumns(10);
 		txt_hoten.setBounds(104, 88, 243, 19);
 		panel.add(txt_hoten);
@@ -169,6 +174,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_email);
 		
 		txt_email = new JTextField();
+	
+		txt_email.setForeground(Color.LIGHT_GRAY);
 		txt_email.setColumns(10);
 		txt_email.setBounds(104, 117, 243, 19);
 		panel.add(txt_email);
@@ -178,6 +185,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_ngaysinh);
 		
 		txt_ngaysinh = new JTextField();
+	
+		txt_ngaysinh.setForeground(Color.LIGHT_GRAY);
 		txt_ngaysinh.setColumns(10);
 		txt_ngaysinh.setBounds(104, 146, 243, 19);
 		panel.add(txt_ngaysinh);
@@ -187,6 +196,8 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_Phone);
 		
 		txt_phone = new JTextField();
+	
+		txt_phone.setForeground(Color.LIGHT_GRAY);
 		txt_phone.setColumns(10);
 		txt_phone.setBounds(104, 175, 243, 19);
 		panel.add(txt_phone);
