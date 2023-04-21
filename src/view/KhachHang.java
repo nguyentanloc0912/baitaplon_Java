@@ -3,44 +3,87 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JLabel;
+
 import java.awt.Label;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Panel;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollBar;
+
 import java.awt.ScrollPane;
+
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+
 import javax.swing.SwingConstants;
 import javax.swing.JTextField;
+
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
+
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
 import javax.swing.SpringLayout;
 
+import java.sql.Date;
 
-import model.ds_KhachHang;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import dao.khachHang_DAO;
+import entity.NhanVien;
+import entity.PasswordRenderer;
+import entity.ds_KhachHang;
+import entity.khachHang_model;
 
 import javax.swing.border.LineBorder;
-
 import javax.swing.ImageIcon;
 import javax.swing.border.TitledBorder;
 
-public class KhachHang extends JFrame {
+import connectDB.ConnectDB;
+
+public class KhachHang extends JFrame implements ActionListener{
 
 	private JPanel contentPane;
 	private JTable table_1;
@@ -52,7 +95,9 @@ public class KhachHang extends JFrame {
 	private JTextField textField_3;
 	private JTextField textField_4;
 	private JTextField textField_5;
-	private ds_KhachHang ds;
+	private JButton btnTm,btnNewButton, btnXaKhchHng,btnCpNhtKhch,btnLu,btnHy,btnXaTrng;
+	private ArrayList<khachHang_model> ds;
+	private khachHang_DAO daoKH;
 
 	/**
 	 * Launch the application.
@@ -74,7 +119,13 @@ public class KhachHang extends JFrame {
 	 * Create the frame.
 	 */
 	public KhachHang() {
-		ds = new ds_KhachHang();
+//		ds = new ds_KhachHang();
+		try {
+			ConnectDB.getInstance().connect();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
@@ -173,27 +224,27 @@ public class KhachHang extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Thêm khách hàng");
+		btnNewButton = new JButton("Thêm khách hàng");
 		btnNewButton.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/add1.png")));
 		btnNewButton.setBounds(10, 86, 331, 32);
 		panel.add(btnNewButton);
 		
-		JButton btnXaKhchHng = new JButton("Xóa khách hàng");
+		btnXaKhchHng = new JButton("Xóa khách hàng");
 		btnXaKhchHng.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/del.png")));
 		btnXaKhchHng.setBounds(10, 126, 331, 32);
 		panel.add(btnXaKhchHng);
 		
-		JButton btnCpNhtKhch = new JButton("Cập nhật khách hàng");
+		btnCpNhtKhch = new JButton("Cập nhật khách hàng");
 		btnCpNhtKhch.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/sua2.png")));
 		btnCpNhtKhch.setBounds(10, 210, 331, 32);
 		panel.add(btnCpNhtKhch);
 		
-		JButton btnLu = new JButton("Lưu");
+		btnLu = new JButton("Lưu");
 		btnLu.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/save.png")));
 		btnLu.setBounds(10, 252, 159, 32);
 		panel.add(btnLu);
 		
-		JButton btnHy = new JButton("Thoát");
+		btnHy = new JButton("Thoát");
 		btnHy.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/close2.png")));
 		btnHy.setBounds(179, 252, 162, 32);
 		panel.add(btnHy);
@@ -208,16 +259,204 @@ public class KhachHang extends JFrame {
 		panel.add(textField_5);
 		textField_5.setColumns(10);
 		
-		JButton btnTm = new JButton("Tìm khách hàng");
+		btnTm = new JButton("Tìm khách hàng");
 		btnTm.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/search.png")));
 		btnTm.setBounds(10, 44, 331, 32);
 		panel.add(btnTm);
 		
-		JButton btnXaTrng = new JButton("Xóa trắng");
+		btnXaTrng = new JButton("Xóa trắng");
 		btnXaTrng.setBounds(10, 168, 331, 32);
 		panel.add(btnXaTrng);
 		btnXaTrng.setIcon(new ImageIcon(KhachHang.class.getResource("/anh/refresh.png")));
 		
 		setVisible(true);
+		btnCpNhtKhch.addActionListener(this);
+		btnHy.addActionListener(this);
+		btnLu.addActionListener(this);
+		btnNewButton.addActionListener(this);
+		btnTm.addActionListener(this);
+		btnXaKhchHng.addActionListener(this);
+		btnXaTrng.addActionListener(this);
+		table.addMouseListener(new MouseListener() {
+			
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			public void mouseClicked(MouseEvent e) {
+				// TODO Auto-generated method stub
+				int row = table.getSelectedRow();
+				textField.setText(model.getValueAt(row, 0).toString());
+				textField_1.setText(model.getValueAt(row, 1).toString());
+				textField_2.setText(model.getValueAt(row, 2).toString());
+				textField_3.setText(model.getValueAt(row, 3).toString());
+				textField_4.setText(model.getValueAt(row, 4).toString());
+			}
+		});
+		
+		daoKH = new khachHang_DAO();
+		ds = daoKH.getALLKhachHang();
+		for(khachHang_model kh: ds){
+			String maKH = kh.getMaKH().trim();
+			String tenKH = kh.getTenKH();
+			String sdt = kh.getSdt();
+			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+			String ngaySinh = df.format(kh.getNgaySinh());
+			String email = kh.getEmail();
+			String data[] = {maKH,tenKH,sdt,ngaySinh,email};
+			model.addRow(data);
+		}
 	}
+
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource().equals(btnTm)){
+			tim();
+		}
+//		else if(e.getSource().equals(btnNewButton)){		        
+//			khachHang_model kh = new khachHang_model();
+//			kh.setMaKH(textField.getText());
+//			kh.setTenKH(textField_1.getText());
+//			kh.setSdt(textField_2.getText());
+//			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+//			try {
+//				kh.setNgaySinh( (Date) dateFormat.parse(textField_3.getText()));
+//			} catch (Exception e2) {
+//				// TODO: handle exception
+//				e2.printStackTrace();
+//			}
+//			kh.setEmail(textField_4.getText());
+//			ds.add(kh);
+//			if(daoKH.addKH(kh)){
+//				JOptionPane.showMessageDialog(this, "Thêm thành công");
+////				khachHang_model kh = ds.get(ds.size()-1);
+//				String maKH = textField.getText();
+//				String tenKh = textField_1.getText();
+//				String sdt = textField_2.getText();
+//				String ngay = textField_3.getText();
+//				String email = textField_4.getText();
+//				String da[] ={maKH, tenKh, sdt,ngay,email};
+//				model.addRow(da);
+//			}else {
+//	        	JOptionPane.showMessageDialog(this, "Trùng mã");
+//				}
+//			}
+
+		else if(e.getSource().equals(btnXaKhchHng)){
+			xoa();
+			xoarong();
+		}
+		else if(e.getSource().equals(btnXaTrng)){
+			xoarong();
+		}
+		else if(e.getSource().equals(btnCpNhtKhch)){
+			capNhap();
+		}
+		else if(e.getSource().equals(btnHy)){
+			ConnectDB.getInstance().disconnect();
+			System.exit(0);
+		}
+	}
+	public void xoarong() {
+		textField.setText(null);
+		textField_1.setText(null);
+		textField_2.setText(null);
+		textField_3.setText(null);
+		textField_4.setText(null);
+    	table.clearSelection();
+    }
+	public void xoa() {
+		int pos = table.getSelectedRow();
+		if(pos >= 0){
+			khachHang_model kh = ds.get(pos);
+			int tb=JOptionPane.showConfirmDialog(null, "Ban có muốn xóa dong này??","Delete",JOptionPane.YES_NO_OPTION);
+			if(tb == JOptionPane.YES_OPTION){
+				model.removeRow(pos);
+	    		ds.remove(kh);
+				if(daoKH.deleteKH(kh.getMaKH())){
+					JOptionPane.showMessageDialog(this, "Xoa thanh cong");
+				}
+				else {
+					JOptionPane.showMessageDialog(this, "xoa khong thanh công");
+				}
+			}
+			else {
+				JOptionPane.showMessageDialog(this, "Ban chua chọn dong can xoa");
+			}
+		}
+	}
+	public void capNhap() {
+		int pos = table.getSelectedRow();
+		if(pos>0){
+			if(JOptionPane.showConfirmDialog(this, "Bạn có chắc muôn sửa thông tin không", "Thông báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+				model.removeRow(pos);
+				khachHang_model kh = ds.get(pos);
+				kh.setTenKH(textField_1.getText());
+				kh.setSdt(textField_2.getText());
+				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+				try {
+					kh.setNgaySinh((Date) df.parse(textField_3.getText()));
+				} catch (Exception e) {
+					// TODO: handle exception
+					e.printStackTrace();
+				}
+				kh.setEmail(textField_4.getText());
+				model.insertRow(pos,new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getSdt(),kh.getNgaySinh(),kh.getEmail()});
+				if(daoKH.updateKH(kh)){
+					JOptionPane.showMessageDialog(this, "Sửa thành công !");
+		    	}else {
+		    		JOptionPane.showMessageDialog(this, "Sửa không được !");
+				}
+			}
+		}
+		else {
+			JOptionPane.showMessageDialog(this, "Chọn dòng cần sửa !");
+		}
+	}
+	public int timKH(String maKH) {
+		for (int i =0; i<ds.size(); i++){
+			if(ds.get(i).getMaKH().equalsIgnoreCase(maKH))
+				return i;
+    	}
+    	return -1;
+    }
+	public void showKH(khachHang_model kh) {
+    	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+    	String ngaysinh = df.format(kh.getNgaySinh());
+    	model.addRow(new Object[] {kh.getMaKH(),kh.getTenKH(),kh.getSdt(),ngaysinh, kh.getEmail()});
+    }
+	 public void tim() {
+	       	String tim = textField_5.getText();
+	    	if(!tim.equals("")) {
+	    		khachHang_model kh = new khachHang_model(tim);
+	    		int a = timKH(tim);
+	    		if(a ==-1){
+	    			JOptionPane.showMessageDialog(this, "Không tìm thấy !");
+	    		}
+	    		else {
+	    			table.setRowSelectionInterval(a, a);
+
+	    		}
+	    	}
+	    	else {
+	    		JOptionPane.showMessageDialog(null, "ban chua nhap ma kH");
+	    		textField_5.requestFocus();
+	    	}
+	    	}
 }

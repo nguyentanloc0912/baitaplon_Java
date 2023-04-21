@@ -61,21 +61,26 @@ public class dangNhap extends JFrame  implements ActionListener{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 		
 		setTitle("Logon program");
 		setSize(700, 350);
+=======
+		setTitle("Login program");
+		setSize(700, 370);
+>>>>>>> 66e2e2defe0a7b9cb44b9fb83ffea61951c7feec
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		JPanel pnNorth = new JPanel();
 		pnNorth.setBorder(BorderFactory.createLineBorder(Color.red));
 		JLabel labelLogo;
-		pnNorth.add(labelLogo = new JLabel("Logo"));
+		pnNorth.add(labelLogo = new JLabel("Login"));
 		labelLogo.setFont(new Font("Arial", Font.BOLD, 30));
 		labelLogo.setForeground(Color.red);
 		add(pnNorth, BorderLayout.NORTH);
 		JPanel pnlWest = new JPanel();
 		pnlWest.setBorder(BorderFactory.createLineBorder(Color.red));
-		ImageIcon myImage = new ImageIcon("/anh/user1.jpg");
+		ImageIcon myImage = new ImageIcon(dangNhap.class.getResource("/anh/user1.png"));
 		pnlWest.add(new JLabel(myImage));
 		add(pnlWest, BorderLayout.WEST);
 
@@ -86,7 +91,6 @@ public class dangNhap extends JFrame  implements ActionListener{
 		pnlSouth.add(bttCancel= new JButton("Cancel"));
 		pnlSouth.add(bttExit = new JButton("Exit"));
 		add(pnlSouth, BorderLayout.SOUTH);
-		
 		JPanel pnlcenter = new JPanel();
 		pnlcenter.setBorder(BorderFactory.createLineBorder(Color.red));
 		javax.swing.Box b = javax.swing.Box.createVerticalBox();
@@ -100,6 +104,7 @@ public class dangNhap extends JFrame  implements ActionListener{
 		labelPass.setFont(new Font("arial",Font.PLAIN,15));
 		b2.add(tfPass = new JPasswordField(20));
 		labelPass.setPreferredSize(labeluser.getPreferredSize());
+		b.add(javax.swing.Box.createVerticalStrut(60));
 		b.add(b1); b.add(javax.swing.Box.createVerticalStrut(10));
 		b.add(b2);
 		
