@@ -1,0 +1,77 @@
+
+package entity;
+
+public class CT_HoaDon {
+    private String maCTHD;
+	private hoaDon maHD;
+	private sanPham maLoai;
+	private int soluong;
+	private double thanhtien;
+    public CT_HoaDon(String maCTHD, hoaDon maHD, sanPham maLoai, int soluong, double thanhtien) {
+        this.maCTHD = maCTHD;
+        this.maHD = maHD;
+        this.maLoai = maLoai;
+        this.soluong = soluong;
+        this.thanhtien = thanhtien;
+    }
+    public String getMaCTHD() {
+        return maCTHD;
+    }
+    public void setMaCTHD(String maCTHD) {
+        this.maCTHD = maCTHD;
+    }
+    public hoaDon getMaHD() {
+        return maHD;
+    }
+    public void setMaHD(hoaDon maHD) {
+        this.maHD = maHD;
+    }
+    public sanPham getMaLoai() {
+        return maLoai;
+    }
+    public void setMaLoai(sanPham maLoai) {
+        this.maLoai = maLoai;
+    }
+    public int getSoluong() {
+        return soluong;
+    }
+    public void setSoluong(int soluong) {
+        this.soluong = soluong;
+    }
+    public double getThanhtien() {
+        return thanhtien;
+    }
+    public void setThanhtien(double thanhtien) {
+        this.thanhtien = thanhtien;
+    }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((maCTHD == null) ? 0 : maCTHD.hashCode());
+        return result;
+    }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        CT_HoaDon other = (CT_HoaDon) obj;
+        if (maCTHD == null) {
+            if (other.maCTHD != null)
+                return false;
+        } else if (!maCTHD.equals(other.maCTHD))
+            return false;
+        return true;
+    }
+    @Override
+    public String toString() {
+        return "CT_HoaDon [maCTHD=" + maCTHD + ", maHD=" + maHD + ", maLoai=" + maLoai + ", soluong=" + soluong
+                + ", thanhtien=" + thanhtien + "]";
+    }
+
+    
+}
