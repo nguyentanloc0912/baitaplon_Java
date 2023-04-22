@@ -1,7 +1,8 @@
 package entity;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class khachHang_model {
 	private String maKH,tenKH,sdt;
@@ -13,6 +14,7 @@ public class khachHang_model {
 		this.setSdt(sdt);
 		this.setNgaySinh(ngaySinh);
 		this.setEmail(email);
+		this.setDiaChi(diaChi);
 	}
 	
 	public khachHang_model() {
@@ -73,10 +75,13 @@ public class khachHang_model {
 	}
 
 	public void setDiaChi(String diaChi) {
-		if(diaChi.equals(""))
-			this.diaChi = diaChi;
-		else
-			this.diaChi = "null";
+		if(diaChi.equals("")){
+			this.diaChi = "xxx";
+		}	
+		else{
+			this.diaChi =diaChi;
+		}
+			
 	}
 
 	@Override

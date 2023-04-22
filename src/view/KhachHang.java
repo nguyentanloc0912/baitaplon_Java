@@ -45,30 +45,12 @@ import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.swing.SpringLayout;
-
 import java.sql.Date;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 import dao.khachHang_DAO;
@@ -329,35 +311,51 @@ public class KhachHang extends JFrame implements ActionListener{
 		if(e.getSource().equals(btnTm)){
 			tim();
 		}
-//		else if(e.getSource().equals(btnNewButton)){		        
-//			khachHang_model kh = new khachHang_model();
-//			kh.setMaKH(textField.getText());
-//			kh.setTenKH(textField_1.getText());
-//			kh.setSdt(textField_2.getText());
-//			DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+		else if(e.getSource().equals(btnNewButton)){		        
+//			String ma,ten,sdt,email,diachi="";
+//			java.util.Date ngaysinh = null;
+//			ma = textField.getText();
+//			sdt = textField_2.getText();
+//			ten = textField_1.getText();
+//			email = textField_4.getText();
+//			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 //			try {
-//				kh.setNgaySinh( (Date) dateFormat.parse(textField_3.getText()));
+//				ngaysinh = df.parse(textField_3.getText());
 //			} catch (Exception e2) {
 //				// TODO: handle exception
 //				e2.printStackTrace();
+//				
 //			}
-//			kh.setEmail(textField_4.getText());
-//			ds.add(kh);
-//			if(daoKH.addKH(kh)){
-//				JOptionPane.showMessageDialog(this, "Thêm thành công");
-////				khachHang_model kh = ds.get(ds.size()-1);
-//				String maKH = textField.getText();
-//				String tenKh = textField_1.getText();
-//				String sdt = textField_2.getText();
-//				String ngay = textField_3.getText();
-//				String email = textField_4.getText();
-//				String da[] ={maKH, tenKh, sdt,ngay,email};
-//				model.addRow(da);
-//			}else {
-//	        	JOptionPane.showMessageDialog(this, "Trùng mã");
-//				}
-//			}
-
+//			
+//			khachHang_model kh = new khachHang_model(ma, ten, sdt, ngaysinh, email, diachi);
+			if(validation()){
+				khachHang_model kh = new khachHang_model();
+				kh.setMaKH(textField.getText());
+				kh.setTenKH(textField_1.getText());
+				kh.setSdt(textField_2.getText());
+				DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+				try {
+					kh.setNgaySinh(dateformat.parse(textField_3.getText()));
+				} catch (Exception e2) {
+					// TODO: handle exception
+					e2.printStackTrace();
+				}
+				kh.setEmail(textField_4.getText());
+				ds.add(kh);
+				if(daoKH.addKH(kh)){
+					JOptionPane.showMessageDialog(this, "Thêm thành công");
+					String maKH = textField.getText();
+					String tenKh = textField_1.getText();
+					String sdt1 = textField_2.getText();
+					String ngay = textField_3.getText();
+					String email1 = textField_4.getText();
+					String da[] ={maKH, tenKh, sdt1,ngay,email1};
+					model.addRow(da);
+				}else {
+		        	JOptionPane.showMessageDialog(this, "Trùng mã");
+					}
+				}
+			}
 		else if(e.getSource().equals(btnXaKhchHng)){
 			xoa();
 			xoarong();
@@ -403,7 +401,7 @@ public class KhachHang extends JFrame implements ActionListener{
 	}
 	public void capNhap() {
 		int pos = table.getSelectedRow();
-		if(pos>0){
+		if(pos!=-1){
 			if(JOptionPane.showConfirmDialog(this, "Bạn có chắc muôn sửa thông tin không", "Thông báo", JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
 				model.removeRow(pos);
 				khachHang_model kh = ds.get(pos);
@@ -411,13 +409,15 @@ public class KhachHang extends JFrame implements ActionListener{
 				kh.setSdt(textField_2.getText());
 				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 				try {
-					kh.setNgaySinh((Date) df.parse(textField_3.getText()));
+					kh.setNgaySinh(df.parse(textField_3.getText()));
 				} catch (Exception e) {
 					// TODO: handle exception
 					e.printStackTrace();
 				}
 				kh.setEmail(textField_4.getText());
-				model.insertRow(pos,new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getSdt(),kh.getNgaySinh(),kh.getEmail()});
+				SimpleDateFormat dfc = new SimpleDateFormat("dd-MM-yyyy");
+				String ns = dfc.format(kh.getNgaySinh());
+				model.insertRow(pos,new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getSdt(),ns,kh.getEmail()});
 				if(daoKH.updateKH(kh)){
 					JOptionPane.showMessageDialog(this, "Sửa thành công !");
 		    	}else {
@@ -459,4 +459,52 @@ public class KhachHang extends JFrame implements ActionListener{
 	    		textField_5.requestFocus();
 	    	}
 	    	}
+	 public boolean validation() {
+		String makh = textField.getText();
+		String tenkh = textField_1.getText();
+		String sdt = textField_2.getText();
+		String ngaySinh = textField_3.getText();
+		String email = textField_4.getText();
+		if(makh.equals("")){
+			textField.setText("Khong duoc để rỗng");
+			return false;
+		}
+		else if(!makh.matches("^(kh|KH)\\w+")){
+			textField.setText("mã kh bắt đầu bằng KH(kh)");
+			return false;
+		}
+		else if(tenkh.equals("")){
+			textField_1.setText("Khong duoc để rỗng");
+			return false;
+		}
+		else if(!tenkh.matches("[a-zA-z ]+")){
+			textField_1.setText("Tên kh khong có kí tự đặc biệt");
+			return false;
+		}
+		else if(sdt.equals("")){
+			textField_2.setText("Khong duoc để rỗng");
+			return false;
+		}
+		else if(!sdt.matches("[0-9]{9,10}")){
+			textField_2.setText("lỗi sdt");
+			return false;
+		}
+		else if(ngaySinh.equals("")){
+			textField_3.setText("không duoc để rỗng");
+			return false;
+		}
+		else if(!ngaySinh.matches("([0-2][1-9]|30)-(0[1-9]||1[0-2])-(19[8|9][0-9]||200[0-9])")){
+			textField_3.setText("lỗi ngày sinh");
+			return false;
+		}
+		else if(email.equals("")){
+			textField_4.setText("không duoc để rỗng");
+			return false;
+		}
+		else if(!ngaySinh.matches("^[a-zA-Z]+\\w*@(gmail|yaho|cax|).com")){
+			textField_4.setText("lỗi email");
+			return false;
+		}
+		return true;
+	}
 }
