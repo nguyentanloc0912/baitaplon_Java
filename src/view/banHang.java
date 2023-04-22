@@ -32,6 +32,8 @@ import javax.swing.table.TableColumn;
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 
@@ -61,6 +63,9 @@ public class banHang extends JFrame {
 	private JButton btnThem;
 	private JButton btnThanhtoan;
 	private JButton btnInhoadon;
+	private JLabel lbl_user;
+	public static LocalDate currentDate;
+	private JLabel lbl_day;
 
 	/**
 	 * Launch the application.
@@ -219,6 +224,14 @@ public class banHang extends JFrame {
 		lblNewLabel_1_1.setBounds(10, 50, 101, 13);
 		panel_1_1.add(lblNewLabel_1_1);
 		
+		lbl_user = new JLabel(dangNhap.usename);
+		lbl_user.setBounds(141, 10, 121, 13);
+		panel_1_1.add(lbl_user);
+		
+		lbl_day = new JLabel();
+		lbl_day.setBounds(121, 50, 113, 13);
+		panel_1_1.add(lbl_day);
+		
 		btnThoat = new JButton("Thoát\r\n");
 		btnThoat.setIcon(new ImageIcon(banHang.class.getResource("/anh/thoat.png")));
 		btnThoat.setBounds(10, 244, 134, 39);
@@ -243,5 +256,16 @@ public class banHang extends JFrame {
 		btnInhoadon = new JButton("In hóa đơn");
 		btnInhoadon.setBounds(842, 324, 134, 39);
 		contentPane.add(btnInhoadon);
+		currentDate =LocalDate.now();
+	 
+	
+	    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+		String date = currentDate.format(formatter);
+		 lbl_day.setText(date);
+	}
+
+	public void convestDay() {
+		
 	}
 }
+
