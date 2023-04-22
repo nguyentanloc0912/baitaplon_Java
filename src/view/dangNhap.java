@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import connectDB.ConnectDB;
@@ -34,11 +35,18 @@ public class dangNhap extends JFrame  implements ActionListener{
 	private JButton bttLogin;
 	private JButton bttExit;
 	private JButton bttCancel;
-	private JTextField tfUser;
-	private JPasswordField tfPass;
+	public JTextField tfUser;
+	public JPasswordField tfPass;
+	public static  String usename;
 
 	public static void main(String[] args) throws InvocationTargetException,
 			InterruptedException {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e3) {
+			// TODO: handle exception
+			e3.printStackTrace();
+		}
 		EventQueue.invokeAndWait(new Runnable() {
 			public void run() {
 				try {
@@ -53,6 +61,7 @@ public class dangNhap extends JFrame  implements ActionListener{
 		});
 	}
 
+	@SuppressWarnings("deprecation")
 	public dangNhap() {
 		// TODO Auto-generated constructor stub
 		try {
@@ -61,14 +70,8 @@ public class dangNhap extends JFrame  implements ActionListener{
 			// TODO: handle exception
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-		
-		setTitle("Logon program");
-		setSize(700, 350);
-=======
-		setTitle("Login program");
-		setSize(700, 370);
->>>>>>> 66e2e2defe0a7b9cb44b9fb83ffea61951c7feec
+		setTitle("Đăng nhập");
+		setSize(700, 340);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		JPanel pnNorth = new JPanel();
@@ -114,6 +117,22 @@ public class dangNhap extends JFrame  implements ActionListener{
 		bttExit.addActionListener(this);
 		bttCancel.addActionListener(this);
 		bttLogin.addActionListener(this);
+//		ConnectDB cn = new ConnectDB();
+//		Connection con = null;
+//		try {
+//			con = cn.getConnecttion();
+//			String sql = "select * from TaiKhoan where username='"+ tfUser.getText() +"' and password = '"+ tfPass.getText() + "'";
+//			PreparedStatement ps = con.prepareCall(sql);
+//			ResultSet rs = ps.executeQuery();
+//			if(rs.next()) {
+//				usename = tfUser.getText();
+//			}
+//		} catch (SQLException e) {
+//			// TODO: handle exception
+//			e.printStackTrace();
+//		} 
+		
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -133,8 +152,18 @@ public class dangNhap extends JFrame  implements ActionListener{
 				PreparedStatement ps = con.prepareCall(sql);
 				ResultSet rs = ps.executeQuery();
 				if(rs.next()) {
-				    new Menu1().setVisible(true);
+					usename = tfUser.getText();
+					System.out.println(usename);
+					try {
+						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					} catch (Exception e3) {
+						// TODO: handle exception
+						e3.printStackTrace();
+					}
+					new Menu1().setVisible(true);
 				    this.hide();
+				    
+				  
 				}else {
 					JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu !");
 				}
@@ -145,4 +174,8 @@ public class dangNhap extends JFrame  implements ActionListener{
 		
 		}
 	}
+
+
+
+
 }

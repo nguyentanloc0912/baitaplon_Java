@@ -45,6 +45,9 @@ public class Menu1 extends JFrame implements ActionListener{
 	private JButton btnNhanVien;
 	private JButton btn_dangnhap;
 	private JButton btn_dangxuat;
+	private dangNhap dn;
+	private JLabel lbl_user;
+	private String username;
 
 
 	/**
@@ -72,6 +75,7 @@ public class Menu1 extends JFrame implements ActionListener{
 	/**
 	 * Create the frame.
 	 */
+	
 	public Menu1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 704, 557);
@@ -124,10 +128,10 @@ public class Menu1 extends JFrame implements ActionListener{
 		btnNhanVien.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNhanVien.setBounds(30, 179, 254, 39);
 		panel.add(btnNhanVien);
-		btnNhanVien.addActionListener(this);
+		
 		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(330, 150, 344, 229);
+		panel_1.setBounds(330, 181, 344, 229);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -148,7 +152,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		contentPane.add(lblNewLabel_1);
 		
 		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(330, 62, 344, 73);
+		panel_2.setBounds(330, 98, 344, 73);
 		contentPane.add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -169,13 +173,34 @@ public class Menu1 extends JFrame implements ActionListener{
 		 btn_dangxuat.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		 btn_dangxuat.setBounds(88, 10, 180, 63);
 		panel_3.add(btn_dangxuat);
+		
+		JLabel lblNewLabel_3 = new JLabel("Xin chào : ");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblNewLabel_3.setBounds(508, 75, 68, 13);
+		contentPane.add(lblNewLabel_3);
+		
+		lbl_user = new JLabel();
+		lbl_user.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lbl_user.setBounds(586, 75, 88, 13);
+		lbl_user.setText(dangNhap.usename);
+		contentPane.add(lbl_user);
+		
 		addAcction();
 		
+		
 	}
+	
     public void addAcction() {
     	btn_dangxuat.addActionListener(this);
+    	btnNhanVien.addActionListener(this);
+    	btn_banhang.addActionListener(this);
     
     }
+//    public void name_user() {
+//    	dn = new dangNhap();
+//    	String name = dn.getUser(dn.tfUser.getText(), dn.tfPass.getText());
+//    	lbl_user.setText(name);
+//    }
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		Object a = e.getSource();
@@ -184,11 +209,22 @@ public class Menu1 extends JFrame implements ActionListener{
 			new dangNhap().setVisible(true); 
 		}
 		if(a.equals(btnNhanVien)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
 			new Gui_NhanVien().setVisible(true);
+		}else if(a.equals(btn_banhang)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
+			new banHang().setVisible(true);
 		}
-	    
 		}
-		
-		
 	}
 

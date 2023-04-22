@@ -140,7 +140,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		panel.add(lbl_taikhoan);
 		
 		txt_taikhoan = new JTextField();
-		txt_taikhoan.setForeground(Color.LIGHT_GRAY);
+		txt_taikhoan.setForeground(Color.BLACK);
 		txt_taikhoan.setBounds(104, 30, 243, 19);
 		panel.add(txt_taikhoan);
 		txt_taikhoan.setColumns(10);
@@ -164,7 +164,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 		txt_hoten = new JTextField();
 	
-		txt_hoten.setForeground(Color.LIGHT_GRAY);
+		txt_hoten.setForeground(Color.BLACK);
 		txt_hoten.setColumns(10);
 		txt_hoten.setBounds(104, 88, 243, 19);
 		panel.add(txt_hoten);
@@ -175,7 +175,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 		txt_email = new JTextField();
 	
-		txt_email.setForeground(Color.LIGHT_GRAY);
+		txt_email.setForeground(Color.BLACK);
 		txt_email.setColumns(10);
 		txt_email.setBounds(104, 117, 243, 19);
 		panel.add(txt_email);
@@ -186,7 +186,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 		txt_ngaysinh = new JTextField();
 	
-		txt_ngaysinh.setForeground(Color.LIGHT_GRAY);
+		txt_ngaysinh.setForeground(Color.BLACK);
 		txt_ngaysinh.setColumns(10);
 		txt_ngaysinh.setBounds(104, 146, 243, 19);
 		panel.add(txt_ngaysinh);
@@ -197,7 +197,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 		txt_phone = new JTextField();
 	
-		txt_phone.setForeground(Color.LIGHT_GRAY);
+		txt_phone.setForeground(Color.BLACK);
 		txt_phone.setColumns(10);
 		txt_phone.setBounds(104, 175, 243, 19);
 		panel.add(txt_phone);
@@ -334,22 +334,23 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 			lbl_kiemtra_taikhoan.setText("");
 			
 		}
-//		String matkhau = txt_matkhau.getText();
+
 //		Password must contain at least one digit [0-9].
 //		Password must contain at least one lowercase Latin character [a-z].
 //		Password must contain at least one uppercase Latin character [A-Z].
 //		Password must contain at least one special character like ! @ # & ( ).
 //		Password must contain a length of at least 8 characters and a maximum of 20 characters.
-//		String test_matkhau = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$";
-//		if(matkhau.equals("")) {
-//			lbl_kiemtra_matkhau.setText("* Mật khẩu không được rỗng !");
-//			return false;
-//		}else if(!taikhoan.matches(test_matkhau)) {
-//			lbl_kiemtra_matkhau.setText("Lỗi mật khẩu");
-//			return false;
-//		}else if(taikhoan.matches(test_matkhau)) {
-//			lbl_kiemtra_matkhau.setText("");
-//		}
+		String matkhau = txt_matkhau.getText();
+		String test_matkhau = "^[a-zA-z@0-9]{8}$";
+		if(matkhau.equals("")) {
+			lbl_kiemtra_matkhau.setText("* Mật khẩu không được rỗng !");
+			return false;
+		}else if(!taikhoan.matches(test_matkhau)) {
+			lbl_kiemtra_matkhau.setText("Mật khẩu phải bao gồm các tự, hoa, @ và có 8 ký tự");
+			return false;
+		}else if(taikhoan.matches(test_matkhau)) {
+			lbl_kiemtra_matkhau.setText("");
+		}
 		String hoten = txt_hoten.getText();
 		String test_hoten = "\\p{L}+(\\s\\p{L}+){1,}";
 		if(hoten.equals("")) {
@@ -410,7 +411,6 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	    }
  
 	@SuppressWarnings("deprecation")
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object a =e.getSource();
 		
@@ -425,7 +425,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 	        }
 	    }else if(a.equals(btn_them)) {
 	    	themvaodatabase();
-	    	xoarong();
+	    	
 	    }else if(a.equals(btn_huy)) {
 	    	xoarong();
 	    }else if (a.equals(btn_sua)) {
@@ -460,6 +460,7 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
         	JOptionPane.showMessageDialog(this, "Trùng mã");
         }
         showResult();
+        xoarong();
         }
 	}
 	public void showResult() {
@@ -568,7 +569,6 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
     		JOptionPane.showMessageDialog(this, "Hãy nhập user cần tìm !");
     	}
     }
-	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
 		int pos = table.getSelectedRow();
@@ -582,25 +582,21 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 		
 	}
     
-	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
 		

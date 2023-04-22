@@ -28,7 +28,7 @@ import javax.swing.table.TableColumn;
 
 
 
-import model.ds_hopDong;
+
 
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -40,7 +40,7 @@ public class banHang extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private DefaultTableModel model;
-	private ds_hopDong ds;
+
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTextField textField_2;
@@ -88,7 +88,7 @@ public class banHang extends JFrame {
 	 * Create the frame.
 	 */
 	public banHang() {
-		ds = new ds_hopDong();
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("Hợp đồng");
 		setBounds(100, 100, 1000, 609);
@@ -190,7 +190,7 @@ public class banHang extends JFrame {
 //		table.getColumnModel().getColumn(10).setPreferredWidth(50);
 		((DefaultTableCellRenderer)Theader.getDefaultRenderer()).setHorizontalAlignment(JLabel.CENTER);;
 		
-		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPane.setToolTipText("");
 		scrollPane.setBounds(10, 373, 966, 189);
 		contentPane.add(scrollPane);
