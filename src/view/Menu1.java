@@ -93,7 +93,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		panel.setLayout(null);
 	    
 		btn_info_sanpham = new JButton("Thông tin sản phẩm");
-		btn_info_sanpham.setIcon(new ImageIcon("/anh/cp.png"));
+		btn_info_sanpham.setIcon(new ImageIcon(Menu1.class.getResource("/anh/cp.png")));
 		btn_info_sanpham.setFont(new Font("Tahoma", Font.BOLD, 13));
 	
 		btn_info_sanpham.setBounds(30, 72, 254, 39);
@@ -101,13 +101,13 @@ public class Menu1 extends JFrame implements ActionListener{
 		panel.add(btn_info_sanpham);
 		
 		btn_info_kh= new JButton("Th\u00F4ng tin kh\u00E1ch h\u00E0ng");
-		btn_info_kh.setIcon(new ImageIcon("/anh/people.png"));
+		btn_info_kh.setIcon(new ImageIcon(Menu1.class.getResource("/anh/people2.png")));
 		btn_info_kh.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btn_info_kh.setBounds(30, 125, 254, 39);
 		panel.add(btn_info_kh);
 		
 		btn_banhang  = new JButton("Bán hàng\r\n");
-		btn_banhang.setIcon(new ImageIcon("/anh/report1.png"));
+		btn_banhang.setIcon(new ImageIcon(Menu1.class.getResource("/anh/ban.png")));
 		btn_banhang.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btn_banhang.setBounds(30, 236, 254, 39);
 		panel.add(btn_banhang);
@@ -115,7 +115,7 @@ public class Menu1 extends JFrame implements ActionListener{
 
 		
 		btnHoaDon = new JButton("H\u00F3a \u0111\u01A1n\r\n");
-		btnHoaDon.setIcon(new ImageIcon("/anh/people3.png"));
+		btnHoaDon.setIcon(new ImageIcon(Menu1.class.getResource("/anh/report1.png")));
 		btnHoaDon.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
@@ -125,6 +125,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		panel.add(btnHoaDon);
 		
 		btnNhanVien = new JButton("Thông tin nhân viên");
+		btnNhanVien.setIcon(new ImageIcon(Menu1.class.getResource("/anh/people.png")));
 		btnNhanVien.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnNhanVien.setBounds(30, 179, 254, 39);
 		panel.add(btnNhanVien);
@@ -169,7 +170,7 @@ public class Menu1 extends JFrame implements ActionListener{
 		
 		 btn_dangxuat = 
 				new JButton("Đăng xuất\r\n\r\n");
-		 btn_dangxuat.setIcon(new ImageIcon("/anh/key.png"));
+		 btn_dangxuat.setIcon(new ImageIcon(Menu1.class.getResource("/anh/logout.png")));
 		 btn_dangxuat.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		 btn_dangxuat.setBounds(88, 10, 180, 63);
 		panel_3.add(btn_dangxuat);
