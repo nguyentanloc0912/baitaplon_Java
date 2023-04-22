@@ -1,12 +1,14 @@
 package entity;
 
+import java.math.BigDecimal;
+
 public class sanPham {
 	private String maLoai,tenLoai,nsx;
-	private double giaBan;
+	private long giaBan;
 	private int soluong;
 	private String soSuon,soKhung;
 	private int soPK;
-	public sanPham(String maLoai, String tenLoai, String nsx, double giaBan, int soluong, String soSuon, String soKhung,
+	public sanPham(String maLoai, String tenLoai, String nsx, long giaBan, int soluong, String soSuon, String soKhung,
 			int soPK) {
 		super();
 		this.maLoai = maLoai;
@@ -19,7 +21,7 @@ public class sanPham {
 		this.soPK = soPK;
 	}
 	
-	public sanPham(String maLoai, double giaBan, int soluong) {
+	public sanPham(String maLoai, long giaBan, int soluong) {
 		super();
 		this.maLoai = maLoai;
 		this.giaBan = giaBan;
@@ -47,10 +49,10 @@ public class sanPham {
 	public void setNsx(String nsx) {
 		this.nsx = nsx;
 	}
-	public double getGiaBan() {
+	public long getGiaBan() {
 		return giaBan;
 	}
-	public void setGiaBan(double giaBan) {
+	public void setGiaBan(long giaBan) {
 		this.giaBan = giaBan;
 	}
 	public int getSoluong() {
