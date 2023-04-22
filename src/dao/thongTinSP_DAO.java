@@ -1,5 +1,6 @@
 package dao;
 
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,12 +9,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import connectDB.connectDB;
+import connect.connectDB;
 import entity.sanPham;
 
 public class thongTinSP_DAO {
-	public List<sanPham> getAllSanPham(){
-		List<sanPham> dsSanPham = new ArrayList<sanPham>();
+	public ArrayList<sanPham> getAllSanPham(){
+		ArrayList<sanPham> list = new ArrayList<sanPham>();
 		Connection con = connectDB.getConnection();
 		connectDB.getInstance();
 		try {
@@ -25,17 +26,17 @@ public class thongTinSP_DAO {
 						rs.getString("maLoaiXe"),
 						rs.getString("loaiXe"),
 						rs.getString("nuocSX"),
-						rs.getDouble("giaBan"),
+						rs.getLong("giaBan"),
 						rs.getInt("soLuong"),
 						rs.getString("soSuon"),
 						rs.getString("soKhung"),
 						rs.getInt("soPK"));
-				dsSanPham.add(sp);
+				list.add(sp);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return dsSanPham;
+		return list;
 	}
 	
 	public static void delete(String maLoai) {
@@ -52,15 +53,35 @@ public class thongTinSP_DAO {
 	}
 	
 	
-	public static void update(sanPham sp) {
+	public static void updateGia(String ma,long giaMoi) {
 		connectDB.getInstance();
 		Connection con = connectDB.getConnection();
 		PreparedStatement stmt = null;
 		try {
-			stmt = con.prepareStatement("UPDATE SANPHAM set giaBan = ?, soLuong = ? WHERE maLoaiXe = ?");
-			stmt.setDouble(1, sp.getGiaBan());
-			stmt.setInt(2, sp.getSoluong());
-			stmt.setString(3, sp.getMaLoai());
+			stmt = con.prepareStatement("UPDATE thongTinSanPham set giaBan = ? WHERE maLoaiXe = ?");
+			stmt.setLong(1, giaMoi);
+			stmt.setString(2, ma);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				stmt.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public static void updateSL(String ma,int soluong) {
+		connectDB.getInstance();
+		Connection con = connectDB.getConnection();
+		PreparedStatement stmt = null;
+		try {
+			stmt = con.prepareStatement("UPDATE thongTinSanPham set soLuong = ? WHERE maLoaiXe = ?");
+			stmt.setLong(1, soluong);
+			stmt.setString(2, ma);
+			stmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

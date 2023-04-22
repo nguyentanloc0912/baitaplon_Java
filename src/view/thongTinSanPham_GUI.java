@@ -15,16 +15,18 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import connectDB.connect_SanPham;
+import connect.connectDB;
 import dao.thongTinSP_DAO;
 import entity.sanPham;
 
@@ -58,6 +60,8 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	private JTextField txtMaLoai;
 	private thongTinSP_DAO dao_sanPham;
 	private JTextField txtMess;
+	private ArrayList<sanPham> list;
+	private sanPham sp;
 
 	/**
 	 * Launch the application.
@@ -80,11 +84,12 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	 */
 	public thongTinSanPham_GUI() {
 		try {
-			connect_SanPham.getInstance().connect();
+			connectDB.getInstance().connect();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		dao_sanPham = new thongTinSP_DAO();
+		list = new ArrayList<sanPham>();
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 834, 550);
@@ -163,7 +168,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		
 		txtSL = new JTextField();
 		txtSL.setColumns(10);
-		txtSL.setBounds(598, 78, 192, 19);
+		txtSL.setBounds(598, 78, 137, 19);
 		panel.add(txtSL);
 		
 		txtSoPK = new JTextField();
@@ -179,7 +184,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		
 		JLabel lbVND = new JLabel("VNĐ/chiếc");
 		lbVND.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lbVND.setBounds(316, 74, 77, 24);
+		lbVND.setBounds(316, 77, 77, 24);
 		panel.add(lbVND);
 		
 		JLabel lblMaLoai = new JLabel("Mã loại xe:");
@@ -191,6 +196,11 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		txtMaLoai.setColumns(10);
 		txtMaLoai.setBounds(89, 34, 217, 19);
 		panel.add(txtMaLoai);
+		
+		JLabel lblChic = new JLabel("chiếc");
+		lblChic.setFont(new Font("Tahoma", Font.BOLD, 13));
+		lblChic.setBounds(747, 77, 43, 24);
+		panel.add(lblChic);
 		
 		btnThem = new JButton("Thêm sản phẩm");
 		btnThem.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -256,18 +266,6 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		txtMess.setEditable(false);
 		txtMess.setForeground(Color.RED);
 		
-		table.setRowHeight(25);
-		for(sanPham sp :dao_sanPham.getAllSanPham()) {
-			Object[] rowData = {sp.getMaLoai(),
-								sp.getTenLoai(),
-								sp.getNsx(),
-								sp.getGiaBan(),
-								sp.getSoluong(),
-								sp.getSoSuon(),
-								sp.getSoKhung(),
-								sp.getSoPK()};
-			model.addRow(rowData);
-		}
 		
 		//su kien
 		table.addMouseListener(this);
@@ -277,6 +275,8 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		btnLuu.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnCapNhat.addActionListener(this);
+		
+		loadList();
 	}
 
 	@Override
@@ -324,13 +324,42 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 				e2.printStackTrace();
 			}
 		}else if(o.equals(btnCapNhat)) {
-//			try {
-//				sua();
-//			} catch (Exception e2) {
-//				e2.printStackTrace();
-//			}
+			int row = table.getSelectedRow();
+			if(row != -1) {
+				String ma = model.getValueAt(row, 0).toString();
+				Object choose = JOptionPane.showInputDialog(null, "Chọn thông tin bạn muốn cập nhật", "Thông báo",
+						JOptionPane.QUESTION_MESSAGE, null,
+						new String[] { "Giá bán", "Số lượng"}, "Giá bán");
+				if (choose.equals("Giá bán")) {
+					updateGia(row, ma);
+				}else if (choose.equals("Số lượng")) {
+					updateSL(row, ma);
+				}
+			}else {
+				JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng cần cập nhật");
+			}
 		}
-			
+	}
+	
+	public void loadList() {
+		list = dao_sanPham.getAllSanPham();
+		model.getDataVector().removeAllElements();
+		model.fireTableDataChanged();
+		load(list);
+	}
+
+	private void load(ArrayList<sanPham> list) {
+		for(sanPham sp :dao_sanPham.getAllSanPham()) {
+			Object[] rowData = {sp.getMaLoai(),
+								sp.getTenLoai(),
+								sp.getNsx(),
+								sp.getGiaBan(),
+								sp.getSoluong(),
+								sp.getSoSuon(),
+								sp.getSoKhung(),
+								sp.getSoPK()};
+			model.addRow(rowData);
+		}
 	}
 	
 	public void luu() throws Exception{
@@ -344,13 +373,13 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		String soPK = txtSoPK.getText();
 		
 		if(valiData()) {
-			connect_SanPham.getInstance();
-			Connection con = connect_SanPham.getConnection();
-			sanPham sp = new sanPham(maLoai, loaiXe, nsx, Double.parseDouble(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK));
+			connectDB.getInstance();
+			Connection con = connectDB.getConnection();
+			sanPham sp = new sanPham(maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK));
 			try {
 				Statement stm = con.createStatement();
-				stm.executeUpdate("INSERT INTO thongTinSanPham " + String.format("VALUES ('%s','%s','%s','%f','%d','%s','%s','%d')",
-						maLoai, loaiXe, nsx, Double.parseDouble(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK)));
+				stm.executeUpdate("INSERT INTO thongTinSanPham " + String.format("VALUES ('%s','%s','%s','%d','%d','%s','%s','%d')",
+						maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK)));
 				showMess("Thêm thành công", txtMaLoai);
 				String []row = {maLoai,loaiXe,nsx,gia,sl,soSuon,soKhung,soPK};
 				model.addRow(row);
@@ -378,29 +407,33 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	
 	
 	
-//	public void sua() throws Exception{
-//		int r = table.getSelectedRow();
-//		if(r == -1) {
-//			JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần sửa");
-//		}else {
-//			String maLoai = txtMaLoai.getText();
-//			String gia = txtGia.getText();
-//			String sl = txtSL.getText();
-//			
-//			txtMaLoai.setEditable(false);
-//			
-//			sanPham sp = new sanPham(maLoai, Double.parseDouble(gia), Integer.parseInt(sl));
-//			
-//			if(valiData()) {
-//				int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa dòng này không","Update",JOptionPane.YES_NO_OPTION);
-//				if(tb == JOptionPane.YES_OPTION) {
-//					dao_sanPham.update(sp);
-//					txtGia.setText(gia);
-//					txtSL.setText(sl);
-//				}
-//			}
-//		}
-//	}
+	public void updateGia(int row,String ma) {
+		String giaMoi = "Nhập vào giá tiền mới cho mã xe " + ma;
+		String input = JOptionPane.showInputDialog(null,giaMoi);
+		if(input.trim().equals("")) {
+			JOptionPane.showMessageDialog(this, "Giá tiền không được để trống");
+		}else {
+			Long gia = Long.parseLong(input);
+			dao_sanPham.updateGia(list.get(row).getMaLoai(), gia);
+			giaMoi = "Cập nhật giá mới thành công cho mã xe " + ma;
+			JOptionPane.showMessageDialog(this, giaMoi);
+			model.setValueAt(gia, row, 3);
+		}
+	}
+	
+	public void updateSL(int row,String ma) {
+		String slMoi = "Nhập vào số lượng mới cho mã xe " + ma;
+		String input = JOptionPane.showInputDialog(null,slMoi);
+		if(input.trim().equals("")) {
+			JOptionPane.showMessageDialog(this, "Số lượng không được để trống");
+		}else {
+			int sl = Integer.parseInt(input);
+			dao_sanPham.updateSL(list.get(row).getMaLoai(), sl);
+			slMoi = "Cập nhật số lượng thành công cho mã xe " + ma;
+			JOptionPane.showMessageDialog(this, slMoi);
+			model.setValueAt(sl, row, 4);
+		}
+	}
 	
 	
 	
@@ -458,7 +491,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			}else if(!sl.matches("^[0-9]+$")){
 				showMess("Số lượng phải là số", txtSL);
 				return false;
-			}else if(Double.parseDouble(txtGia.getText().trim()) < 0) {
+			}else if(Long.parseLong(txtGia.getText().trim()) < 0) {
 				showMess("Giá tiền không được âm", txtGia);
 				return false;
 			}else if(Integer.parseInt(txtSL.getText().trim()) < 0) {
