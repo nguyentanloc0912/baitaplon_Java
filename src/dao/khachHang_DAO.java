@@ -5,13 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-
-
-
-
 
 
 
@@ -43,7 +37,7 @@ public class khachHang_DAO {
 			Connection con = ConnectDB.getConnecttion();
 			ConnectDB.getInstance();
 			
-			String sql = "insert into khachhang(MaKH, TenKH, Email, soDienThoai,ngaySinh) values (?,?,?,?,?)";
+			String sql = "insert into khachhang(MaKH, TenKH, DiaChi, Email, soDienThoai,ngaySinh) values (?,?,?,?,?,?)";
 			try {
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, kh.getMaKH());
