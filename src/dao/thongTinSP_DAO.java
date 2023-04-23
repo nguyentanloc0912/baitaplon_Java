@@ -9,14 +9,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import connect.connectDB;
+import connectDB.ConnectDB;
 import entity.sanPham;
 
 public class thongTinSP_DAO {
 	public ArrayList<sanPham> getAllSanPham(){
 		ArrayList<sanPham> list = new ArrayList<sanPham>();
-		Connection con = connectDB.getConnection();
-		connectDB.getInstance();
+		Connection con = ConnectDB.getConnecttion();
+		ConnectDB.getInstance();
 		try {
 			String sql = "SELECT * FROM thongTinSanPham";
 			Statement stm = con.createStatement();
@@ -41,12 +41,12 @@ public class thongTinSP_DAO {
 	
 	public static void delete(String maLoai) {
 		try {
-			Connection con = connectDB.getConnection();
+			Connection con = ConnectDB.getConnecttion();
 			String sql = "DELETE FROM thongTinSanPham WHERE maLoaiXe = ?";
 			PreparedStatement pst = con.prepareStatement(sql);
 			pst.setString(1, maLoai);
 			pst.executeUpdate();
-			connectDB.disconnect();
+			ConnectDB.disconnect();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -54,8 +54,8 @@ public class thongTinSP_DAO {
 	
 	
 	public static void updateGia(String ma,long giaMoi) {
-		connectDB.getInstance();
-		Connection con = connectDB.getConnection();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnecttion();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement("UPDATE thongTinSanPham set giaBan = ? WHERE maLoaiXe = ?");
@@ -74,8 +74,8 @@ public class thongTinSP_DAO {
 	}
 	
 	public static void updateSL(String ma,int soluong) {
-		connectDB.getInstance();
-		Connection con = connectDB.getConnection();
+		ConnectDB.getInstance();
+		Connection con = ConnectDB.getConnecttion();
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement("UPDATE thongTinSanPham set soLuong = ? WHERE maLoaiXe = ?");

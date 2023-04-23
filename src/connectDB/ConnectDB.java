@@ -24,7 +24,7 @@ public class ConnectDB {
 			}
 		
 	}
-	public void disconnect() {
+	public static void disconnect() {
 		if(con!=null) {
 			try {
 				con.close();

@@ -83,23 +83,20 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	 * Create the frame.
 	 */
 	public thongTinSanPham_GUI() {
-		try {
-			connectDB.getInstance().connect();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		ConnectDB.getInstance().connect();
 		dao_sanPham = new thongTinSP_DAO();
 		list = new ArrayList<sanPham>();
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 834, 550);
+		setBounds(400, 150, 834, 550);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("THÃ”NG TIN Sáº¢N PHáº¨M");
+		JLabel lblNewLabel = new JLabel("THÔNG TIN SẢN PHẨM");
 		lblNewLabel.setForeground(new Color(0, 0, 255));
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 25));
 		lblNewLabel.setBounds(262, 10, 286, 40);
@@ -111,37 +108,37 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lbNSX = new JLabel("NÆ°á»›c sáº£n xuáº¥t:");
+		JLabel lbNSX = new JLabel("Nước sản xuất:");
 		lbNSX.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbNSX.setBounds(473, 30, 105, 24);
 		panel.add(lbNSX);
 		
-		JLabel lbSL = new JLabel("Sá»‘ lÆ°á»£ng:");
+		JLabel lbSL = new JLabel("Số lượng:");
 		lbSL.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbSL.setBounds(507, 74, 71, 24);
 		panel.add(lbSL);
 		
-		JLabel lbLXe = new JLabel("Loáº¡i xe:");
+		JLabel lbLXe = new JLabel("Loại xe:");
 		lbLXe.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbLXe.setBounds(316, 30, 59, 24);
 		panel.add(lbLXe);
 		
-		JLabel lbGia = new JLabel("GiÃ¡ bÃ¡n:");
+		JLabel lbGia = new JLabel("Giá bán:");
 		lbGia.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbGia.setBounds(10, 74, 95, 24);
 		panel.add(lbGia);
 		
-		JLabel lbSoKhung = new JLabel("Sá»‘ khung:");
+		JLabel lbSoKhung = new JLabel("Số khung:");
 		lbSoKhung.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbSoKhung.setBounds(316, 120, 95, 24);
 		panel.add(lbSoKhung);
 		
-		JLabel lbSoPK = new JLabel("Sá»‘ PK:");
+		JLabel lbSoPK = new JLabel("Số PK:");
 		lbSoPK.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbSoPK.setBounds(578, 120, 95, 24);
 		panel.add(lbSoPK);
 		
-		JLabel lbSoSuon = new JLabel("Sá»‘ sÆ°á»�n:");
+		JLabel lbSoSuon = new JLabel("Số sườn:");
 		lbSoSuon.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbSoSuon.setBounds(10, 120, 95, 24);
 		panel.add(lbSoSuon);
@@ -182,12 +179,12 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		comboBox.setBounds(373, 32, 86, 21);
 		panel.add(comboBox);
 		
-		JLabel lbVND = new JLabel("VNÄ�/chiáº¿c");
+		JLabel lbVND = new JLabel("VNĐ/chiếc");
 		lbVND.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lbVND.setBounds(316, 77, 77, 24);
 		panel.add(lbVND);
 		
-		JLabel lblMaLoai = new JLabel("MÃ£ loáº¡i xe:");
+		JLabel lblMaLoai = new JLabel("Mã loại xe:");
 		lblMaLoai.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblMaLoai.setBounds(10, 30, 77, 24);
 		panel.add(lblMaLoai);
@@ -197,32 +194,32 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		txtMaLoai.setBounds(89, 34, 217, 19);
 		panel.add(txtMaLoai);
 		
-		JLabel lblChic = new JLabel("chiáº¿c");
+		JLabel lblChic = new JLabel("chiếc");
 		lblChic.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblChic.setBounds(747, 77, 43, 24);
 		panel.add(lblChic);
 		
-		btnThem = new JButton("ThÃªm sáº£n pháº©m");
+		btnThem = new JButton("Thêm sản phẩm");
 		btnThem.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThem.setBounds(30, 236, 140, 32);
 		contentPane.add(btnThem);
 		
-		btnXoa = new JButton("XÃ³a sáº£n pháº©m");
+		btnXoa = new JButton("Xóa sản phẩm");
 		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnXoa.setBounds(196, 237, 135, 32);
 		contentPane.add(btnXoa);
 		
-		btnXoaTrang = new JButton("XÃ³a tráº¯ng");
+		btnXoaTrang = new JButton("Xóa trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnXoaTrang.setBounds(358, 236, 135, 32);
 		contentPane.add(btnXoaTrang);
 		
-		btnCapNhat = new JButton("Cáº­p nháº­t thÃ´ng tin");
+		btnCapNhat = new JButton("Cập nhật thông tin");
 		btnCapNhat.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnCapNhat.setBounds(521, 236, 157, 32);
 		contentPane.add(btnCapNhat);
 		
-		btnLuu = new JButton("LÆ°u ");
+		btnLuu = new JButton("Lưu ");
 		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnLuu.setBounds(700, 236, 85, 32);
 		btnLuu.setEnabled(false);
@@ -238,20 +235,20 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		
 		model = new DefaultTableModel();
 		table = new JTable(model);
-		model.addColumn("MÃ£ loáº¡i xe");
-		model.addColumn("Loáº¡i xe");
-		model.addColumn("NÆ°á»›c sáº£n xuáº©t");
-		model.addColumn("GiÃ¡ bÃ¡n");
-		model.addColumn("Sá»‘ lÆ°á»£ng");
-		model.addColumn("Sá»‘ sÆ°á»�n");
-		model.addColumn("Sá»‘ khung");
-		model.addColumn("Sá»‘ PK");
+		model.addColumn("Mã loại xe");
+		model.addColumn("Loại xe");
+		model.addColumn("Nước sản xuẩt");
+		model.addColumn("Giá bán");
+		model.addColumn("Số lượng");
+		model.addColumn("Số sườn");
+		model.addColumn("Số khung");
+		model.addColumn("Số PK");
 		JScrollPane scroll = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setBounds(5,18,788,170);
 		panel_1.add(scroll);
 		
 		
-		btnThoat = new JButton("ThoÃ¡t");
+		btnThoat = new JButton("Thoát");
 		btnThoat.setForeground(new Color(0, 0, 255));
 		btnThoat.setFont(new Font("Tahoma", Font.BOLD, 13));
 		btnThoat.setBounds(725, 475, 85, 32);
@@ -283,29 +280,29 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	public void actionPerformed(ActionEvent e) {
 		Object o = e.getSource();
 		if(o.equals(btnThoat)) {
-			int tb = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ cháº¯c muá»‘n thoÃ¡t chÆ°Æ¡ng trÃ¬nh","Exit",JOptionPane.YES_NO_OPTION);
+			int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thoát chương trình","Exit",JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
 		}else if(o.equals(btnXoaTrang)) {
 			xoaTrang();
 		}else if(o.equals(btnThem)) {
-			if(btnThem.getText().equals("ThÃªm sáº£n pháº©m")) {
+			if(btnThem.getText().equals("Thêm sản phẩm")) {
 				xoaTrang();
 				txtMaLoai.requestFocus();
 				
-				btnThem.setText("Há»§y thÃªm");
+				btnThem.setText("Hủy thêm");
 				btnXoa.setEnabled(false);
 				btnLuu.setEnabled(true);
 			}else {
-				btnThem.setText("ThÃªm sáº£n pháº©m");
+				btnThem.setText("Thêm sản phẩm");
 				btnXoa.setEnabled(true);
 				btnLuu.setEnabled(false);
 			}
 		}else if(o.equals(btnLuu)) {
 //			if(txtMaLoai.getText().equals("") || txtNSX.getText().equals("") || txtGia.getText().equals("") || txtSL.getText().equals("")
 //					|| txtSoSuon.getText().equals("") || txtSoKhung.getText().equals("") || txtSoPK.getText().equals("")) {
-//				JOptionPane.showMessageDialog(this, "ChÆ°a nháº­p thÃ´ng tin");
+//				JOptionPane.showMessageDialog(this, "Chưa nhập thông tin");
 //			}else {
 				try {
 					luu();
@@ -314,7 +311,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 				}
 //			}
 			xoaTrang();
-			btnThem.setText("ThÃªm sáº£n pháº©m");
+			btnThem.setText("Thêm sản phẩm");
 			btnXoa.setEnabled(true);
 			btnLuu.setEnabled(false);
 		}else if(o.equals(btnXoa)) {
@@ -327,16 +324,16 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			int row = table.getSelectedRow();
 			if(row != -1) {
 				String ma = model.getValueAt(row, 0).toString();
-				Object choose = JOptionPane.showInputDialog(null, "Chá»�n thÃ´ng tin báº¡n muá»‘n cáº­p nháº­t", "ThÃ´ng bÃ¡o",
+				Object choose = JOptionPane.showInputDialog(null, "Chọn thông tin bạn muốn cập nhật", "Thông báo",
 						JOptionPane.QUESTION_MESSAGE, null,
-						new String[] { "GiÃ¡ bÃ¡n", "Sá»‘ lÆ°á»£ng"}, "GiÃ¡ bÃ¡n");
-				if (choose.equals("GiÃ¡ bÃ¡n")) {
+						new String[] { "Giá bán", "Số lượng"}, "Giá bán");
+				if (choose.equals("Giá bán")) {
 					updateGia(row, ma);
-				}else if (choose.equals("Sá»‘ lÆ°á»£ng")) {
+				}else if (choose.equals("Số lượng")) {
 					updateSL(row, ma);
 				}
 			}else {
-				JOptionPane.showMessageDialog(this, "Báº¡n chÆ°a chá»�n dÃ²ng cáº§n cáº­p nháº­t");
+				JOptionPane.showMessageDialog(this, "Bạn chưa chọn dòng cần cập nhật");
 			}
 		}
 	}
@@ -373,18 +370,18 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		String soPK = txtSoPK.getText();
 		
 		if(valiData()) {
-			connectDB.getInstance();
-			Connection con = connectDB.getConnection();
+			ConnectDB.getInstance();
+			Connection con = ConnectDB.getConnecttion();
 			sanPham sp = new sanPham(maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK));
 			try {
 				Statement stm = con.createStatement();
 				stm.executeUpdate("INSERT INTO thongTinSanPham " + String.format("VALUES ('%s','%s','%s','%d','%d','%s','%s','%d')",
 						maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK)));
-				showMess("ThÃªm thÃ nh cÃ´ng", txtMaLoai);
+				showMess("Thêm thành công", txtMaLoai);
 				String []row = {maLoai,loaiXe,nsx,gia,sl,soSuon,soKhung,soPK};
 				model.addRow(row);
 			} catch (Exception e) {
-				showMess("TrÃ¹ng mÃ£ loáº¡i xe", txtMaLoai);
+				showMess("Trùng mã loại xe", txtMaLoai);
 			}
 		}
 	}
@@ -393,43 +390,43 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		int r = table.getSelectedRow();
 		if(r != -1) {
 			String maLoai = model.getValueAt(r, 0).toString();
-			int tb = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ cháº¯c muá»‘n xÃ³a sáº£n pháº©m nÃ y","Delete",JOptionPane.YES_NO_OPTION);
+			int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa sản phẩm này","Delete",JOptionPane.YES_NO_OPTION);
 			if(tb == JOptionPane.YES_OPTION) {
 				dao_sanPham.delete(maLoai);
 				model.removeRow(r);
 				xoaTrang();
-				JOptionPane.showMessageDialog(this, "XÃ³a thÃ nh cÃ´ng");
+				JOptionPane.showMessageDialog(this, "Xóa thành công");
 			}
 		}else {
-			JOptionPane.showMessageDialog(this, "ChÆ°a chá»�n dÃ²ng cáº§n xÃ³a");
+			JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần xóa");
 		}
 	}
 	
 	
 	
 	public void updateGia(int row,String ma) {
-		String giaMoi = "Nháº­p vÃ o giÃ¡ tiá»�n má»›i cho mÃ£ xe " + ma;
+		String giaMoi = "Nhập vào giá tiền mới cho mã xe " + ma;
 		String input = JOptionPane.showInputDialog(null,giaMoi);
 		if(input.trim().equals("")) {
-			JOptionPane.showMessageDialog(this, "GiÃ¡ tiá»�n khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng");
+			JOptionPane.showMessageDialog(this, "Giá tiền không được để trống");
 		}else {
 			Long gia = Long.parseLong(input);
 			dao_sanPham.updateGia(list.get(row).getMaLoai(), gia);
-			giaMoi = "Cáº­p nháº­t giÃ¡ má»›i thÃ nh cÃ´ng cho mÃ£ xe " + ma;
+			giaMoi = "Cập nhật giá mới thành công cho mã xe " + ma;
 			JOptionPane.showMessageDialog(this, giaMoi);
 			model.setValueAt(gia, row, 3);
 		}
 	}
 	
 	public void updateSL(int row,String ma) {
-		String slMoi = "Nháº­p vÃ o sá»‘ lÆ°á»£ng má»›i cho mÃ£ xe " + ma;
+		String slMoi = "Nhập vào số lượng mới cho mã xe " + ma;
 		String input = JOptionPane.showInputDialog(null,slMoi);
 		if(input.trim().equals("")) {
-			JOptionPane.showMessageDialog(this, "Sá»‘ lÆ°á»£ng khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng");
+			JOptionPane.showMessageDialog(this, "Số lượng không được để trống");
 		}else {
 			int sl = Integer.parseInt(input);
 			dao_sanPham.updateSL(list.get(row).getMaLoai(), sl);
-			slMoi = "Cáº­p nháº­t sá»‘ lÆ°á»£ng thÃ nh cÃ´ng cho mÃ£ xe " + ma;
+			slMoi = "Cập nhật số lượng thành công cho mã xe " + ma;
 			JOptionPane.showMessageDialog(this, slMoi);
 			model.setValueAt(sl, row, 4);
 		}
@@ -458,53 +455,53 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		String soKhung = txtSoKhung.getText().trim();
 		String soPK = txtSoPK.getText().trim();
 		if(maLoai.equals("")) {
-			showMess("MÃ£ loáº¡i xe khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtMaLoai);
+			showMess("Mã loại xe không được để trống", txtMaLoai);
 			return false;
 		}else if(nsx.equals("")) {
-			showMess("NÆ°á»›c sáº£n xuáº¥t khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtNSX);
+			showMess("Nước sản xuất không được để trống", txtNSX);
 			return false;
 		}else if(gia.equals("")) {
-			showMess("GiÃ¡ bÃ¡n khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtGia);
+			showMess("Giá bán không được để trống", txtGia);
 			return false;
 		}else if(sl.equals("")) {
-			showMess("Sá»‘ lÆ°á»£ng khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtSL);
+			showMess("Số lượng không được để trống", txtSL);
 			return false;
 		}else if(soSuon.equals("")) {
-			showMess("Sá»‘ sÆ°á»�n khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtSoSuon);
+			showMess("Số sườn không được để trống", txtSoSuon);
 			return false;
 		}else if(soKhung.equals("")) {
-			showMess("Sá»‘ khung khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtSoKhung);
+			showMess("Số khung không được để trống", txtSoKhung);
 			return false;
 		}else if(soPK.equals("")) {
-			showMess("Sá»‘ phÃ¢n khá»‘i khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtSoPK);
+			showMess("Số phân khối không được để trống", txtSoPK);
 			return false;
 		}else {
 			if(!maLoai.matches("^[a-zA-z0-9]+$")) {
-				showMess("MÃ£ loáº¡i khÃ´ng chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t vÃ  khoáº£ng tráº¯ng", txtMaLoai);
+				showMess("Mã loại không chứa kí tự đặc biệt và khoảng trắng", txtMaLoai);
 				return false;
 			}else if(!nsx.matches("^[a-zA-z- ]+$")) {
-				showMess("NÆ°á»›c sáº£n xuáº¥t khÃ´ng Ä‘Æ°á»£c chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t vÃ  sá»‘", txtNSX);
+				showMess("Nước sản xuất không được chứa kí tự đặc biệt và số", txtNSX);
 				return false;
 			}else if(!gia.matches("^[0-9]+$")){
-				showMess("GiÃ¡ pháº£i lÃ  sá»‘", txtGia);
+				showMess("Giá phải là số", txtGia);
 				return false;
 			}else if(!sl.matches("^[0-9]+$")){
-				showMess("Sá»‘ lÆ°á»£ng pháº£i lÃ  sá»‘", txtSL);
+				showMess("Số lượng phải là số", txtSL);
 				return false;
 			}else if(Long.parseLong(txtGia.getText().trim()) < 0) {
-				showMess("GiÃ¡ tiá»�n khÃ´ng Ä‘Æ°á»£c Ã¢m", txtGia);
+				showMess("Giá tiền không được âm", txtGia);
 				return false;
 			}else if(Integer.parseInt(txtSL.getText().trim()) < 0) {
-				showMess("Sá»‘ lÆ°á»£ng khÃ´ng Ä‘Æ°á»£c Ã¢m", txtSL);
+				showMess("Số lượng không được âm", txtSL);
 				return false;
 			}else if(!soSuon.matches("^[a-zA-z0-9-]+$")) {
-				showMess("Sá»‘ sÆ°á»�n khÃ´ng Ä‘Æ°á»£c chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t", txtSoSuon);
+				showMess("Số sườn không được chứa kí tự đặc biệt", txtSoSuon);
 				return false;
 			}else if(!soKhung.matches("^[a-zA-z0-9-]+$")) {
-				showMess("Sá»‘ khung khÃ´ng Ä‘Æ°á»£c chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t", txtSoKhung);
+				showMess("Số khung không được chứa kí tự đặc biệt", txtSoKhung);
 				return false;
 			}else if(Integer.parseInt(txtSoPK.getText().trim()) < 0) {
-				showMess("Sá»‘ phÃ¢n khá»‘i khÃ´ng Ä‘Æ°á»£c Ã¢m", txtSoPK);
+				showMess("Số phân khối không được âm", txtSoPK);
 				return false;
 			}else
 				return true;

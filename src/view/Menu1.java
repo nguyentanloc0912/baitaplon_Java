@@ -33,8 +33,7 @@ public class Menu1 extends JFrame implements ActionListener{
 	private JButton btnNewButton_sanpham;
 
 	private KhachHang khachhang;
-	private TaiKhoan nhanvien;
-	private HopDong hopdong;
+
 	private JButton btnHoaDon;
 
 	private JButton btn_thoat_hoadon;
@@ -195,6 +194,7 @@ public class Menu1 extends JFrame implements ActionListener{
     	btn_dangxuat.addActionListener(this);
     	btnNhanVien.addActionListener(this);
     	btn_banhang.addActionListener(this);
+    	btn_info_kh.addActionListener(this);
     
     }
 //    public void name_user() {
@@ -225,6 +225,22 @@ public class Menu1 extends JFrame implements ActionListener{
 				e3.printStackTrace();
 			}
 			new banHang().setVisible(true);
+		}else if(a.equals(btn_info_sanpham)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
+			new thongTinSanPham_GUI().setVisible(true);
+		}else if(a.equals(btn_info_kh)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
+			new KhachHang().setVisible(true);
 		}
 		}
 	}
