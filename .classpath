@@ -8,5 +8,10 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/ADMIN/Downloads/sqljdbc42.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Nam2_Ki2/HuongSk_Java/sqljdbc42.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

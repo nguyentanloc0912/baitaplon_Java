@@ -61,7 +61,7 @@ public class dangNhap extends JFrame  implements ActionListener{
 		});
 	}
 
-	@SuppressWarnings("deprecation")
+
 	public dangNhap() {
 		// TODO Auto-generated constructor stub
 		try {
