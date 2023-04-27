@@ -27,6 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import connectDB.ConnectDB;
 import dao.DAO_HoaDon;
 import entity.HoaDon;
 
@@ -75,6 +76,9 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 	 * @throws SQLException 
 	 */
 	public HoaDonview() throws SQLException {
+		ConnectDB.getInstance().connect();
+		daoHD = new DAO_HoaDon();
+		ds = new ArrayList<HoaDon>();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1029, 732);
 		contentPane = new JPanel();
@@ -340,37 +344,21 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 			
 			try {
 				if(valiData()) {
-					hd.setMaHD(txtmaHD.getText());
-					DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-					try {
-						hd.setNgay(dateFormat.parse(txtngay.getText()));
-					} catch (Exception e2) {
-						// TODO: handle exception
-						e2.printStackTrace();
-					}
-					hd.setMaKH(txtmaKH.getText());
-					hd.setMaLoaiXe(txtmaXe.getText());
-					hd.setSoluong(Integer.parseInt(txtsoluong.getText()));
-					hd.setHinhthucTT(comboBox.getSelectedItem().toString());
-					hd.setTongtien(Long.parseLong(txttongtien.getText()));
-					hd.setUsername(txtusername.getText());
-					ds.add(hd);
-					if(daoHD.addHD(hd)) {
-						JOptionPane.showMessageDialog(this, "Thêm thành công");
-						String maHD= txtmaHD.getText();
-						String ngay = txtngay.getText();
-						String maKH= txtmaKH.getText();
-						String maXe = txtmaXe.getText();
-						String soluong = txtsoluong.getText();
-						String httt = comboBox.getSelectedItem().toString();
-						String tongtien= txttongtien.getText();
-						String username = txtusername.getText();
-						String data[]= {maHD, ngay, maKH, maXe, soluong,httt,tongtien, username};
-						model.addRow(data);
-					}else {
-						JOptionPane.showMessageDialog(this, "Trùng mã");
-					}
+					String maHoaDon = txtmaHD.getText();
+					String ngay = txtngay.getText();
+					String maKH = txtmaKH.getText();
+					String maLoaiXe = txtmaXe.getText();
+					String sl = txtsoluong.getText();
+					String httt = comboBox.getSelectedItem().toString();
+					String tong = txttongtien.getText();
+					String use = txtusername.getText();
 					
+					DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+					HoaDon hd = new HoaDon(maHoaDon, dateFormat.parse(ngay), maKH, maLoaiXe, Integer.parseInt(sl), httt, Long.parseLong(tong), use);
+					daoHD.addHD(hd);
+					String []row = {maHoaDon,ngay,maKH,maLoaiXe,sl,httt,tong,use};
+					model.addRow(row);
+					JOptionPane.showMessageDialog(null, "Them thành công");
 				}
 			} catch (Exception e2) {
 				// TODO: handle exception

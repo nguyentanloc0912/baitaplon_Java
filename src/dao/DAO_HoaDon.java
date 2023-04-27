@@ -65,7 +65,8 @@ public class DAO_HoaDon {
 			ps.setString(6, hd.getHinhthucTT());
 			ps.setLong(7, hd.getTongtien());
 			ps.setString(8, hd.getUsername());
-			return ps.executeUpdate()>0;
+			ps.executeUpdate();
+			ConnectDB.disconnect();
 		} catch (SQLException e) {
 			// TODO: handle exception
 			e.printStackTrace();
