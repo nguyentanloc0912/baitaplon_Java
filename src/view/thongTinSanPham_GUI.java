@@ -503,7 +503,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			}else if(Integer.parseInt(txtSoPK.getText().trim()) < 0) {
 				showMess("Số phân khối không được âm", txtSoPK);
 				return false;
-			}else
+		}else
 				return true;
 		}
 		
