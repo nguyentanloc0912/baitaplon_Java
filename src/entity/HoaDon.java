@@ -1,44 +1,28 @@
 package entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
 public class HoaDon implements Serializable {
 	private String maHD;
-	private String ngay;
+	private Date ngay;
 	private String maKH;
 	private String maLoaiXe;
 	private int soluong;
 	private  String hinhthucTT;
-	private double Tongtien;
+	private long Tongtien;
 	private String username;
-
-	
-	public HoaDon(String maHD, String ngay, String maKH, String maLoaiXe, int soluong, String hinhthucTT,
-			double tongtien, String username) {
-		super();
-		this.maHD = maHD;
-		this.ngay = ngay;
-		this.maKH = maKH;
-		this.maLoaiXe = maLoaiXe;
-		this.soluong = soluong;
-		this.hinhthucTT = hinhthucTT;
-		Tongtien = tongtien;
-		this.username = username;
-	}
-	public HoaDon() {
-		// TODO Auto-generated constructor stub
-	}
 	public String getMaHD() {
 		return maHD;
 	}
 	public void setMaHD(String maHD) {
 		this.maHD = maHD;
 	}
-	public String getNgay() {
+	public Date getNgay() {
 		return ngay;
 	}
-	public void setNgay(String ngay) {
+	public void setNgay(Date ngay) {
 		this.ngay = ngay;
 	}
 	public String getMaKH() {
@@ -65,10 +49,10 @@ public class HoaDon implements Serializable {
 	public void setHinhthucTT(String hinhthucTT) {
 		this.hinhthucTT = hinhthucTT;
 	}
-	public double getTongtien() {
+	public long getTongtien() {
 		return Tongtien;
 	}
-	public void setTongtien(double tongtien) {
+	public void setTongtien(long tongtien) {
 		Tongtien = tongtien;
 	}
 	public String getUsername() {
@@ -76,6 +60,23 @@ public class HoaDon implements Serializable {
 	}
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	public HoaDon(String maHD, Date ngay, String maKH, String maLoaiXe, int soluong, String hinhthucTT, long tongtien,
+			String username) {
+		super();
+		this.maHD = maHD;
+		this.ngay = ngay;
+		this.maKH = maKH;
+		this.maLoaiXe = maLoaiXe;
+		this.soluong = soluong;
+		this.hinhthucTT = hinhthucTT;
+		Tongtien = tongtien;
+		this.username = username;
+	}
+	@Override
+	public String toString() {
+		return "HoaDon [maHD=" + maHD + ", ngay=" + ngay + ", maKH=" + maKH + ", maLoaiXe=" + maLoaiXe + ", soluong="
+				+ soluong + ", hinhthucTT=" + hinhthucTT + ", Tongtien=" + Tongtien + ", username=" + username + "]";
 	}
 	@Override
 	public int hashCode() {
@@ -92,10 +93,8 @@ public class HoaDon implements Serializable {
 		HoaDon other = (HoaDon) obj;
 		return Objects.equals(maHD, other.maHD);
 	}
-	@Override
-	public String toString() {
-		return "HoaDon [maHD=" + maHD + ", ngay=" + ngay + ", maKH=" + maKH + ", maLoaiXe=" + maLoaiXe + ", soluong="
-				+ soluong + ", hinhthucTT=" + hinhthucTT + ", Tongtien=" + Tongtien + ", username=" + username + "]";
-	}
-
+	
+	
+	
+	
 }

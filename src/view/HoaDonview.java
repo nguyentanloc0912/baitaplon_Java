@@ -12,26 +12,24 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import java.awt.List;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.ImageIcon;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.Connection;
-import java.sql.Statement;
+import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.JTableHeader;
+
 import dao.DAO_HoaDon;
-import connectDB.ConnectDB;
 import entity.HoaDon;
-import entity.ListHD;
+
 
 import javax.swing.JButton;
 
@@ -41,14 +39,12 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 	private JPanel contentPane;
 	private JTextField txtmaHD;
 	private JTextField txtmaKH;
-	private JTextField txtngay;
 	private JTextField txttongtien;
 	private JTextField txtusername;
 	private JComboBox comboBox;
 	private JTextField txtTim;
 	private DefaultTableModel model;
 	private DAO_HoaDon daoHD;		
-	private ListHD ls;
 	private JTable table;
 	private JButton btThem, btXoa,btXoaTrang,btLuu,btclose, btTim;
 	private JTextField txtmaXe;
@@ -56,6 +52,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 	private ArrayList<HoaDon> ds;
 	private HoaDon hd;
 	private JTextField txtMess;
+	private JTextField txtngay;
 
 	/**
 	 * Launch the application.
@@ -75,10 +72,11 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public HoaDonview() {
+	public HoaDonview() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1029, 721);
+		setBounds(100, 100, 1029, 732);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(255, 128, 64));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -118,11 +116,6 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		lblNewLabel_2.setToolTipText("");
 		lblNewLabel_2.setBounds(10, 56, 112, 22);
 		panel.add(lblNewLabel_2);
-		
-		txtngay = new JTextField();
-		txtngay.setBounds(217, 53, 199, 33);
-		panel.add(txtngay);
-		txtngay.setColumns(10);
 		
 		JLabel lbhttt = new JLabel("Hình thức Thanh Toán");
 		lbhttt.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -186,6 +179,13 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		txtMess.setEditable(false);
 		txtMess.setForeground(Color.RED);
 		
+		txtngay = new JTextField();
+		txtngay.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtngay.setBounds(217, 60, 199, 36);
+		panel.add(txtngay);
+		txtngay.setColumns(10);
+		
+		
 		JLabel lblNewLabel_7 = new JLabel("Hóa Đơn");
 		lblNewLabel_7.setForeground(new Color(0, 0, 255));
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 28));
@@ -195,7 +195,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 	    btclose = new JButton("Thoát");
 		btclose.setForeground(new Color(255, 0, 0));
 		btclose.setFont(new Font("Times New Roman", Font.BOLD, 14));
-		btclose.setBounds(906, 653, 99, 21);
+		btclose.setBounds(906, 653, 99, 32);
 		contentPane.add(btclose);
 		
 		model = new DefaultTableModel();
@@ -260,17 +260,17 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		JButton btnNewButton = new JButton("Thống kê hóa đơn");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnNewButton.setForeground(new Color(255, 0, 0));
-		btnNewButton.setBounds(20, 654, 158, 21);
+		btnNewButton.setBounds(20, 654, 158, 31);
 		contentPane.add(btnNewButton);
 		
 		 
-		 JDateChooser dateChooser = new JDateChooser();
-		 dateChooser.setBounds(296, 653, 176, 19);
-		 contentPane.add(dateChooser);
+		/*  JDateChooser dateChooser = new JDateChooser();
+		 dateChooser.setBounds(296, 653, 176, 32);
+		 contentPane.add(dateChooser);*/
 		 
 		 JLabel lblNewLabel = new JLabel("Chọn ngày");
 		 lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblNewLabel.setBounds(196, 658, 72, 13);
+		 lblNewLabel.setBounds(196, 658, 72, 16);
 		 contentPane.add(lblNewLabel);
 		
 		btLuu.addActionListener(this);
@@ -280,23 +280,24 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		btTim.addActionListener(this);
 		btclose.addActionListener(this);
 	    table.addMouseListener(this);
+		daoHD = new DAO_HoaDon();
 		
-		
-		loadList();
+	  loadList();
       
 	}
 	
 	
-	public void loadList() {
+	public void loadList() throws SQLException {
 		ds = daoHD.getAllHoaDons();
 		model.getDataVector().removeAllElements(); 
 		model.fireTableDataChanged();
 		load(ds);
 	}
-	public void load(ArrayList<HoaDon> ds) {
+	public void load(ArrayList<HoaDon> ds) throws SQLException {
 		for(HoaDon hd : daoHD.getAllHoaDons()) {
+		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
 			Object[] rowData = {
-					hd.getMaHD(), hd.getNgay(), hd.getMaKH(), hd.getMaLoaiXe(), hd.getSoluong(), hd.getHinhthucTT(), hd.getTongtien(), hd.getUsername()
+					hd.getMaHD(),df.format(hd.getNgay()), hd.getMaKH(), hd.getMaLoaiXe(), hd.getSoluong(), hd.getHinhthucTT(), hd.getTongtien(), hd.getUsername()
 			}; model.addRow(rowData);
 		}
 	}
@@ -316,9 +317,9 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		}else if(o.equals(btThem)) {
 			if(btThem.getText().equalsIgnoreCase("Thêm"))
 			{
-				xoaTrang();
+				
 				txtmaHD.requestFocus();
-				btThem.setText("Hủy");
+				btThem.setText("Hủy");	
 				btLuu.setEnabled(true);
 				btXoa.setEnabled(false);
 			}else if(btThem.getText().equalsIgnoreCase("Hủy")) {
@@ -327,19 +328,64 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 				btXoa.setEnabled(true);
 			}
 		}else if(o.equals(btLuu)) {
+			
 			try {
-				luu();
+				if(valiData()) {
+					hd.setMaHD(txtmaHD.getText());
+					DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+					try {
+						hd.setNgay(dateFormat.parse(txtngay.getText()));
+					} catch (Exception e2) {
+						// TODO: handle exception
+						e2.printStackTrace();
+					}
+					hd.setMaKH(txtmaKH.getText());
+					hd.setMaLoaiXe(txtmaXe.getText());
+					hd.setSoluong(Integer.parseInt(txtsoluong.getText()));
+					hd.setHinhthucTT(comboBox.getSelectedItem().toString());
+					hd.setTongtien(Long.parseLong(txttongtien.getText()));
+					hd.setUsername(txtusername.getText());
+					ds.add(hd);
+					if(daoHD.addHD(hd)) {
+						JOptionPane.showMessageDialog(this, "Thêm thành công");
+						String maHD= txtmaHD.getText();
+						String ngay = txtngay.getText();
+						String maKH= txtmaKH.getText();
+						String maXe = txtmaXe.getText();
+						String soluong = txtsoluong.getText();
+						String httt = comboBox.getSelectedItem().toString();
+						String tongtien= txttongtien.getText();
+						String username = txtusername.getText();
+						String data[]= {maHD, ngay, maKH, maXe, soluong,httt,tongtien, username};
+						model.addRow(data);
+					}else {
+						JOptionPane.showMessageDialog(this, "Trùng mã");
+					}
+					
+				}
 			} catch (Exception e2) {
 				// TODO: handle exception
 				e2.printStackTrace();
 			}
-			xoaTrang();
+			
 			btThem.setText("Thêm");
 			btXoa.setEnabled(true);
 			btLuu.setEnabled(false);
 		}else if(o.equals(btXoa)) {
 			try {
-				xoa();
+				int r = table.getSelectedRow();
+				if(r!=-1) {
+					String maHD = model.getValueAt(r, 0).toString();
+					int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa hóa đơn này","Delete",JOptionPane.YES_NO_OPTION);
+					if(tb == JOptionPane.YES_OPTION) {
+						DAO_HoaDon.delete(maHD);
+						model.removeRow(r);
+						xoaTrang();
+						JOptionPane.showMessageDialog(this, "Xóa thành công");
+					}else {
+						JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần xóa");
+					}
+				}
 			} catch (Exception e2) {
 				// TODO: handle exception
 				e2.printStackTrace();
@@ -347,48 +393,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		}
 			
 }
-	public void xoa()throws Exception {
-		int r = table.getSelectedRow();
-		if(r!=-1) {
-			String maHD = model.getValueAt(r, 0).toString();
-			int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa hóa đơn này","Delete",JOptionPane.YES_NO_OPTION);
-			if(tb == JOptionPane.YES_OPTION) {
-				DAO_HoaDon.delete(maHD);
-				model.removeRow(r);
-				xoaTrang();
-				JOptionPane.showMessageDialog(this, "Xóa thành công");
-			}else {
-				JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần xóa");
-			}
-		}
-	}
-	public void luu()throws Exception {
-		String maHD = txtmaHD.getText();
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-		String ngay = df.format(txtngay.getText());
-		String maKH = txtmaKH.getText();
-		String maXe = txtmaXe.getText();
-		String sl = txtsoluong.getText();
-		String httt= comboBox.getSelectedItem().toString();
-		String tongtien = txttongtien.getText();
-		String nv = txtusername.getText();
-		if(valiData()) {
-			ConnectDB.getInstance();
-			Connection con = ConnectDB.getConnecttion();
-			HoaDon hd = new HoaDon(maHD, ngay, maKH, maXe, Integer.parseInt(sl), httt, Double.parseDouble(tongtien), nv);
-			try {
-				Statement stm = con.createStatement();
-				stm.executeUpdate("INSERT INTO hoadon" + String.format("VALUES ('%s', '%s','%s','%s','%d','%s','%f','%s')",
-						maHD, ngay, maKH, maXe, Integer.parseInt(sl), httt, Double.parseDouble(tongtien), nv));
-				showMess("Thêm thành công", txtmaHD);
-				String[] row = {maHD,ngay, maKH, maXe, sl, httt, tongtien,nv};
-				model.addRow(row);
-			} catch (Exception e) {
-				// TODO: handle exception
-				showMess("Trùng mã hóa đơn", txtmaHD);
-			}
-		}	
-	}
+
 	public boolean valiData() {
 		String maHD = txtmaHD.getText().trim();
 		String ngay = txtngay.getText().trim();
@@ -500,5 +505,3 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		
 	}
 }
-
-
