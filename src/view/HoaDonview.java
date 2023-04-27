@@ -263,6 +263,16 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		btnNewButton.setBounds(20, 654, 158, 21);
 		contentPane.add(btnNewButton);
 		
+		 
+		 JDateChooser dateChooser = new JDateChooser();
+		 dateChooser.setBounds(296, 653, 176, 19);
+		 contentPane.add(dateChooser);
+		 
+		 JLabel lblNewLabel = new JLabel("Chọn ngày");
+		 lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		 lblNewLabel.setBounds(196, 658, 72, 13);
+		 contentPane.add(lblNewLabel);
+		
 		btLuu.addActionListener(this);
 		btXoaTrang.addActionListener(this);
 		btXoa.addActionListener(this);
