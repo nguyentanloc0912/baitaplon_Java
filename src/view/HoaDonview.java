@@ -27,6 +27,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.toedter.calendar.JDateChooser;
+
 import connectDB.ConnectDB;
 import dao.DAO_HoaDon;
 import entity.HoaDon;
@@ -54,6 +56,8 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 	private HoaDon hd;
 	private JTextField txtMess;
 	private JTextField txtngay;
+	private JButton btThongKe;
+	private thongKe_view UIThongKe;
 
 	/**
 	 * Launch the application.
@@ -126,7 +130,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		lbhttt.setBounds(513, 49, 156, 29);
 		panel.add(lbhttt);
 		
-		JComboBox comboBox = new JComboBox();
+		comboBox = new JComboBox();
 		comboBox.setToolTipText("");
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tiền mặt", "Chuyển khoản"}));
@@ -177,10 +181,12 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		
 		txtMess = new JTextField();
 		txtMess.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtMess.setBounds(76, 231, 213, 33);
+		txtMess.setBounds(10, 231, 400, 33);
 		panel.add(txtMess);
 		txtMess.setColumns(10);
 		txtMess.setEditable(false);
+		txtMess.setBorder(null);
+		txtMess.setBackground(new Color(128, 255, 255));
 		txtMess.setForeground(Color.RED);
 		
 		txtngay = new JTextField();
@@ -261,30 +267,11 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		btLuu.setEnabled(false);
 		btLuu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btThongKe = new JButton("Thống kê hóa đơn");
+		btThongKe = new JButton("Thống kê hóa đơn");
 		btThongKe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btThongKe.setForeground(new Color(255, 0, 0));
 		btThongKe.setBounds(140, 364, 158, 31);
 		contentPane.add(btThongKe);
-		
-		 
-		 JDateChooser ngay1 = new JDateChooser();
-		 ngay1.setBounds(500, 364, 176, 32);
-		 contentPane.add(ngay1);
-		 
-		 JLabel lblNewLabel = new JLabel("Chọn ngày");
-		 lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblNewLabel.setBounds(405, 367, 72, 24);
-		 contentPane.add(lblNewLabel);
-		 
-		 JLabel lblNewLabel_1 = new JLabel("Tới ngày");
-		 lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblNewLabel_1.setBounds(706, 367, 87, 24);
-		 contentPane.add(lblNewLabel_1);
-		 
-		 JDateChooser ngay2 = new JDateChooser();
-		 ngay2.setBounds(783, 364, 176, 32);
-		 contentPane.add(ngay2);
 		
 		btLuu.addActionListener(this);
 		btXoaTrang.addActionListener(this);
@@ -294,8 +281,8 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		btclose.addActionListener(this);
 	    table.addMouseListener(this);
 		daoHD = new DAO_HoaDon();
-		
-	  loadList();
+		btThongKe.addActionListener(this);
+		loadList();
       
 	}
 	
@@ -387,6 +374,9 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 				// TODO: handle exception
 				e2.printStackTrace();
 			}
+		}else if(o.equals(btThongKe)) {
+			UIThongKe = new thongKe_view();
+			UIThongKe.setVisible(true);
 		}
 			
 }
