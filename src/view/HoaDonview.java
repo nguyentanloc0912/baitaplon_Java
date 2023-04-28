@@ -261,30 +261,30 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		btLuu.setEnabled(false);
 		btLuu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnNewButton = new JButton("Thống kê hóa đơn");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnNewButton.setForeground(new Color(255, 0, 0));
-		btnNewButton.setBounds(20, 654, 158, 31);
-		contentPane.add(btnNewButton);
+		JButton btThongKe = new JButton("Thống kê hóa đơn");
+		btThongKe.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btThongKe.setForeground(new Color(255, 0, 0));
+		btThongKe.setBounds(140, 364, 158, 31);
+		contentPane.add(btThongKe);
 		
 		 
-		  JDateChooser dateChooser = new JDateChooser();
-		 dateChooser.setBounds(296, 653, 176, 32);
-		 contentPane.add(dateChooser);
+		 JDateChooser ngay1 = new JDateChooser();
+		 ngay1.setBounds(500, 364, 176, 32);
+		 contentPane.add(ngay1);
 		 
 		 JLabel lblNewLabel = new JLabel("Chọn ngày");
 		 lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblNewLabel.setBounds(196, 658, 72, 16);
+		 lblNewLabel.setBounds(405, 367, 72, 24);
 		 contentPane.add(lblNewLabel);
 		 
 		 JLabel lblNewLabel_1 = new JLabel("Tới ngày");
 		 lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		 lblNewLabel_1.setBounds(464, 656, 87, 24);
+		 lblNewLabel_1.setBounds(706, 367, 87, 24);
 		 contentPane.add(lblNewLabel_1);
 		 
-		 JDateChooser dateChooser_1 = new JDateChooser();
-		 dateChooser_1.setBounds(527, 653, 176, 32);
-		 contentPane.add(dateChooser_1);
+		 JDateChooser ngay2 = new JDateChooser();
+		 ngay2.setBounds(783, 364, 176, 32);
+		 contentPane.add(ngay2);
 		
 		btLuu.addActionListener(this);
 		btXoaTrang.addActionListener(this);
