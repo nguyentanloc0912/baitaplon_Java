@@ -77,6 +77,7 @@ public class Menu1 extends JFrame implements ActionListener{
 	
 	public Menu1() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
 		setBounds(100, 100, 704, 557);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
