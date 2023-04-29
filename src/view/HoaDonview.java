@@ -27,7 +27,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import com.toedter.calendar.JDateChooser;
+
 
 import connectDB.ConnectDB;
 import dao.DAO_HoaDon;
@@ -98,7 +98,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JLabel lbmhd = new JLabel("Mã hóa đơn");
+		JLabel lbmhd = new JLabel("MÃ£ hÃ³a Ä‘Æ¡n");
 		lbmhd.setBounds(10, 16, 88, 22);
 		lbmhd.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbmhd.setVerticalAlignment(SwingConstants.TOP);
@@ -109,7 +109,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel.add(txtmaHD);
 		txtmaHD.setColumns(10);
 		
-		JLabel lbmkh = new JLabel("Mã khách hàng");
+		JLabel lbmkh = new JLabel("MÃ£ khÃ¡ch hÃ ng");
 		lbmkh.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbmkh.setBounds(513, 10, 101, 29);
 		panel.add(lbmkh);
@@ -119,13 +119,13 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel.add(txtmaKH);
 		txtmaKH.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Ngày lập hóa đơn");
+		JLabel lblNewLabel_2 = new JLabel("NgÃ y láº­p hÃ³a Ä‘Æ¡n");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblNewLabel_2.setToolTipText("");
 		lblNewLabel_2.setBounds(10, 56, 112, 22);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lbhttt = new JLabel("Hình thức Thanh Toán");
+		JLabel lbhttt = new JLabel("HÃ¬nh thá»©c Thanh ToÃ¡n");
 		lbhttt.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbhttt.setBounds(513, 49, 156, 29);
 		panel.add(lbhttt);
@@ -133,12 +133,12 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		comboBox = new JComboBox();
 		comboBox.setToolTipText("");
 		comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tiền mặt", "Chuyển khoản"}));
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Tiá»�n máº·t", "Chuyá»ƒn khoáº£n"}));
 		comboBox.setSelectedIndex(0);
 		comboBox.setBounds(718, 53, 213, 25);
 		panel.add(comboBox);
 		
-		JLabel lbtongtien = new JLabel("Tổng tiền");
+		JLabel lbtongtien = new JLabel("Tá»•ng tiá»�n");
 		lbtongtien.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbtongtien.setBounds(513, 169, 101, 22);
 		panel.add(lbtongtien);
@@ -148,7 +148,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel.add(txttongtien);
 		txttongtien.setColumns(10);
 		
-		JLabel lbNV = new JLabel("Nhân Viên");
+		JLabel lbNV = new JLabel("NhÃ¢n ViÃªn");
 		lbNV.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbNV.setBounds(513, 102, 134, 22);
 		panel.add(lbNV);
@@ -158,7 +158,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel.add(txtusername);
 		txtusername.setColumns(10);
 		
-		JLabel lbmaXe = new JLabel("Mã Xe");
+		JLabel lbmaXe = new JLabel("MÃ£ Xe");
 		lbmaXe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbmaXe.setBounds(10, 109, 88, 13);
 		panel.add(lbmaXe);
@@ -169,7 +169,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel.add(txtmaXe);
 		txtmaXe.setColumns(10);
 		
-		JLabel lbsoluong = new JLabel("Số lượng");
+		JLabel lbsoluong = new JLabel("Sá»‘ lÆ°á»£ng");
 		lbsoluong.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lbsoluong.setBounds(10, 169, 112, 22);
 		panel.add(lbsoluong);
@@ -196,13 +196,13 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		txtngay.setColumns(10);
 		
 		
-		JLabel lblNewLabel_7 = new JLabel("Hóa Đơn");
+		JLabel lblNewLabel_7 = new JLabel("HÃ³a Ä�Æ¡n");
 		lblNewLabel_7.setForeground(new Color(0, 0, 255));
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 28));
 		lblNewLabel_7.setBounds(441, 10, 144, 36);
 		contentPane.add(lblNewLabel_7);
 		
-	    btclose = new JButton("Thoát");
+	    btclose = new JButton("ThoÃ¡t");
 		btclose.setForeground(new Color(255, 0, 0));
 		btclose.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		btclose.setBounds(906, 653, 99, 32);
@@ -211,14 +211,14 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		model = new DefaultTableModel();
 		table = new JTable(model);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		model.addColumn("Mã hóa đơn");
-		model.addColumn("Ngày");
-		model.addColumn("Mã khách hàng");
-		model.addColumn("Mã Loại Xe");
-		model.addColumn("Số lượng");
-		model.addColumn("Hình thức TT");
-		model.addColumn("Tổng tiền");
-		model.addColumn("Nhân viên");
+		model.addColumn("MÃ£ hÃ³a Ä‘Æ¡n");
+		model.addColumn("NgÃ y");
+		model.addColumn("MÃ£ khÃ¡ch hÃ ng");
+		model.addColumn("MÃ£ Loáº¡i Xe");
+		model.addColumn("Sá»‘ lÆ°á»£ng");
+		model.addColumn("HÃ¬nh thá»©c TT");
+		model.addColumn("Tá»•ng tiá»�n");
+		model.addColumn("NhÃ¢n viÃªn");
 		JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 480, 995, 163);
 		contentPane.add(scrollPane);
@@ -229,7 +229,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lbtim = new JLabel("Nhập mã hóa đơn cần tìm");
+		JLabel lbtim = new JLabel("Nháº­p mÃ£ hÃ³a Ä‘Æ¡n cáº§n tÃ¬m");
 		lbtim.setBounds(10, 25, 147, 16);
 		panel_1.add(lbtim);
 		lbtim.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -239,35 +239,35 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		panel_1.add(txtTim);
 		txtTim.setColumns(10);
 		
-	 btTim = new JButton("Tìm");
+	 btTim = new JButton("TÃ¬m");
 		btTim.setBounds(361, 22, 68, 21);
 		panel_1.add(btTim);
 		btTim.setForeground(new Color(0, 0, 0));
 		btTim.setBackground(new Color(255, 255, 255));
 		btTim.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		 btThem = new JButton("Thêm");
+		 btThem = new JButton("ThÃªm");
 		btThem.setBounds(488, 22, 105, 21);
 		panel_1.add(btThem);
 		btThem.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		 btXoa = new JButton("Xóa");
+		 btXoa = new JButton("XÃ³a");
 		btXoa.setBounds(629, 22, 85, 21);
 		panel_1.add(btXoa);
 		btXoa.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		 btXoaTrang = new JButton("Xóa trắng");
+		 btXoaTrang = new JButton("XÃ³a tráº¯ng");
 		btXoaTrang.setBounds(754, 21, 105, 20);
 		panel_1.add(btXoaTrang);
 		btXoaTrang.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		 btLuu = new JButton("Lưu");
+		 btLuu = new JButton("LÆ°u");
 		btLuu.setBounds(900, 22, 85, 21);
 		panel_1.add(btLuu);
 		btLuu.setEnabled(false);
 		btLuu.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		btThongKe = new JButton("Thống kê hóa đơn");
+		btThongKe = new JButton("Thá»‘ng kÃª hÃ³a Ä‘Æ¡n");
 		btThongKe.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btThongKe.setForeground(new Color(255, 0, 0));
 		btThongKe.setBounds(140, 364, 158, 31);
@@ -307,7 +307,7 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
 		if(o.equals(btclose)) {
-			int mes = JOptionPane.showConfirmDialog(this, "Bạn có muốn thoát?", "Exit", JOptionPane.YES_NO_OPTION);
+			int mes = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ muá»‘n thoÃ¡t?", "Exit", JOptionPane.YES_NO_OPTION);
 			if(mes == JOptionPane.YES_OPTION) {
 				System.exit(0);
 			}
@@ -315,15 +315,15 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		else if(o.equals(btXoaTrang)) {
 			xoaTrang();
 		}else if(o.equals(btThem)) {
-			if(btThem.getText().equalsIgnoreCase("Thêm"))
+			if(btThem.getText().equalsIgnoreCase("ThÃªm"))
 			{
 				
 				txtmaHD.requestFocus();
-				btThem.setText("Hủy");	
+				btThem.setText("Há»§y");	
 				btLuu.setEnabled(true);
 				btXoa.setEnabled(false);
-			}else if(btThem.getText().equalsIgnoreCase("Hủy")) {
-				btThem.setText("Thêm");
+			}else if(btThem.getText().equalsIgnoreCase("Há»§y")) {
+				btThem.setText("ThÃªm");
 				btLuu.setEnabled(false);
 				btXoa.setEnabled(true);
 			}
@@ -345,14 +345,14 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 					daoHD.addHD(hd);
 					String []row = {maHoaDon,ngay,maKH,maLoaiXe,sl,httt,tong,use};
 					model.addRow(row);
-					JOptionPane.showMessageDialog(null, "Them thành công");
+					JOptionPane.showMessageDialog(null, "Them thÃ nh cÃ´ng");
 				}
 			} catch (Exception e2) {
 				// TODO: handle exception
 				e2.printStackTrace();
 			}
 			
-			btThem.setText("Thêm");
+			btThem.setText("ThÃªm");
 			btXoa.setEnabled(true);
 			btLuu.setEnabled(false);
 		}else if(o.equals(btXoa)) {
@@ -360,14 +360,14 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 				int r = table.getSelectedRow();
 				if(r!=-1) {
 					String maHD = model.getValueAt(r, 0).toString();
-					int tb = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa hóa đơn này","Delete",JOptionPane.YES_NO_OPTION);
+					int tb = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ cháº¯c muá»‘n xÃ³a hÃ³a Ä‘Æ¡n nÃ y","Delete",JOptionPane.YES_NO_OPTION);
 					if(tb == JOptionPane.YES_OPTION) {
 						DAO_HoaDon.delete(maHD);
 						model.removeRow(r);
 						xoaTrang();
-						JOptionPane.showMessageDialog(this, "Xóa thành công");
+						JOptionPane.showMessageDialog(this, "XÃ³a thÃ nh cÃ´ng");
 					}else {
-						JOptionPane.showMessageDialog(this, "Chưa chọn dòng cần xóa");
+						JOptionPane.showMessageDialog(this, "ChÆ°a chá»�n dÃ²ng cáº§n xÃ³a");
 					}
 				}
 			} catch (Exception e2) {
@@ -390,47 +390,47 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		String tongtien = txttongtien.getText().trim();
 		String username = txtusername.getText().trim();
 		if(maHD.equals("")) {
-			showMess("Mã loại không được để trống", txtmaHD);
+			showMess("MÃ£ loáº¡i khÃ´ng Ä‘Æ°á»£c Ä‘á»ƒ trá»‘ng", txtmaHD);
 			return false;
 		} else if(ngay.equals("")) {
-			showMess("Ngày không được rỗng", txtngay);
+			showMess("NgÃ y khÃ´ng Ä‘Æ°á»£c rá»—ng", txtngay);
 			return false;
 		}else if(maKH.equals("")) {
-			showMess("Mã khách hàng không được rỗng", txtmaKH);
+			showMess("MÃ£ khÃ¡ch hÃ ng khÃ´ng Ä‘Æ°á»£c rá»—ng", txtmaKH);
 			return false;
 		}else if(maXe.equals("")) {
-			showMess("Mã xe không được rỗng", txtmaXe);
+			showMess("MÃ£ xe khÃ´ng Ä‘Æ°á»£c rá»—ng", txtmaXe);
 			return false;
 		}else if(sl.equals("")) {
-			showMess("Số lượng không được rỗng", txtsoluong);
+			showMess("Sá»‘ lÆ°á»£ng khÃ´ng Ä‘Æ°á»£c rá»—ng", txtsoluong);
 			return false;
 		}else if(tongtien.equals("")) {
-			showMess("Tổng tiền không được rỗng", txttongtien);
+			showMess("Tá»•ng tiá»�n khÃ´ng Ä‘Æ°á»£c rá»—ng", txttongtien);
 			return false;
 		}else if(username.equals("")) {
-			showMess("Nhân viên không được rỗng", txtusername);
+			showMess("NhÃ¢n viÃªn khÃ´ng Ä‘Æ°á»£c rá»—ng", txtusername);
 			return false;
 		}else {
 			if(!maHD.matches("^[a-zA-z0-9]+$")) {
-				showMess("Mã hóa đơn không chứa kí tự đặc biệt và khoảng trắng", txtmaHD);
+				showMess("MÃ£ hÃ³a Ä‘Æ¡n khÃ´ng chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t vÃ  khoáº£ng tráº¯ng", txtmaHD);
 				return false;
 			} else if(!ngay.matches("([0-2][1-9]|30)-(0[1-9]||1[0-2])-(19[8|9][0-9]||20[0-9]{2})")) {
-				showMess("Ngày sai", txtngay);
+				showMess("NgÃ y sai", txtngay);
 				return false;
 			}else if(!maKH.matches("^[a-zA-z0-9]+$")) {
-				showMess("Mã khách hàng không chứa kí tự đặc biệt và khoảng trắng", txtmaKH);
+				showMess("MÃ£ khÃ¡ch hÃ ng khÃ´ng chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t vÃ  khoáº£ng tráº¯ng", txtmaKH);
 				return false;
 			} else if(!maXe.matches("^[a-zA-z0-9]+$")) {
-				showMess("Mã Xe không chứa kí tự đặc biệt và khoảng trắng", txtmaXe);
+				showMess("MÃ£ Xe khÃ´ng chá»©a kÃ­ tá»± Ä‘áº·c biá»‡t vÃ  khoáº£ng tráº¯ng", txtmaXe);
 				return false;
 			} else if(!sl.matches("^[0-9]+$") && Integer.parseInt(txtsoluong.getText().trim())<0) {
-				showMess("Số lượng phải là số và là số dương", txtsoluong);
+				showMess("Sá»‘ lÆ°á»£ng pháº£i lÃ  sá»‘ vÃ  lÃ  sá»‘ dÆ°Æ¡ng", txtsoluong);
 				return false;
 			}else if(!tongtien.matches("^[0-9]+$") && Double.parseDouble(txttongtien.getText().trim())<0) {
-				showMess("Tiền phải là số và là số dương", txttongtien);
+				showMess("Tiá»�n pháº£i lÃ  sá»‘ vÃ  lÃ  sá»‘ dÆ°Æ¡ng", txttongtien);
 				return false;
-			}else if(!username.matches("[A-ZÀ-Ỹ]+[A-Za-zÀ-Ỹà-ỹ]\s")) {
-				showMess("Chữ đầu viết hoa, không là khoảng trắng", txtusername);
+			}else if(!username.matches("[A-ZÃ€-á»¸]+[A-Za-zÃ€-á»¸Ã -á»¹]\s")) {
+				showMess("Chá»¯ Ä‘áº§u viáº¿t hoa, khÃ´ng lÃ  khoáº£ng tráº¯ng", txtusername);
 				return false;
 			}else 
 				return true;
