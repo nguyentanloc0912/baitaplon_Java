@@ -44,15 +44,12 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	private JTextField txtGia;
 	private JTextField txtSoSuon;
 	private JTextField txtSoKhung;
-	private JTextField txtSL;
 	private JTextField txtSoPK;
 	private JTable table;
 	private DefaultTableModel model;
 	private JTable table_1;
 	private JTable table_2;
-	private JComboBox comboBox;
 	private JButton btnThoat;
-	private JButton btnLuu;
 	private JButton btnCapNhat;
 	private JButton btnXoaTrang;
 	private JButton btnXoa;
@@ -60,8 +57,9 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	private JTextField txtMaLoai;
 	private thongTinSP_DAO dao_sanPham;
 	private JTextField txtMess;
-	private ArrayList<sanPham> list;
+	public static ArrayList<sanPham> list;
 	private sanPham sp;
+	private JTextField txt_LoaiXe;
 
 	/**
 	 * Launch the application.
@@ -79,10 +77,12 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
-	public thongTinSanPham_GUI() {
+
+	 
+	
+	
+	public thongTinSanPham_GUI() throws SQLException {
+
 		ConnectDB.getInstance().connect();
 		dao_sanPham = new thongTinSP_DAO();
 		list = new ArrayList<sanPham>();
@@ -110,17 +110,12 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 
 		JLabel lbNSX = new JLabel("Nước sản xuất:");
 		lbNSX.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lbNSX.setBounds(473, 30, 105, 24);
+		lbNSX.setBounds(404, 30, 105, 24);
 		panel.add(lbNSX);
-
-		JLabel lbSL = new JLabel("Số lượng:");
-		lbSL.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lbSL.setBounds(507, 74, 71, 24);
-		panel.add(lbSL);
 
 		JLabel lbLXe = new JLabel("Loại xe:");
 		lbLXe.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lbLXe.setBounds(316, 30, 59, 24);
+		lbLXe.setBounds(404, 74, 59, 24);
 		panel.add(lbLXe);
 
 		JLabel lbGia = new JLabel("Giá bán:");
@@ -144,7 +139,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		panel.add(lbSoSuon);
 
 		txtNSX = new JTextField();
-		txtNSX.setBounds(598, 34, 192, 19);
+		txtNSX.setBounds(535, 34, 192, 19);
 		panel.add(txtNSX);
 		txtNSX.setColumns(10);
 
@@ -160,24 +155,13 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 
 		txtSoKhung = new JTextField();
 		txtSoKhung.setColumns(10);
-		txtSoKhung.setBounds(385, 124, 183, 19);
+		txtSoKhung.setBounds(383, 124, 183, 19);
 		panel.add(txtSoKhung);
-
-		txtSL = new JTextField();
-		txtSL.setColumns(10);
-		txtSL.setBounds(598, 78, 137, 19);
-		panel.add(txtSL);
 
 		txtSoPK = new JTextField();
 		txtSoPK.setColumns(10);
 		txtSoPK.setBounds(628, 124, 162, 19);
 		panel.add(txtSoPK);
-
-		comboBox = new JComboBox();
-		comboBox.setFont(new Font("Tahoma", Font.BOLD, 13));
-		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Honda", "Yamaha", "Vison", "Sonic"}));
-		comboBox.setBounds(373, 32, 86, 21);
-		panel.add(comboBox);
 
 		JLabel lbVND = new JLabel("VNĐ/chiếc");
 		lbVND.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -193,11 +177,11 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		txtMaLoai.setColumns(10);
 		txtMaLoai.setBounds(89, 34, 217, 19);
 		panel.add(txtMaLoai);
-
-		JLabel lblChic = new JLabel("chiếc");
-		lblChic.setFont(new Font("Tahoma", Font.BOLD, 13));
-		lblChic.setBounds(747, 77, 43, 24);
-		panel.add(lblChic);
+		
+		txt_LoaiXe = new JTextField();
+		txt_LoaiXe.setBounds(535, 78, 192, 19);
+		panel.add(txt_LoaiXe);
+		txt_LoaiXe.setColumns(10);
 
 		btnThem = new JButton("Thêm sản phẩm");
 		btnThem.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -206,24 +190,18 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 
 		btnXoa = new JButton("Xóa sản phẩm");
 		btnXoa.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnXoa.setBounds(196, 237, 135, 32);
+		btnXoa.setBounds(217, 236, 135, 32);
 		contentPane.add(btnXoa);
 
 		btnXoaTrang = new JButton("Xóa trắng");
 		btnXoaTrang.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnXoaTrang.setBounds(358, 236, 135, 32);
+		btnXoaTrang.setBounds(400, 237, 135, 32);
 		contentPane.add(btnXoaTrang);
 
 		btnCapNhat = new JButton("Cập nhật thông tin");
 		btnCapNhat.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnCapNhat.setBounds(521, 236, 157, 32);
+		btnCapNhat.setBounds(613, 237, 157, 32);
 		contentPane.add(btnCapNhat);
-
-		btnLuu = new JButton("Lưu ");
-		btnLuu.setFont(new Font("Tahoma", Font.BOLD, 13));
-		btnLuu.setBounds(700, 236, 85, 32);
-		btnLuu.setEnabled(false);
-		contentPane.add(btnLuu);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Danh s\u00E1ch s\u1EA3n ph\u1EA9m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(255, 0, 0)));
@@ -231,22 +209,18 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
-
-
 		model = new DefaultTableModel();
 		table = new JTable(model);
 		model.addColumn("Mã loại xe");
 		model.addColumn("Loại xe");
 		model.addColumn("Nước sản xuẩt");
 		model.addColumn("Giá bán");
-		model.addColumn("Số lượng");
 		model.addColumn("Số sườn");
 		model.addColumn("Số khung");
 		model.addColumn("Số PK");
 		JScrollPane scroll = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scroll.setBounds(5,18,788,170);
 		panel_1.add(scroll);
-
 
 		btnThoat = new JButton("Thoát");
 		btnThoat.setForeground(new Color(0, 0, 255));
@@ -269,11 +243,11 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		btnThoat.addActionListener(this);
 		btnXoaTrang.addActionListener(this);
 		btnThem.addActionListener(this);
-		btnLuu.addActionListener(this);
 		btnXoa.addActionListener(this);
 		btnCapNhat.addActionListener(this);
 
 		loadList();
+		
 	}
 
 	@Override
@@ -287,33 +261,8 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		}else if(o.equals(btnXoaTrang)) {
 			xoaTrang();
 		}else if(o.equals(btnThem)) {
-			if(btnThem.getText().equals("Thêm sản phẩm")) {
-				xoaTrang();
-				txtMaLoai.requestFocus();
-
-				btnThem.setText("Hủy thêm");
-				btnXoa.setEnabled(false);
-				btnLuu.setEnabled(true);
-			}else {
-				btnThem.setText("Thêm sản phẩm");
-				btnXoa.setEnabled(true);
-				btnLuu.setEnabled(false);
-			}
-		}else if(o.equals(btnLuu)) {
-//			if(txtMaLoai.getText().equals("") || txtNSX.getText().equals("") || txtGia.getText().equals("") || txtSL.getText().equals("")
-//					|| txtSoSuon.getText().equals("") || txtSoKhung.getText().equals("") || txtSoPK.getText().equals("")) {
-//				JOptionPane.showMessageDialog(this, "Chưa nhập thông tin");
-//			}else {
-				try {
-					luu();
-				} catch (Exception e2) {
-					e2.printStackTrace();
-				}
-//			}
+			them();
 			xoaTrang();
-			btnThem.setText("Thêm sản phẩm");
-			btnXoa.setEnabled(true);
-			btnLuu.setEnabled(false);
 		}else if(o.equals(btnXoa)) {
 			try {
 				xoa();
@@ -340,18 +289,44 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 
 	public void loadList() {
 		list = dao_sanPham.getAllSanPham();
-		model.getDataVector().removeAllElements();
-		model.fireTableDataChanged();
-		load(list);
+//		model.getDataVector().removeAllElements();
+//		model.fireTableDataChanged();
+//		load(list);
+		for(sanPham sp : list) {
+			String ma = sp.getMaLoai();
+			String ten = sp.getTenLoai();
+			String  nuoc = sp.getNsx();
+			String gia = sp.getGiaBan()+"";
+			String sosuon = sp.getSoSuon();
+			String sokhung = sp.getSoKhung();	
+			String soPK = sp.getSoPK()+"";
+			String data[]  = {ma,ten,nuoc,gia, sosuon, sokhung, soPK};
+			model.addRow(data);
+		}
 	}
-
+   public void them() {
+	   String ma  = txtMaLoai.getText();
+	   String ten= txt_LoaiXe.getText();
+	   String nuoc  =txtNSX.getText();
+	   String gia = txtGia.getText();
+	   String soSuon = txtSoSuon.getText();
+	   String sokhung = txtSoKhung.getText();
+	   String soPK = txtSoPK.getText();
+	   sanPham sp = new sanPham(ma, ten, nuoc, Long.parseLong(gia), soSuon, sokhung, Integer.parseInt(soPK));
+	   String data[] = {ma, ten, nuoc, gia, soSuon, sokhung, soPK};
+	   if(dao_sanPham.addSP(sp)) {
+		   list.add(sp);
+		   model.addRow(data);
+		   JOptionPane.showMessageDialog(this, "Thêm thành công");
+	   }
+	   
+   }
 	private void load(ArrayList<sanPham> list) {
-		for(sanPham sp :dao_sanPham.getAllSanPham()) {
+		for(sanPham sp : dao_sanPham.getAllSanPham()) {
 			Object[] rowData = {sp.getMaLoai(),
 								sp.getTenLoai(),
 								sp.getNsx(),
 								sp.getGiaBan(),
-								sp.getSoluong(),
 								sp.getSoSuon(),
 								sp.getSoKhung(),
 								sp.getSoPK()};
@@ -359,32 +334,24 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		}
 	}
 
+
+
 	public void luu() throws Exception{
 		String maLoai = txtMaLoai.getText();
-		String loaiXe = comboBox.getSelectedItem().toString();
+	
 		String nsx = txtNSX.getText();
 		String gia = txtGia.getText();
-		String sl = txtSL.getText();
+		
 		String soSuon = txtSoSuon.getText();
 		String soKhung = txtSoKhung.getText();
 		String soPK = txtSoPK.getText();
 
-		if(valiData()) {
-			ConnectDB.getInstance();
-			Connection con = ConnectDB.getConnecttion();
-			sanPham sp = new sanPham(maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK));
-			try {
-				Statement stm = con.createStatement();
-				stm.executeUpdate("INSERT INTO thongTinSanPham " + String.format("VALUES ('%s','%s','%s','%d','%d','%s','%s','%d')",
-						maLoai, loaiXe, nsx, Long.parseLong(gia), Integer.parseInt(sl), soSuon, soKhung, Integer.parseInt(soPK)));
-				showMess("Thêm thành công", txtMaLoai);
-				String []row = {maLoai,loaiXe,nsx,gia,sl,soSuon,soKhung,soPK};
-				model.addRow(row);
-			} catch (Exception e) {
-				showMess("Trùng mã loại xe", txtMaLoai);
-			}
-		}
-	}
+
+	
+
+	
+	
+}
 
 	public void xoa() throws Exception{
 		int r = table.getSelectedRow();
@@ -403,7 +370,6 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	}
 
 
-
 	public void updateGia(int row,String ma) {
 		String giaMoi = "Nhập vào giá tiền mới cho mã xe " + ma;
 		String input = JOptionPane.showInputDialog(null,giaMoi);
@@ -418,6 +384,9 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		}
 	}
 
+
+	
+
 	public void updateSL(int row,String ma) {
 		String slMoi = "Nhập vào số lượng mới cho mã xe " + ma;
 		String input = JOptionPane.showInputDialog(null,slMoi);
@@ -425,21 +394,19 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			JOptionPane.showMessageDialog(this, "Số lượng không được để trống");
 		}else {
 			int sl = Integer.parseInt(input);
-			dao_sanPham.updateSL(list.get(row).getMaLoai(), sl);
+//			dao_sanPham.updateSL(list.get(row).getMaLoai(), sl);
 			slMoi = "Cập nhật số lượng thành công cho mã xe " + ma;
 			JOptionPane.showMessageDialog(this, slMoi);
 			model.setValueAt(sl, row, 4);
 		}
 	}
 
-
-
 	public void xoaTrang() {
 		txtMaLoai.setText("");
-		comboBox.setSelectedIndex(0);
+	
 		txtNSX.setText("");
 		txtGia.setText("");
-		txtSL.setText("");
+		
 		txtSoSuon.setText("");
 		txtSoKhung.setText("");
 		txtSoPK.setText("");
@@ -450,7 +417,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 		String maLoai = txtMaLoai.getText().trim();
 		String nsx = txtNSX.getText().trim();
 		String gia = txtGia.getText().trim();
-		String sl = txtSL.getText().trim();
+		
 		String soSuon = txtSoSuon.getText().trim();
 		String soKhung = txtSoKhung.getText().trim();
 		String soPK = txtSoPK.getText().trim();
@@ -462,9 +429,6 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			return false;
 		}else if(gia.equals("")) {
 			showMess("Giá bán không được để trống", txtGia);
-			return false;
-		}else if(sl.equals("")) {
-			showMess("Số lượng không được để trống", txtSL);
 			return false;
 		}else if(soSuon.equals("")) {
 			showMess("Số sườn không được để trống", txtSoSuon);
@@ -485,14 +449,9 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 			}else if(!gia.matches("^[0-9]+$")){
 				showMess("Giá phải là số", txtGia);
 				return false;
-			}else if(!sl.matches("^[0-9]+$")){
-				showMess("Số lượng phải là số", txtSL);
-				return false;
-			}else if(Long.parseLong(txtGia.getText().trim()) < 0) {
+			}
+			else if(Long.parseLong(txtGia.getText().trim()) < 0) {
 				showMess("Giá tiền không được âm", txtGia);
-				return false;
-			}else if(Integer.parseInt(txtSL.getText().trim()) < 0) {
-				showMess("Số lượng không được âm", txtSL);
 				return false;
 			}else if(!soSuon.matches("^[a-zA-z0-9-]+$")) {
 				showMess("Số sườn không được chứa kí tự đặc biệt", txtSoSuon);
@@ -507,7 +466,9 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 				return true;
 		}
 
+
 	}
+
 
 	public void showMess(String mess,JTextField txt) {
 		txt.requestFocus();
@@ -518,13 +479,15 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	public void mouseClicked(MouseEvent e) {
 		int vitri = table.getSelectedRow();
 		txtMaLoai.setText(model.getValueAt(vitri, 0).toString());
-		comboBox.setSelectedItem(model.getValueAt(vitri, 1).toString());
+	    txt_LoaiXe.setText(model.getValueAt(vitri, 1).toString());
 		txtNSX.setText(model.getValueAt(vitri, 2).toString());
 		txtGia.setText(model.getValueAt(vitri, 3).toString());
-		txtSL.setText(model.getValueAt(vitri, 4).toString());
-		txtSoSuon.setText(model.getValueAt(vitri, 5).toString());
-		txtSoKhung.setText(model.getValueAt(vitri, 6).toString());
-		txtSoPK.setText(model.getValueAt(vitri, 7).toString());
+	
+		txtSoSuon.setText(model.getValueAt(vitri, 4).toString());
+		txtSoKhung.setText(model.getValueAt(vitri, 5).toString());
+		txtSoPK.setText(model.getValueAt(vitri, 6).toString());
+	
+		
 	}
 
 	@Override
@@ -548,6 +511,7 @@ public class thongTinSanPham_GUI extends JFrame implements MouseListener,ActionL
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+
 
 	}
 }
