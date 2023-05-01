@@ -73,13 +73,15 @@ public class KhachHang extends JFrame implements ActionListener{
 	private DefaultTableModel model;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField txtDiaChi;
 	private JTextField textField_4;
 	private JTextField textField_5;
 	private JButton btnTm,btnNewButton, btnXaKhchHng,btnCpNhtKhch,btnLu,btnHy,btnXaTrng;
 	private ArrayList<khachHang_model> ds;
 	private khachHang_DAO daoKH;
+	private JTextField txt_maKH;
+	private JTextField txt_tenkh;
+	private JTextField txt_email;
 
 	/**
 	 * Launch the application.
@@ -130,9 +132,9 @@ public class KhachHang extends JFrame implements ActionListener{
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		model.addColumn("Mã khách hàng");
 		model.addColumn("Tên khách hàng");
-		model.addColumn("Số điện thoại");
-		model.addColumn("Ngày sinh");
 		model.addColumn("Email");
+		model.addColumn("Địa chỉ");
+	
 		
 		JScrollPane scrollPane = new JScrollPane(table,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 364, 907, 198);
@@ -152,53 +154,43 @@ public class KhachHang extends JFrame implements ActionListener{
 		
 		Label label_3 = new Label("Mã khách hàng:");
 		label_3.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_3.setBounds(10, 58, 136, 32);
+		label_3.setBounds(10, 72, 136, 32);
 		panel_1.add(label_3);
 		
 		Label label_4 = new Label("Tên khách hàng:");
 		label_4.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_4.setBounds(10, 102, 136, 32);
+		label_4.setBounds(10, 116, 136, 32);
 		panel_1.add(label_4);
 		
-		Label label_5 = new Label("Số điện thoại:");
-		label_5.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_5.setBounds(10, 147, 136, 32);
-		panel_1.add(label_5);
-		
-		Label label_6 = new Label("Ngày sinh:");
+		Label label_6 = new Label("Địa chỉ");
 		label_6.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_6.setBounds(10, 190, 136, 34);
+		label_6.setBounds(10, 204, 136, 34);
 		panel_1.add(label_6);
 		
 		Label label_7 = new Label("Email:");
 		label_7.setFont(new Font("Dialog", Font.BOLD, 13));
-		label_7.setBounds(10, 243, 136, 21);
+		label_7.setBounds(10, 177, 136, 21);
 		panel_1.add(label_7);
 		
-		textField = new JTextField();
-		textField.setBounds(158, 69, 168, 19);
-		panel_1.add(textField);
-		textField.setColumns(10);
+		txt_maKH = new JTextField();
+		txt_maKH.setBounds(158, 83, 168, 19);
+		panel_1.add(txt_maKH);
+		txt_maKH.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(158, 115, 365, 19);
-		panel_1.add(textField_1);
-		textField_1.setColumns(10);
+		txt_tenkh = new JTextField();
+		txt_tenkh.setBounds(158, 129, 365, 19);
+		panel_1.add(txt_tenkh);
+		txt_tenkh.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(158, 156, 365, 19);
-		panel_1.add(textField_2);
-		textField_2.setColumns(10);
+		txtDiaChi = new JTextField();
+		txtDiaChi.setBounds(158, 214, 365, 19);
+		panel_1.add(txtDiaChi);
+		txtDiaChi.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(158, 200, 365, 19);
-		panel_1.add(textField_3);
-		textField_3.setColumns(10);
-		
-		textField_4 = new JTextField();
-		textField_4.setBounds(158, 245, 365, 19);
-		panel_1.add(textField_4);
-		textField_4.setColumns(10);
+		txt_email = new JTextField();
+		txt_email.setBounds(158, 179, 365, 19);
+		panel_1.add(txt_email);
+		txt_email.setColumns(10);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new LineBorder(new Color(0, 0, 0)), "Ch\u1EE9c n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -284,11 +276,13 @@ public class KhachHang extends JFrame implements ActionListener{
 			public void mouseClicked(MouseEvent e) {
 				// TODO Auto-generated method stub
 				int row = table.getSelectedRow();
-				textField.setText(model.getValueAt(row, 0).toString());
-				textField_1.setText(model.getValueAt(row, 1).toString());
-				textField_2.setText(model.getValueAt(row, 2).toString());
-				textField_3.setText(model.getValueAt(row, 3).toString());
-				textField_4.setText(model.getValueAt(row, 4).toString());
+				txt_maKH.setText(model.getValueAt(row, 0).toString());
+				txt_tenkh.setText(model.getValueAt(row, 1).toString());
+	
+				txt_email.setText(model.getValueAt(row, 2).toString());
+				txtDiaChi.setText(model.getValueAt(row, 3).toString());
+				txt_maKH.setEditable(false);
+				
 			}
 		});
 		
@@ -297,11 +291,9 @@ public class KhachHang extends JFrame implements ActionListener{
 		for(khachHang_model kh: ds){
 			String maKH = kh.getMaKH().trim();
 			String tenKH = kh.getTenKH();
-			String sdt = kh.getSdt();
-			SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-			String ngaySinh = df.format(kh.getNgaySinh());
+		    String diachi = kh.getDiaChi();
 			String email = kh.getEmail();
-			String data[] = {maKH,tenKH,sdt,ngaySinh,email};
+			String data[] = {maKH,tenKH,email, diachi};
 			model.addRow(data);
 		}
 	}
@@ -330,26 +322,19 @@ public class KhachHang extends JFrame implements ActionListener{
 //			khachHang_model kh = new khachHang_model(ma, ten, sdt, ngaysinh, email, diachi);
 			if(validation()){
 				khachHang_model kh = new khachHang_model();
-				kh.setMaKH(textField.getText());
-				kh.setTenKH(textField_1.getText());
-				kh.setSdt(textField_2.getText());
-				DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
-				try {
-					kh.setNgaySinh(dateformat.parse(textField_3.getText()));
-				} catch (Exception e2) {
-					// TODO: handle exception
-					e2.printStackTrace();
-				}
-				kh.setEmail(textField_4.getText());
+				kh.setMaKH(txt_maKH.getText());
+				kh.setTenKH(txt_tenkh.getText());
+				kh.setEmail(txt_email.getText());
+				kh.setDiaChi(txtDiaChi.getText());
 				ds.add(kh);
 				if(daoKH.addKH(kh)){
 					JOptionPane.showMessageDialog(this, "Thêm thành công");
-					String maKH = textField.getText();
-					String tenKh = textField_1.getText();
-					String sdt1 = textField_2.getText();
-					String ngay = textField_3.getText();
-					String email1 = textField_4.getText();
-					String da[] ={maKH, tenKh, sdt1,ngay,email1};
+					String maKH = txt_maKH.getText();
+					String tenKh = txt_tenkh.getText();
+				
+					String diachi = txtDiaChi.getText();
+					String email = txt_email.getText();
+					String da[] ={maKH, tenKh,email, diachi};
 					model.addRow(da);
 				}else {
 		        	JOptionPane.showMessageDialog(this, "Trùng mã");
@@ -372,11 +357,11 @@ public class KhachHang extends JFrame implements ActionListener{
 		}
 	}
 	public void xoarong() {
-		textField.setText(null);
-		textField_1.setText(null);
-		textField_2.setText(null);
-		textField_3.setText(null);
-		textField_4.setText(null);
+		txt_maKH.setText(null);
+		txt_tenkh.setText(null);
+		txt_maKH.setEditable(true);
+		txt_email.setText(null);
+		txtDiaChi.setText(null);
     	table.clearSelection();
     }
 	public void xoa() {
@@ -406,18 +391,12 @@ public class KhachHang extends JFrame implements ActionListener{
 				model.removeRow(pos);
 				khachHang_model kh = ds.get(pos);
 				kh.setTenKH(textField_1.getText());
-				kh.setSdt(textField_2.getText());
-				DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-				try {
-					kh.setNgaySinh(df.parse(textField_3.getText()));
-				} catch (Exception e) {
-					// TODO: handle exception
-					e.printStackTrace();
-				}
+			
+				
 				kh.setEmail(textField_4.getText());
-				SimpleDateFormat dfc = new SimpleDateFormat("dd-MM-yyyy");
-				String ns = dfc.format(kh.getNgaySinh());
-				model.insertRow(pos,new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getSdt(),ns,kh.getEmail()});
+				
+				
+				model.insertRow(pos,new Object[]{kh.getMaKH(),kh.getTenKH(),kh.getEmail()});
 				if(daoKH.updateKH(kh)){
 					JOptionPane.showMessageDialog(this, "Sửa thành công !");
 		    	}else {
@@ -437,9 +416,8 @@ public class KhachHang extends JFrame implements ActionListener{
     	return -1;
     }
 	public void showKH(khachHang_model kh) {
-    	SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-    	String ngaysinh = df.format(kh.getNgaySinh());
-    	model.addRow(new Object[] {kh.getMaKH(),kh.getTenKH(),kh.getSdt(),ngaysinh, kh.getEmail()});
+    
+    	model.addRow(new Object[] {kh.getMaKH(),kh.getTenKH(),kh.getEmail()});
     }
 	 public void tim() {
 	       	String tim = textField_5.getText();
@@ -460,51 +438,46 @@ public class KhachHang extends JFrame implements ActionListener{
 	    	}
 	    	}
 	 public boolean validation() {
-		String makh = textField.getText();
-		String tenkh = textField_1.getText();
-		String sdt = textField_2.getText();
-		String ngaySinh = textField_3.getText();
-		String email = textField_4.getText();
-		if(makh.equals("")){
-			textField.setText("Khong duoc để rỗng");
-			return false;
-		}
-		else if(!makh.matches("^(kh|KH)\\w+")){
-			textField.setText("mã kh bắt đầu bằng KH(kh)");
-			return false;
-		}
-		else if(tenkh.equals("")){
-			textField_1.setText("Khong duoc để rỗng");
-			return false;
-		}
-		else if(!tenkh.matches("[a-zA-z ]+")){
-			textField_1.setText("Tên kh khong có kí tự đặc biệt");
-			return false;
-		}
-		else if(sdt.equals("")){
-			textField_2.setText("Khong duoc để rỗng");
-			return false;
-		}
-		else if(!sdt.matches("[0-9]{9,10}")){
-			textField_2.setText("lỗi sdt");
-			return false;
-		}
-		else if(ngaySinh.equals("")){
-			textField_3.setText("không duoc để rỗng");
-			return false;
-		}
-		else if(!ngaySinh.matches("([0-2][1-9]|30)-(0[1-9]||1[0-2])-(19[8|9][0-9]||200[0-9])")){
-			textField_3.setText("lỗi ngày sinh");
-			return false;
-		}
-		else if(email.equals("")){
-			textField_4.setText("không duoc để rỗng");
-			return false;
-		}
-		else if(!ngaySinh.matches("^[a-zA-Z]+\\w*@(gmail|yaho|cax|).com")){
-			textField_4.setText("lỗi email");
-			return false;
-		}
-		return true;
+//		String makh = textField.getText();
+//		String tenkh = textField_1.getText();
+//		
+//		String ngaySinh = txtDiaChi.getText();
+//		String email = textField_4.getText();
+//		if(makh.equals("")){
+//			textField.setText("Khong duoc để rỗng");
+//			return false;
+//		}
+//		else if(!makh.matches("^(kh|KH)\\w+")){
+//			textField.setText("mã kh bắt đầu bằng KH(kh)");
+//			return false;
+//		}
+//		else if(tenkh.equals("")){
+//			textField_1.setText("Khong duoc để rỗng");
+//			return false;
+//		}
+//		else if(!tenkh.matches("[a-zA-z ]+")){
+//			textField_1.setText("Tên kh khong có kí tự đặc biệt");
+//			return false;
+//		}
+//		
+//		
+//		else if(ngaySinh.equals("")){
+//			txtDiaChi.setText("không duoc để rỗng");
+//			return false;
+//		}
+//		else if(!ngaySinh.matches("([0-2][1-9]|30)-(0[1-9]||1[0-2])-(19[8|9][0-9]||200[0-9])")){
+//			txtDiaChi.setText("lỗi ngày sinh");
+//			return false;
+//		}
+//		else if(email.equals("")){
+//			textField_4.setText("không duoc để rỗng");
+//			return false;
+//		}
+//		else if(!ngaySinh.matches("^[a-zA-Z]+\\w*@(gmail|yaho|cax|).com")){
+//			textField_4.setText("lỗi email");
+//			return false;
+//		}
+//		return true;
+		 return true;
 	}
 }

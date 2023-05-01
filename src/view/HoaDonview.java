@@ -294,12 +294,12 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 		load(ds);
 	}
 	public void load(ArrayList<HoaDon> ds) throws SQLException {
-		for(HoaDon hd : daoHD.getAllHoaDons()) {
-		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-			Object[] rowData = {
-					hd.getMaHD(),df.format(hd.getNgay()), hd.getMaKH(), hd.getMaLoaiXe(), hd.getSoluong(), hd.getHinhthucTT(), hd.getTongtien(), hd.getUsername()
-			}; model.addRow(rowData);
-		}
+//		for(HoaDon hd : daoHD.getAllHoaDons()) {
+//		SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy");
+//			Object[] rowData = {
+//					hd.getMaHD(),df.format(hd.getNgay()), hd.getMaKH(), hd.getTongtien(), hd.getUsername()
+//			}; model.addRow(rowData);
+//		}
 	}
 	
 	@Override
@@ -326,58 +326,58 @@ public class HoaDonview extends JFrame implements ActionListener, MouseListener{
 				btThem.setText("ThÃªm");
 				btLuu.setEnabled(false);
 				btXoa.setEnabled(true);
-			}
-		}else if(o.equals(btLuu)) {
-			
-			try {
-				if(valiData()) {
-					String maHoaDon = txtmaHD.getText();
-					String ngay = txtngay.getText();
-					String maKH = txtmaKH.getText();
-					String maLoaiXe = txtmaXe.getText();
-					String sl = txtsoluong.getText();
-					String httt = comboBox.getSelectedItem().toString();
-					String tong = txttongtien.getText();
-					String use = txtusername.getText();
-					
-					DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-					HoaDon hd = new HoaDon(maHoaDon, dateFormat.parse(ngay), maKH, maLoaiXe, Integer.parseInt(sl), httt, Long.parseLong(tong), use);
-					daoHD.addHD(hd);
-					String []row = {maHoaDon,ngay,maKH,maLoaiXe,sl,httt,tong,use};
-					model.addRow(row);
-					JOptionPane.showMessageDialog(null, "Them thÃ nh cÃ´ng");
-				}
-			} catch (Exception e2) {
-				// TODO: handle exception
-				e2.printStackTrace();
-			}
-			
-			btThem.setText("ThÃªm");
-			btXoa.setEnabled(true);
-			btLuu.setEnabled(false);
-		}else if(o.equals(btXoa)) {
-			try {
-				int r = table.getSelectedRow();
-				if(r!=-1) {
-					String maHD = model.getValueAt(r, 0).toString();
-					int tb = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ cháº¯c muá»‘n xÃ³a hÃ³a Ä‘Æ¡n nÃ y","Delete",JOptionPane.YES_NO_OPTION);
-					if(tb == JOptionPane.YES_OPTION) {
-						DAO_HoaDon.delete(maHD);
-						model.removeRow(r);
-						xoaTrang();
-						JOptionPane.showMessageDialog(this, "XÃ³a thÃ nh cÃ´ng");
-					}else {
-						JOptionPane.showMessageDialog(this, "ChÆ°a chá»�n dÃ²ng cáº§n xÃ³a");
-					}
-				}
-			} catch (Exception e2) {
-				// TODO: handle exception
-				e2.printStackTrace();
-			}
-		}else if(o.equals(btThongKe)) {
-			UIThongKe = new thongKe_view();
-			UIThongKe.setVisible(true);
-		}
+			}}
+//		}else if(o.equals(btLuu)) {
+//			
+//			try {
+//				if(valiData()) {
+//					String maHoaDon = txtmaHD.getText();
+//					String ngay = txtngay.getText();
+//					String maKH = txtmaKH.getText();
+//					String maLoaiXe = txtmaXe.getText();
+//					String sl = txtsoluong.getText();
+//					String httt = comboBox.getSelectedItem().toString();
+//					String tong = txttongtien.getText();
+//					String use = txtusername.getText();
+//					
+//					DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+////					HoaDon hd = new HoaDon(maHoaDon, dateFormat.parse(ngay), maKH, maLoaiXe, Integer.parseInt(sl), httt, Long.parseLong(tong), use);
+//					daoHD.addHD(hd);
+//					String []row = {maHoaDon,ngay,maKH,maLoaiXe,sl,httt,tong,use};
+//					model.addRow(row);
+//					JOptionPane.showMessageDialog(null, "Them thÃ nh cÃ´ng");
+//				}
+//			} catch (Exception e2) {
+//				// TODO: handle exception
+//				e2.printStackTrace();
+//			}
+//			
+//			btThem.setText("ThÃªm");
+//			btXoa.setEnabled(true);
+//			btLuu.setEnabled(false);
+////		}else if(o.equals(btXoa)) {
+////			try {
+//				int r = table.getSelectedRow();
+//				if(r!=-1) {
+//					String maHD = model.getValueAt(r, 0).toString();
+//					int tb = JOptionPane.showConfirmDialog(this, "Báº¡n cÃ³ cháº¯c muá»‘n xÃ³a hÃ³a Ä‘Æ¡n nÃ y","Delete",JOptionPane.YES_NO_OPTION);
+//					if(tb == JOptionPane.YES_OPTION) {
+//						DAO_HoaDon.delete(maHD);
+//						model.removeRow(r);
+//						xoaTrang();
+//						JOptionPane.showMessageDialog(this, "XÃ³a thÃ nh cÃ´ng");
+//					}else {
+//						JOptionPane.showMessageDialog(this, "ChÆ°a chá»�n dÃ²ng cáº§n xÃ³a");
+//					}
+////				}
+//			} catch (Exception e2) {
+//				// TODO: handle exception
+//				e2.printStackTrace();
+//			}
+//		}else if(o.equals(btThongKe)) {
+//			UIThongKe = new thongKe_view();
+//			UIThongKe.setVisible(true);
+//		}
 			
 }
 

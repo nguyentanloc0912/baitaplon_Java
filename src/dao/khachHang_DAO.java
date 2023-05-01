@@ -25,7 +25,7 @@ public class khachHang_DAO {
 					Statement statement = con.createStatement();
 					ResultSet rs = statement.executeQuery(sql);
 					while(rs.next()){
-						dsKhachHang.add(new khachHang_model(rs.getString("MaKH"),rs.getString("TenKH"),rs.getString("soDienThoai"),rs.getDate("ngaySinh"),rs.getString("Email"),rs.getString("DiaChi")));
+						dsKhachHang.add(new khachHang_model(rs.getString("MaKH"),rs.getString("TenKH"),rs.getString("Email"), rs.getString("DiaChi")));
 					}
 				} catch (Exception e) {
 					// TODO: handle exception
@@ -37,15 +37,13 @@ public class khachHang_DAO {
 			Connection con = ConnectDB.getConnecttion();
 			ConnectDB.getInstance();
 			
-			String sql = "insert into khachhang(MaKH, TenKH, DiaChi, Email, soDienThoai,ngaySinh) values (?,?,?,?,?,?)";
+			String sql = "insert into khachhang(MaKH, TenKH, Email, DiaChi) values (?,?,?,?)";
 			try {
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, kh.getMaKH());
 				ps.setString(2, kh.getTenKH());
-				ps.setString(3, kh.getDiaChi());
-				ps.setString(4, kh.getEmail());
-				ps.setString(5, kh.getSdt());
-				ps.setDate(6, new Date(kh.getNgaySinh().getTime()));
+				ps.setString(3, kh.getEmail());
+				ps.setString(4, kh.getDiaChi());
 				return ps.executeUpdate()>0;
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -56,14 +54,13 @@ public class khachHang_DAO {
 		public boolean updateKH( khachHang_model kh) {
 			ConnectDB.getInstance();
 			Connection con = ConnectDB.getConnecttion();
-			String sql = "update khachhang set  TenKH = ?, DiaChi = ?, Email=?, SoDienThoai = ?, ngaySinh = ? where MaKH = ?";
+			String sql = "update khachhang set  TenKH = ?, DiaChi = ?, Email=? where MaKH = ?";
 			try {
 				PreparedStatement ps = con.prepareStatement(sql);
 				ps.setString(1, kh.getTenKH());
 				ps.setString(2, kh.getDiaChi());
 				ps.setString(3, kh.getEmail());
-				ps.setString(4, kh.getSdt());
-				ps.setDate(5, new Date(kh.getNgaySinh().getTime()));
+				
 				ps.setString(6, kh.getMaKH());
 				return ps.executeUpdate()>0;
 			} catch (Exception e) {

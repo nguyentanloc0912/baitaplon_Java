@@ -5,27 +5,26 @@ import java.math.BigDecimal;
 public class sanPham {
 	private String maLoai,tenLoai,nsx;
 	private long giaBan;
-	private int soluong;
+
 	private String soSuon,soKhung;
 	private int soPK;
-	public sanPham(String maLoai, String tenLoai, String nsx, long giaBan, int soluong, String soSuon, String soKhung,
+	public sanPham(String maLoai, String tenLoai, String nsx, long giaBan, String soSuon, String soKhung,
 			int soPK) {
 		super();
 		this.maLoai = maLoai;
 		this.tenLoai = tenLoai;
 		this.nsx = nsx;
 		this.giaBan = giaBan;
-		this.soluong = soluong;
 		this.soSuon = soSuon;
 		this.soKhung = soKhung;
 		this.soPK = soPK;
 	}
 	
-	public sanPham(String maLoai, long giaBan, int soluong) {
+	public sanPham(String maLoai, long giaBan) {
 		super();
 		this.maLoai = maLoai;
 		this.giaBan = giaBan;
-		this.soluong = soluong;
+		
 	}
 
 	public sanPham() {
@@ -55,12 +54,7 @@ public class sanPham {
 	public void setGiaBan(long giaBan) {
 		this.giaBan = giaBan;
 	}
-	public int getSoluong() {
-		return soluong;
-	}
-	public void setSoluong(int soluong) {
-		this.soluong = soluong;
-	}
+	
 	public String getSoSuon() {
 		return soSuon;
 	}
@@ -81,8 +75,7 @@ public class sanPham {
 	}
 	@Override
 	public String toString() {
-		return "sanPham [maLoai=" + maLoai + ", tenLoai=" + tenLoai + ", nsx=" + nsx + ", giaBan=" + giaBan
-				+ ", soluong=" + soluong + ", soSuon=" + soSuon + ", soKhung=" + soKhung + ", soPK=" + soPK + "]";
+		return getTenLoai();
 	}
 	
 }

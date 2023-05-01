@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
@@ -225,7 +226,15 @@ public class Menu1 extends JFrame implements ActionListener{
 				// TODO: handle exception
 				e3.printStackTrace();
 			}
-			new banHang().setVisible(true);
+			try {
+				banHang bh =  new banHang();
+				bh.setVisible(true);
+				
+				
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(a.equals(btn_info_sanpham)) {
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -233,7 +242,12 @@ public class Menu1 extends JFrame implements ActionListener{
 				// TODO: handle exception
 				e3.printStackTrace();
 			}
-			new thongTinSanPham_GUI().setVisible(true);
+			try {
+				new thongTinSanPham_GUI().setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}else if(a.equals(btn_info_kh)) {
 			try {
 				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

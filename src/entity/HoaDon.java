@@ -8,9 +8,6 @@ public class HoaDon implements Serializable {
 	private String maHD;
 	private Date ngay;
 	private String maKH;
-	private String maLoaiXe;
-	private int soluong;
-	private  String hinhthucTT;
 	private long Tongtien;
 	private String username;
 	public String getMaHD() {
@@ -31,24 +28,6 @@ public class HoaDon implements Serializable {
 	public void setMaKH(String maKH) {
 		this.maKH = maKH;
 	}
-	public String getMaLoaiXe() {
-		return maLoaiXe;
-	}
-	public void setMaLoaiXe(String maLoaiXe) {
-		this.maLoaiXe = maLoaiXe;
-	}
-	public int getSoluong() {
-		return soluong;
-	}
-	public void setSoluong(int soluong) {
-		this.soluong = soluong;
-	}
-	public String getHinhthucTT() {
-		return hinhthucTT;
-	}
-	public void setHinhthucTT(String hinhthucTT) {
-		this.hinhthucTT = hinhthucTT;
-	}
 	public long getTongtien() {
 		return Tongtien;
 	}
@@ -61,23 +40,20 @@ public class HoaDon implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public HoaDon(String maHD, Date ngay, String maKH, String maLoaiXe, int soluong, String hinhthucTT, long tongtien,
+	public HoaDon(String maHD, Date ngay, String maKH, long tongtien,
 			String username) {
 		super();
 		this.maHD = maHD;
 		this.ngay = ngay;
 		this.maKH = maKH;
-		this.maLoaiXe = maLoaiXe;
-		this.soluong = soluong;
-		this.hinhthucTT = hinhthucTT;
 		Tongtien = tongtien;
 		this.username = username;
 	}
-	@Override
-	public String toString() {
-		return "HoaDon [maHD=" + maHD + ", ngay=" + ngay + ", maKH=" + maKH + ", maLoaiXe=" + maLoaiXe + ", soluong="
-				+ soluong + ", hinhthucTT=" + hinhthucTT + ", Tongtien=" + Tongtien + ", username=" + username + "]";
-	}
+//	@Override
+//	public String toString() {
+//		return "HoaDon [maHD=" + maHD + ", ngay=" + ngay + ", maKH=" + maKH + ", maLoaiXe=" + maLoaiXe + ", soluong="
+//				+ soluong + ", hinhthucTT=" + hinhthucTT + ", Tongtien=" + Tongtien + ", username=" + username + "]";
+//	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(maHD);
@@ -92,6 +68,9 @@ public class HoaDon implements Serializable {
 			return false;
 		HoaDon other = (HoaDon) obj;
 		return Objects.equals(maHD, other.maHD);
+	}
+	public HoaDon() {
+		// TODO Auto-generated constructor stub
 	}
 	
 	

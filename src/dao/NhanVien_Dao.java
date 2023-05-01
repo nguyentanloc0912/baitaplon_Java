@@ -33,7 +33,6 @@ public ArrayList<NhanVien> getAllNhanVien(){
 public boolean addNhanVien(NhanVien nv) {
 	Connection con = ConnectDB.getConnecttion();
 	ConnectDB.getInstance();
-	
 	String sql = "insert into TaiKhoan(username, password, HoTen, NgaySinh, Email, Phone) values (?,?,?,?,?,?)";
 	try {
 		PreparedStatement ps= con.prepareStatement(sql);

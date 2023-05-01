@@ -12,32 +12,7 @@ import  connectDB.ConnectDB;
 import entity.HoaDon;
 
 public class DAO_HoaDon {
-	public ArrayList<HoaDon> getAllHoaDons() throws SQLException{
-		ArrayList<HoaDon> ls = new ArrayList<HoaDon>();
-		
-		ConnectDB.getInstance().connect();
-		Connection con = ConnectDB.getConnecttion();
-		try {
-			String sql = "SELECT * FROM hoadon";
-			Statement statement = con.createStatement();
-			ResultSet rs = statement.executeQuery(sql);
-			while(rs.next()) {
-				ls.add( new HoaDon(
-						rs.getString("maHD"),
-						rs.getDate("Ngay"),
-						rs.getString("MaKH"),
-						rs.getString("maLoaiXe"),
-						rs.getInt("soluong"),
-						rs.getString("HnhThucTT"),
-						rs.getLong("TongTien"),
-						rs.getString("username")
-						));
-			}
-		} catch (SQLException e) {
-			// TODO: handle exception
-		}
-		return ls;	
-	}
+
 	public static void delete(String maHD) {
 		try {
 			Connection con = ConnectDB.getConnecttion();

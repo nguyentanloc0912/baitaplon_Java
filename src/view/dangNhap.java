@@ -4,10 +4,14 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
 import java.awt.Label;
 import java.awt.Menu;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -71,21 +75,21 @@ public class dangNhap extends JFrame  implements ActionListener{
 			e.printStackTrace();
 		}
 		setTitle("Đăng nhập");
-		setSize(700, 340);
+		setSize(618, 343);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		JPanel pnNorth = new JPanel();
 		pnNorth.setBorder(BorderFactory.createLineBorder(Color.red));
 		JLabel labelLogo;
-		pnNorth.add(labelLogo = new JLabel("Login"));
+		pnNorth.add(labelLogo = new JLabel("Đăng Nhập\r\n"));
 		labelLogo.setFont(new Font("Arial", Font.BOLD, 30));
 		labelLogo.setForeground(Color.red);
-		add(pnNorth, BorderLayout.NORTH);
+		getContentPane().add(pnNorth, BorderLayout.NORTH);
 		JPanel pnlWest = new JPanel();
 		pnlWest.setBorder(BorderFactory.createLineBorder(Color.red));
 		ImageIcon myImage = new ImageIcon(dangNhap.class.getResource("/anh/user1.png"));
 		pnlWest.add(new JLabel(myImage));
-		add(pnlWest, BorderLayout.WEST);
+		getContentPane().add(pnlWest, BorderLayout.WEST);
 
 		JPanel pnlSouth = new JPanel();
 		pnlSouth.setBorder(BorderFactory.createLineBorder(Color.red));
@@ -93,10 +97,11 @@ public class dangNhap extends JFrame  implements ActionListener{
 		pnlSouth.add(bttLogin = new JButton("Login"));
 		pnlSouth.add(bttCancel= new JButton("Cancel"));
 		pnlSouth.add(bttExit = new JButton("Exit"));
-		add(pnlSouth, BorderLayout.SOUTH);
+		getContentPane().add(pnlSouth, BorderLayout.SOUTH);
 		JPanel pnlcenter = new JPanel();
 		pnlcenter.setBorder(BorderFactory.createLineBorder(Color.red));
 		javax.swing.Box b = javax.swing.Box.createVerticalBox();
+		b.setBounds(59, 6, 248, 108);
 		javax.swing.Box b1 = javax.swing.Box.createHorizontalBox();
 		javax.swing.Box b2 = javax.swing.Box.createHorizontalBox();
 		JLabel labeluser, labelPass;
@@ -107,32 +112,17 @@ public class dangNhap extends JFrame  implements ActionListener{
 		labelPass.setFont(new Font("arial",Font.PLAIN,15));
 		b2.add(tfPass = new JPasswordField(20));
 		labelPass.setPreferredSize(labeluser.getPreferredSize());
+		pnlcenter.setLayout(null);
 		b.add(javax.swing.Box.createVerticalStrut(60));
 		b.add(b1); b.add(javax.swing.Box.createVerticalStrut(10));
 		b.add(b2);
 		
 		pnlcenter.add(b);
-		add(pnlcenter,BorderLayout.CENTER);
+		getContentPane().add(pnlcenter,BorderLayout.CENTER);
 		
 		bttExit.addActionListener(this);
 		bttCancel.addActionListener(this);
 		bttLogin.addActionListener(this);
-//		ConnectDB cn = new ConnectDB();
-//		Connection con = null;
-//		try {
-//			con = cn.getConnecttion();
-//			String sql = "select * from TaiKhoan where username='"+ tfUser.getText() +"' and password = '"+ tfPass.getText() + "'";
-//			PreparedStatement ps = con.prepareCall(sql);
-//			ResultSet rs = ps.executeQuery();
-//			if(rs.next()) {
-//				usename = tfUser.getText();
-//			}
-//		} catch (SQLException e) {
-//			// TODO: handle exception
-//			e.printStackTrace();
-//		} 
-		
-		
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -144,36 +134,40 @@ public class dangNhap extends JFrame  implements ActionListener{
 			System.exit(0);
 		}
 		if(e.getSource().equals(bttLogin)){
-			ConnectDB cn = new ConnectDB();
-			Connection con = null;
-			try {
-				con = cn.getConnecttion();
-				String sql = "select *  from TaiKhoan where username='"+ tfUser.getText()+"' and password = '"+ tfPass.getText() + "'";
-				PreparedStatement ps = con.prepareCall(sql);
-				ResultSet rs = ps.executeQuery();
-				if(rs.next()) {
-					usename = tfUser.getText();
-					System.out.println(usename);
-					try {
-						UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-					} catch (Exception e3) {
-						// TODO: handle exception
-						e3.printStackTrace();
-					}
-					new Menu1().setVisible(true);
-				    this.hide();
-				    
-				  
-				}else {
-					JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu !");
-				}
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			 Login() ;
 		
 		}
 	}
+
+    public void Login() {
+    	ConnectDB cn = new ConnectDB();
+		Connection con = null;
+		try {
+			con = cn.getConnecttion();
+			String sql = "select *  from TaiKhoan where username='"+ tfUser.getText()+"' and password = '"+ tfPass.getText() + "'";
+			PreparedStatement ps = con.prepareCall(sql);
+			ResultSet rs = ps.executeQuery();
+			if(rs.next()) {
+				usename = tfUser.getText();
+				System.out.println(usename);
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e3) {
+					// TODO: handle exception
+					e3.printStackTrace();
+				}
+				new Menu1().setVisible(true);
+			    this.hide();
+			    
+			  
+			}else {
+				JOptionPane.showMessageDialog(this, "Sai tài khoản hoặc mật khẩu !");
+			}
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+    }
 
 
 

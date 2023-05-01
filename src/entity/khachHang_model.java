@@ -5,14 +5,13 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class khachHang_model {
-	private String maKH,tenKH,sdt;
-	private Date ngaySinh;
+	private String maKH,tenKH;
+
 	private String email, diaChi;
-	public khachHang_model(String maKH, String tenKH, String sdt, Date ngaySinh, String email, String diaChi) {
+	public khachHang_model(String maKH, String tenKH,  String email, String diaChi) {
 		this.setMaKH(maKH);
 		this.setTenKH(tenKH);
-		this.setSdt(sdt);
-		this.setNgaySinh(ngaySinh);
+	
 		this.setEmail(email);
 		this.setDiaChi(diaChi);
 	}
@@ -44,21 +43,7 @@ public class khachHang_model {
 		else
 			this.tenKH = "null";
 	}
-	public String getSdt() {
-		return sdt;
-	}
-	public void setSdt(String sdt) {
-		if(!sdt.equals(""))
-			this.sdt = sdt;
-		else
-			this.sdt = "null";
-	}
-	public Date getNgaySinh() {
-		return ngaySinh;
-	}
-	public void setNgaySinh(Date ngaySinh) {
-		this.ngaySinh = ngaySinh;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -84,11 +69,12 @@ public class khachHang_model {
 			
 	}
 
+	
+	
+
 	@Override
 	public String toString() {
-		return "khachHang_model [maKH=" + maKH + ", tenKH=" + tenKH + ", sdt="
-				+ sdt + ", ngaySinh=" + ngaySinh + ", email=" + email
-				+ ", diaChi=" + diaChi + "]";
+		return  maKH;
 	}
 
 	@Override
