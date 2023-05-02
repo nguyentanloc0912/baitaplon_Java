@@ -30,10 +30,13 @@ import javax.swing.table.TableColumn;
 
 import javax.swing.text.Element;
 
+import dao.Dao_CtHoaDon;
 import dao.Dao_Hoadon1;
 import dao.khachHang_DAO;
 import dao.thongTinSP_DAO;
+import entity.ChiTietHoaDon;
 import entity.HoaDon;
+import entity.TaoChiTietHoaDon;
 import entity.TaoHoadon;
 import entity.khachHang_model;
 import entity.sanPham;
@@ -102,6 +105,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 	public static ArrayList<HoaDon> list_hd;
 	public Dao_Hoadon1 dao_hd;
 	private int tongtienhoadon;
+	private boolean isComboBoxEnabled = false;
 	
 	
 
@@ -259,6 +263,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		model.addColumn("Tên sản phẩm");
 		model.addColumn("Số lượng");
 		model.addColumn("Thành tiền");
+		model.addColumn("Ghi chú");
 		
 		
 		JTableHeader Theader = table.getTableHeader();
@@ -347,6 +352,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		addAction();
 		addWindowListener(this);
 		btnThem.setEnabled(false);
+		setEnabled_false();
 		
 	
 	}
@@ -356,6 +362,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		btnThem.addActionListener(this);
 		btnThanhtoan.addActionListener(this);
 		btnThoat.addActionListener(this);
+		btn_xoa.addActionListener(this);
 		
 	}
 	public void getTenXe() {
@@ -365,12 +372,15 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		}
 	}
     public void AddHdvaodatabase() {
+    	int countRow = model.getRowCount();
+    	if(countRow > 0) {
     	tongtienhoadon = 0;
-		DecimalFormat currency = new DecimalFormat ("###,###,###");
-	
+		DecimalFormat currency = new DecimalFormat ("###,###,###VND");
 		int soluong = model.getRowCount();
 		for(int i=0;i<soluong;i++) {
-			tongtienhoadon+= Long.parseLong((((String) model.getValueAt(i, 4))));
+			String str = (String) model.getValueAt(i, 4);
+			String result = str.replaceAll("\\.", "");
+			tongtienhoadon+= Long.parseLong(result);
 		}
 		lbl_tongtienhoadon.setText(currency.format(tongtienhoadon));
     	HoaDon hd = new HoaDon();
@@ -390,17 +400,19 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		}
     	if(dao_hd.addHoaDon(hd)) {
     		JOptionPane.showMessageDialog(this, "Thanh toán Thành công");
-    		DefaultTableModel dm = (DefaultTableModel) table.getModel();
-    		dm.setRowCount(0);
+    	
     		btnThem.setEnabled(false);
     		
     	}else {
     		JOptionPane.showMessageDialog(this, "Thanh toán thất bại");
+    	}}else {
+    		JOptionPane.showMessageDialog(this, "Không có sản phẩm để thanh toán");
     	}
     }
     public void Themspvaotable() {
-    	DecimalFormat currency = new DecimalFormat ("###,###,###VND");
+    	DecimalFormat currency = new DecimalFormat ("###,###,###");
 		String soluong = txt_soluong.getText();
+		if(!soluong.equals("")) {
 		long sl = Long.parseLong(soluong);
 		long gia = Long.parseLong(lbl_dongia.getText());
 	    if(txt_giamgia.getText().equals("") || txt_giamgia.getText().equalsIgnoreCase("0")){
@@ -423,11 +435,14 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 			}
 		}
 		lbl_tongtien.setText(currency.format(tongTien));
-      
-		String[] rowdata = {mahd,maSp,tenSp,soluong,tongTien+""};
+        String ghichu = txt_area_ghichu.getText();
+        String tien = currency.format(tongTien)+" VND";
+		String[] rowdata = {mahd,maSp,tenSp,soluong,tien, ghichu};
 		model.addRow(rowdata);
 		comboBox_maKH.setEnabled(false);
-		
+		}else {
+			JOptionPane.showMessageDialog(this, "Hãy nhập số lượng");
+		}
     }
     
 	@Override
@@ -435,21 +450,27 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 		Object o = e.getSource();
 		if(o.equals(comboBox_tenxe)){
+			if(isComboBoxEnabled) {
 			String tenSP = (String) comboBox_tenxe.getSelectedItem();
-	
+	       
 			for (sanPham sp : list_sp) {
 				if(sp.getTenLoai().equalsIgnoreCase(tenSP)){
 					lbl_dongia.setText(Long.toString(sp.getGiaBan()));
 				}
-			}
+			}}
 		}else if(o.equals(btntaomoi)) {
 			 jlb_mahoadon.setText(TaoHoadon.TaoSoHD());
-			 btnThem.setEnabled(true);
+			 setEnabled_true();
+			 DefaultTableModel dm = (DefaultTableModel) table.getModel();
+			 dm.setRowCount(0);
 			 
 			
 		}else if(o.equals(btnThem)) {
 			try {
 				Themspvaotable();
+				btn_xoa.setEnabled(true);
+//				reset();
+				btntaomoi.setEnabled(false);
 			} catch (Exception e2) {
 				// TODO: handle exception
 				JOptionPane.showMessageDialog(this, "Hãy chọn sản phẩm cần mua !");
@@ -457,8 +478,24 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 			
 		}if(o.equals(btnThanhtoan)){
 			AddHdvaodatabase();
+			try {
+				AddCthdVaoDatabase();
+				reset();
+				btnThanhtoan.setEnabled(false);
+				btn_xoa.setEnabled(false);
+				btnThem.setEnabled(false);
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+			
+
+			
+			btntaomoi.setEnabled(true);
 	    }else if(o.equals(btnThoat)) {
 	        this.setVisible(false);
+	    }else if(o.equals(btn_xoa)) {
+	    	   Xoa();
 	    }
 
 	}
@@ -467,7 +504,66 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		txt_soluong.setText(null);
 		
 	}
-    
+    public void setEnabled_false() {
+    	btn_xoa.setEnabled(false);
+    	btnThanhtoan.setEnabled(false);
+    	txt_giamgia.setEditable(false);
+    	txt_soluong.setEditable(false);
+    	btnThem.setEnabled(false);
+    	comboBox_maKH.setEnabled(false);
+    	comboBox_tenxe.setEnabled(false);
+    	txt_area_ghichu.setEditable(false);
+    }
+    public void setEnabled_true() {
+    	
+    	btnThanhtoan.setEnabled(true);
+    	txt_giamgia.setEditable(true);
+    	txt_soluong.setEditable(true);
+    	btnThem.setEnabled(true);
+    	comboBox_maKH.setEnabled(true);
+    	comboBox_tenxe.setEnabled(true);
+    	isComboBoxEnabled = true;
+    	txt_area_ghichu.setEditable(true);
+    }
+    public void reset() {
+    	lbl_dongia.setText("");
+    	txt_giamgia.setText("");
+    	txt_soluong.setText("");
+    	lbl_tongtien.setText("");
+    }
+    public void AddCthdVaoDatabase() {
+    	int k = 0;
+    	int count = table.getRowCount();
+    	
+    	for(int i=0;i<count;i++) {
+    		String machitiethoadon = TaoChiTietHoaDon.TaoSoCTHD();
+    		String mahd = (String) model.getValueAt(i, 0);
+    		String masp = (String) model.getValueAt(i, 1);
+    		int soluong = Integer.parseInt( (String)model.getValueAt(i, 3));
+    		long thanhtien =  Long.parseLong((String)model.getValueAt(i, 4));
+    		String ghichu = (String) model.getValueAt(i, 5);
+    		ChiTietHoaDon cthd = new ChiTietHoaDon();
+    		cthd.setMaCTHoaDon(machitiethoadon);
+    		cthd.setMaHoaDon(mahd);
+    		cthd.setMaSP(masp);
+    		cthd.setSoLuong(soluong);
+    		cthd.setThanhTien(thanhtien);
+    		cthd.setGhiChu(ghichu);
+    		if(Dao_CtHoaDon.addCtHoaDon(cthd)) {
+    			k++;
+    		}
+    	}
+    	if(k!=0) {
+    		JOptionPane.showMessageDialog(this, "Thêm Vào Chi Tiết Hóa Đơn Thành Công");
+    	}else {
+    		JOptionPane.showMessageDialog(this, "Thêm thất bại");
+    	}
+    }
+    public void Xoa() {
+    	int pos = table.getSelectedRow();
+    	if(JOptionPane.showConfirmDialog(this,  "Bạn có chắc muốn xóa dòng này không !", "Thông báo",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
+    	model.removeRow(pos);
+    }
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub

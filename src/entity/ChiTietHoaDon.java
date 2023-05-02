@@ -4,8 +4,9 @@ public class ChiTietHoaDon {
 public String maCTHoaDon;
 public String maHoaDon;
 public String maSP;
-public int soluong;
-public long thanhtien;
+public int soLuong;
+public long thanhTien;
+public String ghiChu;
 public String getMaCTHoaDon() {
 	return maCTHoaDon;
 }
@@ -24,25 +25,36 @@ public String getMaSP() {
 public void setMaSP(String maSP) {
 	this.maSP = maSP;
 }
-public int getSoluong() {
-	return soluong;
+public int getSoLuong() {
+	return soLuong;
 }
-public void setSoluong(int soluong) {
-	this.soluong = soluong;
+public void setSoLuong(int soLuong) {
+	this.soLuong = soLuong;
 }
-public long getThanhtien() {
-	return thanhtien;
+public long getThanhTien() {
+	return thanhTien;
 }
-public void setThanhtien(long thanhtien) {
-	this.thanhtien = thanhtien;
+public void setThanhTien(long thanhTien) {
+	this.thanhTien = thanhTien;
 }
-public ChiTietHoaDon(String maCTHoaDon, String maHoaDon, String maSP, int soluong, long thanhtien) {
+public String getGhiChu() {
+	return ghiChu;
+}
+public void setGhiChu(String ghiChu) {
+	this.ghiChu = ghiChu;
+}
+public ChiTietHoaDon(String maCTHoaDon, String maHoaDon, String maSP, int soLuong, long thanhTien, String ghiChu) {
 	super();
 	this.maCTHoaDon = maCTHoaDon;
 	this.maHoaDon = maHoaDon;
 	this.maSP = maSP;
-	this.soluong = soluong;
-	this.thanhtien = thanhtien;
+	this.soLuong = soLuong;
+	this.thanhTien = thanhTien;
+	this.ghiChu = ghiChu;
 }
+public ChiTietHoaDon() {
+	super();
+}
+
 
 }

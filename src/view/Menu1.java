@@ -197,6 +197,7 @@ public class Menu1 extends JFrame implements ActionListener{
     	btnNhanVien.addActionListener(this);
     	btn_banhang.addActionListener(this);
     	btn_info_kh.addActionListener(this);
+    	btnHoaDon.addActionListener(this);
     
     }
 //    public void name_user() {
@@ -256,6 +257,20 @@ public class Menu1 extends JFrame implements ActionListener{
 				e3.printStackTrace();
 			}
 			new KhachHang().setVisible(true);
+		}else if(a.equals(btnHoaDon)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
+			try {
+				new HoaDon_GUI().setVisible(true);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 		}
 		}
 	}

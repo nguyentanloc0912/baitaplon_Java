@@ -341,14 +341,14 @@ public class Gui_NhanVien extends JFrame implements ActionListener, MouseListene
 //		Password must contain at least one special character like ! @ # & ( ).
 //		Password must contain a length of at least 8 characters and a maximum of 20 characters.
 		String matkhau = txt_matkhau.getText();
-		String test_matkhau = "^[a-zA-z@0-9]{8}$";
+		String test_matkhau = "^[a-zA-Z@0-9]{8}$";
 		if(matkhau.equals("")) {
 			lbl_kiemtra_matkhau.setText("* Mật khẩu không được rỗng !");
 			return false;
-		}else if(!taikhoan.matches(test_matkhau)) {
+		}else if(!matkhau.matches(test_matkhau)) {
 			lbl_kiemtra_matkhau.setText("Mật khẩu phải bao gồm các tự, hoa, @ và có 8 ký tự");
 			return false;
-		}else if(taikhoan.matches(test_matkhau)) {
+		}else if(matkhau.matches(test_matkhau)) {
 			lbl_kiemtra_matkhau.setText("");
 		}
 		String hoten = txt_hoten.getText();

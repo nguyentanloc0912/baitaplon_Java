@@ -114,7 +114,8 @@ public class dangNhap extends JFrame  implements ActionListener{
 		labelPass.setPreferredSize(labeluser.getPreferredSize());
 		pnlcenter.setLayout(null);
 		b.add(javax.swing.Box.createVerticalStrut(60));
-		b.add(b1); b.add(javax.swing.Box.createVerticalStrut(10));
+		b.add(b1);
+		b.add(javax.swing.Box.createVerticalStrut(10));
 		b.add(b2);
 		
 		pnlcenter.add(b);
@@ -123,6 +124,7 @@ public class dangNhap extends JFrame  implements ActionListener{
 		bttExit.addActionListener(this);
 		bttCancel.addActionListener(this);
 		bttLogin.addActionListener(this);
+		
 	}
 
 	public void actionPerformed(ActionEvent e) {

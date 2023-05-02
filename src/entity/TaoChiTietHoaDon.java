@@ -5,6 +5,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import dao.Dao_CtHoaDon;
 import dao.Dao_Hoadon1;
 
 public class TaoChiTietHoaDon {
@@ -14,8 +15,8 @@ public class TaoChiTietHoaDon {
 			DateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 			Date d = new Date();
 			soCTHoaDon  = "CTHD"+dateFormat.format(d);
-			System.out.println("Số Hóa Đơn" + soCTHoaDon);
-			ResultSet rs = Dao_Hoadon1.getCountByMaHoaDon(soCTHoaDon);
+			System.out.println("Số Chi tiết Đơn" + soCTHoaDon);
+			ResultSet rs = Dao_CtHoaDon.getCountByMaCtHoaDon(soCTHoaDon);
 			int rowcount = 0;
 			if(rs.next()) {
 				rowcount = rs.getInt(1);
@@ -30,11 +31,11 @@ public class TaoChiTietHoaDon {
 					soCTHoaDon = soCTHoaDon + "AA" + (rowcount+1);
 				}
 				System.out.println("SoHoaDon" + soCTHoaDon);
-				ResultSet rs2 = Dao_Hoadon1.getHoaDonByMaHoaDon(soCTHoaDon);
+				ResultSet rs2 = Dao_CtHoaDon.getCtHoaDonByMaCtHoaDon(soCTHoaDon);
 				if(rs2.next()) {
 					dup = true;
 					rowcount++;
-					soCTHoaDon = dateFormat.format(d);
+					soCTHoaDon = "CTHD"+dateFormat.format(d);
 					
 				}else {
 					dup = false;
