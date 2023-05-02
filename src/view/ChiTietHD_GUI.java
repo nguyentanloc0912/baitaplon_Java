@@ -60,6 +60,7 @@ public class ChiTietHD_GUI extends JFrame implements MouseListener, ActionListen
 	 */
 	public ChiTietHD_GUI() {
 		setTitle("Quản lý chi tiết hóa đơn");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 803, 560);
 		contentPane = new JPanel();

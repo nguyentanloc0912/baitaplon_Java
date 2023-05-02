@@ -51,6 +51,7 @@ import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -375,7 +376,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
     	int countRow = model.getRowCount();
     	if(countRow > 0) {
     	tongtienhoadon = 0;
-		DecimalFormat currency = new DecimalFormat ("###,###,###VND");
+		DecimalFormat currency = new DecimalFormat ("###,###,### VND");
 		int soluong = model.getRowCount();
 		for(int i=0;i<soluong;i++) {
 			String str = (String) model.getValueAt(i, 4);
@@ -410,7 +411,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
     	}
     }
     public void Themspvaotable() {
-    	DecimalFormat currency = new DecimalFormat ("###,###,###");
+    	NumberFormat currency = new DecimalFormat ("###,###,###");
 		String soluong = txt_soluong.getText();
 		if(!soluong.equals("")) {
 		long sl = Long.parseLong(soluong);
@@ -436,8 +437,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		}
 		lbl_tongtien.setText(currency.format(tongTien));
         String ghichu = txt_area_ghichu.getText();
-        String tien = currency.format(tongTien)+" VND";
-		String[] rowdata = {mahd,maSp,tenSp,soluong,tien, ghichu};
+		String[] rowdata = {mahd,maSp,tenSp,soluong,tongTien+"", ghichu};
 		model.addRow(rowdata);
 		comboBox_maKH.setEnabled(false);
 		}else {
@@ -488,9 +488,6 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 				// TODO: handle exception
 				e2.printStackTrace();
 			}
-			
-
-			
 			btntaomoi.setEnabled(true);
 	    }else if(o.equals(btnThoat)) {
 	        this.setVisible(false);
@@ -515,7 +512,6 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
     	txt_area_ghichu.setEditable(false);
     }
     public void setEnabled_true() {
-    	
     	btnThanhtoan.setEnabled(true);
     	txt_giamgia.setEditable(true);
     	txt_soluong.setEditable(true);
@@ -534,7 +530,6 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
     public void AddCthdVaoDatabase() {
     	int k = 0;
     	int count = table.getRowCount();
-    	
     	for(int i=0;i<count;i++) {
     		String machitiethoadon = TaoChiTietHoaDon.TaoSoCTHD();
     		String mahd = (String) model.getValueAt(i, 0);

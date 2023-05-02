@@ -368,6 +368,9 @@ public class HoaDon_GUI extends JFrame implements ActionListener, MouseListener,
 		}
 	}
     public void XemChiTiet() {
+    	try {
+			
+		
     	ArrayList<ChiTietHoaDon> ls_cthd;
 		int pos = table_hd.getSelectedRow();
 		String mahd = (String) model_hd.getValueAt(pos, 0);
@@ -384,9 +387,14 @@ public class HoaDon_GUI extends JFrame implements ActionListener, MouseListener,
 			String ghichu = cthd.getGhiChu()+"";
 			String data[] = {macthd, mahoadon, masp, soluong, thanhtien, ghichu};
 			cthd_gui.model_cthd.addRow(data);
+		  	cthd_gui.setVisible(true);
+			
 		}
-		
-		cthd_gui.setVisible(true);
+    	}catch (Exception e) {
+				// TODO: handle exception
+    		JOptionPane.showMessageDialog(null,"Hãy chọn hóa đơn để xem chi tiết !" );
+			}
+  
     }
     public static void Clear_table () {
     	DefaultTableModel dm = (DefaultTableModel) table_hd.getModel();
