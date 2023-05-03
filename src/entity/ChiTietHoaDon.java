@@ -6,6 +6,22 @@ public String maHoaDon;
 public String maSP;
 public int soluong;
 public long thanhtien;
+
+public sanPham sanPham;
+
+
+public ChiTietHoaDon(sanPham sanPham,int soluong, long thanhtien) {
+	super();
+	this.soluong = soluong;
+	this.thanhtien = thanhtien;
+	this.sanPham = sanPham;
+}
+public sanPham getSanPham() {
+	return sanPham;
+}
+public void setSanPham(sanPham sanPham) {
+	this.sanPham = sanPham;
+}
 public String getMaCTHoaDon() {
 	return maCTHoaDon;
 }
