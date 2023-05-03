@@ -34,9 +34,8 @@ public class Menu1 extends JFrame implements ActionListener{
 	private JButton btnNewButton_sanpham;
 
 	private KhachHang khachhang;
-
+	private thongKe_view thongKe;
 	private JButton btnHoaDon;
-
 	private JButton btn_thoat_hoadon;
 	private JPanel jpanel_hoadon;
 	private JButton btn_info_sanpham;
@@ -45,6 +44,7 @@ public class Menu1 extends JFrame implements ActionListener{
 	private JButton btnNhanVien;
 	private JButton btn_dangnhap;
 	private JButton btn_dangxuat;
+	private JButton btn_baoCao;
 	private dangNhap dn;
 	private JLabel lbl_user;
 	private String username;
@@ -125,6 +125,12 @@ public class Menu1 extends JFrame implements ActionListener{
 		btnHoaDon.setBounds(30, 294, 254, 39);
 		panel.add(btnHoaDon);
 		
+		btn_baoCao = new JButton("Báo cáo");
+		btn_baoCao.setIcon(new ImageIcon(Menu1.class.getResource("/anh/report4.png")));
+		btn_baoCao.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btn_baoCao.setBounds(30, 350, 254, 39);
+		panel.add(btn_baoCao);
+		
 		btnNhanVien = new JButton("Thông tin nhân viên");
 		btnNhanVien.setIcon(new ImageIcon(Menu1.class.getResource("/anh/people.png")));
 		btnNhanVien.setFont(new Font("Tahoma", Font.BOLD, 13));
@@ -138,9 +144,6 @@ public class Menu1 extends JFrame implements ActionListener{
 		panel_1.setLayout(null);
 		
 	
-		
-	
-		
 		JLabel lblNewLabel = new JLabel("New label");
 		lblNewLabel.setIcon(new ImageIcon(Menu1.class.getResource("/anh/Untitled design.png")));
 		lblNewLabel.setBounds(0, 0, 344, 229);
@@ -197,7 +200,7 @@ public class Menu1 extends JFrame implements ActionListener{
     	btnNhanVien.addActionListener(this);
     	btn_banhang.addActionListener(this);
     	btn_info_kh.addActionListener(this);
-    
+    	btn_baoCao.addActionListener(this);
     }
 //    public void name_user() {
 //    	dn = new dangNhap();
@@ -227,8 +230,7 @@ public class Menu1 extends JFrame implements ActionListener{
 				e3.printStackTrace();
 			}
 			try {
-				banHang bh =  new banHang();
-				bh.setVisible(true);
+				new banHang().setVisible(true);
 				
 				
 			} catch (SQLException e1) {
@@ -256,7 +258,15 @@ public class Menu1 extends JFrame implements ActionListener{
 				e3.printStackTrace();
 			}
 			new KhachHang().setVisible(true);
-		}
+		}else if(a.equals(btn_baoCao)) {
+			try {
+				UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+			} catch (Exception e3) {
+				// TODO: handle exception
+				e3.printStackTrace();
+			}
+			new thongKe_view().setVisible(true);
 		}
 	}
+}
 
