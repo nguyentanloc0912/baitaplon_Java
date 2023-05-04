@@ -4,9 +4,26 @@ public class ChiTietHoaDon {
 public String maCTHoaDon;
 public String maHoaDon;
 public String maSP;
+
 public int soLuong;
 public long thanhTien;
 public String ghiChu;
+
+public int soluong;
+public long thanhtien;
+
+
+
+public ChiTietHoaDon(int soluong, long thanhtien) {
+	super();
+	this.soluong = soluong;
+	this.thanhtien = thanhtien;
+	
+}
+
+
+
+
 public String getMaCTHoaDon() {
 	return maCTHoaDon;
 }

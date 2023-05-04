@@ -5,12 +5,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Label;
 import java.awt.Window;
 import java.awt.Font;
 import java.awt.Color;
-import javax.swing.border.TitledBorder;
 
+import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -27,7 +28,6 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
-
 import javax.swing.text.Element;
 
 import dao.Dao_CtHoaDon;
@@ -42,6 +42,7 @@ import entity.khachHang_model;
 import entity.sanPham;
 
 import javax.swing.ImageIcon;
+
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -59,6 +60,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 import java.awt.event.ActionEvent;
+
 import javax.swing.JTextArea;
 
 public class banHang extends JFrame implements ActionListener, WindowListener {
@@ -106,7 +108,11 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 	public static ArrayList<HoaDon> list_hd;
 	public Dao_Hoadon1 dao_hd;
 	private int tongtienhoadon;
+
 	private boolean isComboBoxEnabled = false;
+
+	private Dao_CtHoaDon dao_ctHD;
+
 	
 	
 
@@ -138,6 +144,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 	 */
 	public banHang() throws SQLException {
 		dao_hd = new Dao_Hoadon1();
+		dao_ctHD = new Dao_CtHoaDon();
 		dao_khachHang = new khachHang_DAO();
 		dao_sanPham = new thongTinSP_DAO();
 		thsp = new thongTinSanPham_GUI();
@@ -353,7 +360,7 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 		addAction();
 		addWindowListener(this);
 		btnThem.setEnabled(false);
-		setEnabled_false();
+
 		
 	
 	}
@@ -444,6 +451,8 @@ public class banHang extends JFrame implements ActionListener, WindowListener {
 			JOptionPane.showMessageDialog(this, "Hãy nhập số lượng");
 		}
     }
+    
+
     
 	@Override
 	public void actionPerformed(ActionEvent e) {

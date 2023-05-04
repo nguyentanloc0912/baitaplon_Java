@@ -10,7 +10,9 @@ import java.util.ArrayList;
 
 import connectDB.ConnectDB;
 import entity.ChiTietHoaDon;
+
 import entity.HoaDon;
+
 
 public class Dao_CtHoaDon {
     public static ResultSet getCountByMaCtHoaDon(String maCtHoaDon) {
@@ -40,6 +42,7 @@ public class Dao_CtHoaDon {
         }
         return rs;
     }
+
     public static boolean addCtHoaDon(ChiTietHoaDon cthd) {
     	Connection con = ConnectDB.getConnecttion();
     	ConnectDB.getInstance();
@@ -82,7 +85,6 @@ public class Dao_CtHoaDon {
         ArrayList<ChiTietHoaDon> hoaDonList = new ArrayList<ChiTietHoaDon>();
         ConnectDB.getInstance().connect();
 		Connection con = ConnectDB.getConnecttion();
-
         try {
             // Tạo câu lệnh truy vấn
             String query = "SELECT * FROM ct_hoadon WHERE MaHoaDon = ?";
